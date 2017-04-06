@@ -1,0 +1,58 @@
+body {
+  padding: 2%;
+}
+
+li {
+  background-color: #F5F5F5;
+  margin: 1%;
+  border-radius: 5%;
+}
+
+.li-modal {
+  padding: 2%;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: black;
+}
+
+.border {
+  border-radius: 50%;
+}
+
+.xs-image {
+  width: 38px;
+}
+
+.center {
+  display: inline-block;
+  margin-right: 1%;
+}
+
+.smaller-image {
+  width: 125px;
+}
+
+#button, #button2 {
+	margin: 1%;
+}
+
+#voltar {
+  margin-bottom: 3%;
+  color: #fff;
+
+}
+
+input:disabled::-webkit-input-placeholder { /* WebKit browsers */
+    color: black;
+}
+input:disabled:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: black;
+}
+input:disabled::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: black;
+}
+input:disabled:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: black;
+}
+
