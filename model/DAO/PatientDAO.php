@@ -3,24 +3,24 @@
 require_once '../connection/Connection.php';
 
 /**
- * 
+ *
  * @author vitor.brangioni
  *
  */
-class DoctorDAO
+class PatientDAO
 {
 	private static $instance;
 	private static $conn;
 	
-	private function __construct() {
-		
+	private function __construct()
+	{
 	}
 	
-	public static function getInstance() : DoctorDAO
+	public static function getInstance() : PatientDAO
 	{
 		if (!isset(self::$instance) && !isset(self::$conn)) {
 			self::$conn = Connection::getInstance();
-			self::$instance = new DoctorDAO();
+			self::$instance = new PatientDAO();
 		}
 		return self::$instance;
 	}
@@ -29,7 +29,7 @@ class DoctorDAO
 	public function listAll()
 	{
 		try {
-			$sql = "SELECT * FROM doctor";
+			$sql = "SELECT * FROM patient";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->execute();
 			
@@ -39,17 +39,23 @@ class DoctorDAO
 		}
 	}
 	
-	public function insert(Doctor $doctor)
+	public function insert(Patient $patient)
 	{
 		try {
-			$sql = "insert into ..";
+			$sql = "INSERT INTO patient (name, cpf, rg) VALUES (:name, :cpf, :rg);";
+			
 			self::$conn->prepare($sql);
+			$stmt->bindValue(":name", $user->patient->getName());
+			$stmt->bindValue(":cpf", $user->getCpf());
+			$stmt->bindValue(":rg", $user->getRg());
+			$stmt->execute();
 			
 		} catch (Exception $e) {
+			echo $e->getMessage();
 		}
 	}
 	
-	public function edit(PojoDoctor $doctor)
+	public function edit(Patient $patient)
 	{
 		try {
 			
@@ -61,7 +67,7 @@ class DoctorDAO
 	public function findById($id)
 	{
 		try {
-			$sql = "SELECT * FROM doctor WHERE id = :id";
+			$sql = "SELECT * FROM patient WHERE id = :id";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $id);
 			$stmt->execute();
@@ -73,7 +79,7 @@ class DoctorDAO
 		}
 	}
 	
-	public function findByObject(Doctor $doctor)
+	public function findByObject(Patient $patient)
 	{
 		try {
 			$sql = "SELECT * FROM doctor WHERE id = :id";
@@ -101,7 +107,7 @@ if ($result == null){
 }
 
 /* foreach ($result as $data) {
-	echo $data['nome'];
-}
+ echo $data['nome'];
+ }
  */
 echo $dao->findById(1)['nome'];
