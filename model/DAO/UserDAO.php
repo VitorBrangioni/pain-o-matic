@@ -72,9 +72,31 @@ class UserDAO
 	public function findById($id)
 	{
 		try {
-			$sql = "SELECT * FROM doctor WHERE id = :id";
+			$sql = "SELECT * FROM user WHERE id = :id";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $id);
+			$stmt->execute();
+			
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+			
+		} catch (PDOStatement $e) {
+			echo $e->errorCode();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param Enum $fiel
+	 * @param unknown $value
+	 * @return unknown
+	 */
+	public function findGeneric(Enum $fiel, $value)
+	{
+		try {
+			$sql = "SELECT * FROM user WHERE :field = :value";
+			$stmt = self::$conn->prepare($sql);
+			$stmt->bindValue(":field", $fiel);
+			$stmt->bindValue(":value", $value);
 			$stmt->execute();
 			
 			return $stmt->fetch(PDO::FETCH_ASSOC);

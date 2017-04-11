@@ -34,6 +34,7 @@ class PatientDAO
 			$stmt->execute();
 			
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			
 		} catch (PDOStatement $e) {
 			echo $e->errorCode();
 		}
