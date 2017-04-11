@@ -1,5 +1,13 @@
 {
-    "require": {
-        "tightenco/jigsaw": "^0.6.4"
-    }
+	"require" : {
+		"tightenco/jigsaw" : "^0.6.4"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"model\\dao\\" : "model/DAO",
+			"model\\connection\\" : "model/connection",
+			"model\\interfaces\\" : "model/interface",
+			"model\\pojo\\" : "model/pojo"
+		}
+	}
 }
