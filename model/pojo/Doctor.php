@@ -1,5 +1,7 @@
 <?php
 
+namespace model\pojo;
+
 /**
  * 
  * @author vitor.brangioni

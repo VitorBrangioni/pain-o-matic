@@ -1,5 +1,7 @@
 <?php
 
+namespace model\interfaces;
+
 interface DAOInterface
 {
 	public function findById($id);

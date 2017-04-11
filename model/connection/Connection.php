@@ -1,5 +1,7 @@
 <?php
 
+namespace model\connection;
+
 /**
  * 
  * @author vitor.brangioni

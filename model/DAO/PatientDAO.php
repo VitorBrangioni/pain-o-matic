@@ -1,5 +1,7 @@
 <?php
 
+namespace model\dao;
+
 require_once '../connection/Connection.php';
 
 /**
