@@ -1,14 +1,11 @@
 <?php
 
-namespace model\pojo;
-
 /**
  * 
  * @author vitor.brangioni
  *
  */
-class Doctor
+class Doctor extends Pojo
 {
-	private $id;
 	private $name;
 }
