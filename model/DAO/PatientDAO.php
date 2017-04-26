@@ -2,14 +2,20 @@
 
 namespace model\dao;
 
-require_once '../connection/Connection.php';
+require_once  '../../vendor/autoload.php';
+
+
+use model\connection\Connection;
+use model\interfaces\DAOInterface;
+use model\pojo\Pojo;
+use model\pojo\Patient;
 
 /**
  *
  * @author vitor.brangioni
  *
  */
-class PatientDAO
+class PatientDAO implements DAOInterface
 {
 	private static $instance;
 	private static $conn;
@@ -27,7 +33,6 @@ class PatientDAO
 		return self::$instance;
 	}
 	
-	// @DONE
 	public function listAll()
 	{
 		try {
@@ -35,34 +40,9 @@ class PatientDAO
 			$stmt = self::$conn->prepare($sql);
 			$stmt->execute();
 			
-			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			
-		} catch (PDOStatement $e) {
-			echo $e->errorCode();
-		}
-	}
-	
-	public function insert(Patient $patient)
-	{
-		try {
-			$sql = "INSERT INTO patient (name, cpf, rg) VALUES (:name, :cpf, :rg);";
-			
-			self::$conn->prepare($sql);
-			$stmt->bindValue(":name", $user->patient->getName());
-			$stmt->bindValue(":cpf", $user->getCpf());
-			$stmt->bindValue(":rg", $user->getRg());
-			$stmt->execute();
-			
-		} catch (Exception $e) {
-			echo $e->getMessage();
-		}
-	}
-	
-	public function edit(Patient $patient)
-	{
-		try {
-			
-		} catch (PDOStatement $e) {
+		} catch (\PDOStatement $e) {
 			echo $e->errorCode();
 		}
 	}
@@ -75,42 +55,112 @@ class PatientDAO
 			$stmt->bindValue(":id", $id);
 			$stmt->execute();
 			
-			return $stmt->fetch(PDO::FETCH_ASSOC);
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
 			
-		} catch (PDOStatement $e) {
+		} catch (\PDOStatement $e) {
 			echo $e->errorCode();
 		}
 	}
 	
-	public function findByObject(Patient $patient)
+	//@DONE
+	/**
+	 *
+	 * @param Enum $fiel
+	 * @param unknown $value
+	 * @return unknown
+	 */
+	public function findGeneric($fiel, $value)
 	{
 		try {
-			$sql = "SELECT * FROM doctor WHERE id = :id";
+			$sql = "SELECT * FROM patient WHERE ".$fiel." = :value";
 			$stmt = self::$conn->prepare($sql);
-			$stmt->bindValue(":id", $doctor->getId());
+			$stmt->bindValue(":value", $value);
 			$stmt->execute();
 			
-			return $stmt->fetch(PDO::FETCH_ASSOC);
-		} catch (PDOStatement $e) {
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
+			
+		} catch (\PDOStatement $e) {
 			echo $e->errorCode();
 		}
 	}
 	
-	private function populateDoctor($row)
+	// @TODO
+	public function findByObject(Pojo $patient)
 	{
+		try {
+			$sql = "SELECT * FROM patient WHERE id = :id";
+			$stmt = self::$conn->prepare($sql);
+			$stmt->bindValue(":id", $patient->getId());
+			$stmt->execute();
+			
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
+			
+		} catch (\PDOStatement $e) {
+			echo $e->errorCode();
+		}
+	}
+	
+	public function insert(Pojo $patient)
+	{
+		if (!$patient instanceof Patient) {
+			throw new \InvalidArgumentException();
+		}
 		
+		try {
+			$sql = "INSERT INTO patient (id, patientname, password) VALUES (null, :patientname, :password)";
+			
+			$stmt = self::$conn->prepare($sql);
+			$stmt->bindValue(":patientname", $patient->getpatientname());
+			$stmt->bindValue(":password", $patient->getPassword());
+			$stmt->execute();
+			
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}
+	}
+	
+	// @TODO
+	public function edit(Pojo $patient)
+	{
+		if (!$patient instanceof Patient) {
+			throw new \InvalidArgumentException();
+		}
+		
+		try {
+			$sql = "UPDATE patient SET patientname = ':patientname', password = ':password' WHERE id = :id";
+			
+			self::$conn->prepare($sql);
+			$stmt->bindValue(":patientname", $patient->getpatientname());
+			$stmt->bindValue(":password", $patient->getPassword());
+			$stmt->bindValue(":id", $patient->getId());
+			$stmt->execute();
+			
+		} catch (\PDOStatement $e) {
+			echo $e->errorCode();
+		}
+	}
+	
+	public function delete(Pojo $patient)
+	{
+		if (!$patient instanceof Patient) {
+			throw new \InvalidArgumentException();
+		}
+		
+		try {
+			$sql = "DELETE FROM patient WHERE id = :id";
+			
+			$stmt = self::$conn->prepare($sql);
+			$stmt->bindValue(":id", $patient->getId());
+			$stmt->execute();
+			
+		} catch (\PDOStatement $e) {
+			echo $e->errorCode();
+		}
+	}
+	
+	// @TODO ?
+	private function populate($row)
+	{
 	}
 }
 
-$dao = DoctorDAO::getInstance();
-$result = $dao->listAll();
-
-if ($result == null){
-	echo 'fail';
-}
-
-/* foreach ($result as $data) {
- echo $data['nome'];
- }
- */
-echo $dao->findById(1)['nome'];
