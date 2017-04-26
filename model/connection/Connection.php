@@ -2,12 +2,14 @@
 
 namespace model\connection;
 
+use model\interfaces\ConnectionInterface;
+
 /**
  * 
  * @author vitor.brangioni
  *
  */
-class Connection
+class Connection implements ConnectionInterface
 {
     private static $dsn = "mysql:host=localhost;dbname=pain_o_matic;port-;charset=utf8";
     private static $user = "root";
@@ -22,7 +24,7 @@ class Connection
     {
     	if (!isset(self::$instance)) {
     		try {
-    			self::$instance = new PDO("mysql:host=localhost;dbname=pain_o_matic;port-;charset=utf8", "root", "");
+    			self::$instance = new \PDO("mysql:host=localhost;dbname=pain_o_matic;port-;charset=utf8", "root", "");
     		} catch (PDOException $e) {
     			echo $e->getMessage();
     		}
@@ -30,5 +32,3 @@ class Connection
     	return self::$instance;
     }
 }
-
-Connection::getInstance();
