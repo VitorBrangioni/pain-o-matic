@@ -33,6 +33,7 @@ class PatientDAO implements DAOInterface
 		return self::$instance;
 	}
 	
+	// @DONE
 	public function listAll()
 	{
 		try {
@@ -47,6 +48,7 @@ class PatientDAO implements DAOInterface
 		}
 	}
 	
+	// @DONE
 	public function findById($id)
 	{
 		try {
@@ -62,17 +64,17 @@ class PatientDAO implements DAOInterface
 		}
 	}
 	
-	//@DONE
+	// @DONE
 	/**
 	 *
 	 * @param Enum $fiel
 	 * @param unknown $value
 	 * @return unknown
 	 */
-	public function findGeneric($fiel, $value)
+	public function findGeneric($field, $value)
 	{
 		try {
-			$sql = "SELECT * FROM patient WHERE ".$fiel." = :value";
+			$sql = "SELECT * FROM patient WHERE ".$field." = :value";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":value", $value);
 			$stmt->execute();
@@ -100,6 +102,7 @@ class PatientDAO implements DAOInterface
 		}
 	}
 	
+	// @DONE
 	public function insert(Pojo $patient)
 	{
 		if (!$patient instanceof Patient) {
@@ -107,11 +110,13 @@ class PatientDAO implements DAOInterface
 		}
 		
 		try {
-			$sql = "INSERT INTO patient (id, patientname, password) VALUES (null, :patientname, :password)";
+			$sql = "INSERT INTO patient (id, name, cpf, rg, photo) VALUES (null, :name, :cpf, :rg, :photo)";
 			
 			$stmt = self::$conn->prepare($sql);
-			$stmt->bindValue(":patientname", $patient->getpatientname());
-			$stmt->bindValue(":password", $patient->getPassword());
+			$stmt->bindValue(":name", $patient->getName());
+			$stmt->bindValue(":cpf", $patient->getCpf());
+			$stmt->bindValue(":rg", $patient->getRg());
+			$stmt->bindValue(":photo", $patient->getPhoto());
 			$stmt->execute();
 			
 		} catch (Exception $e) {
@@ -140,6 +145,7 @@ class PatientDAO implements DAOInterface
 		}
 	}
 	
+	// @DONE
 	public function delete(Pojo $patient)
 	{
 		if (!$patient instanceof Patient) {
@@ -163,4 +169,19 @@ class PatientDAO implements DAOInterface
 	{
 	}
 }
+
+$patient = new Patient();
+
+$patient->setId(1);
+$patient->setName("vitor");
+$patient->setCPf(13111947629);
+$patient->setRg("MG-123");
+
+$dao = PatientDAO::getInstance();
+$listAll = $dao->delete($patient);
+// echo $listAll['name'];
+
+/* foreach ($listAll as $data) {
+	echo $data['name'];
+} */
 
