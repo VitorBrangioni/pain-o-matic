@@ -2,7 +2,7 @@
 
 namespace model\dao;
 
-require_once  '../../vendor/autoload.php';
+//require_once  '../../vendor/autoload.php';
 
 
 use model\connection\Connection;
@@ -169,19 +169,3 @@ class PatientDAO implements DAOInterface
 	{
 	}
 }
-
-$patient = new Patient();
-
-$patient->setId(1);
-$patient->setName("vitor");
-$patient->setCPf(13111947629);
-$patient->setRg("MG-123");
-
-$dao = PatientDAO::getInstance();
-$listAll = $dao->delete($patient);
-// echo $listAll['name'];
-
-/* foreach ($listAll as $data) {
-	echo $data['name'];
-} */
-

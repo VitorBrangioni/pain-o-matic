@@ -16,6 +16,13 @@ class Patient extends Pojo
 	private $photo;
 
 
+	public function __construct($name, $cpf, $rg)
+	{
+		$this->setName($name);
+		$this->setCpf($cpf);
+		$this->setRg($rg);
+	}
+	
     public function getName()
     {
         return $this->name;
@@ -31,7 +38,7 @@ class Patient extends Pojo
         return $this->cpf;
     }
 
-    public function setCpf(int $cpf)
+    public function setCpf($cpf)
     {
         $this->cpf = $cpf;
     }

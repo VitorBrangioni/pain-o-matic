@@ -1,9 +1,22 @@
+<?php 
+
+require_once '../../../vendor/autoload.php';
+
+use src\controller\PatientController;
+
+	$controller = PatientController::getInstance();
+if (isset($_POST['register'])) {
+	$controller->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
+}
+
+?>
+
 	<html>
 	<head>
 	<title>Pain O' Meter</title>
 	<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
@@ -33,9 +46,12 @@
      <legend><h2><strong>Pacientes</strong></h2></legend>
           
      <ul class = "nav">
-         <li><a href="visualiza-paciente.html">Maria Silva Gomes</a></li>
-         <li><a href="#">Luiz Anderson Peres</a></li>
-         <li><a href="#">Ana Leticia </a></li>
+     
+     <?php 
+     foreach ($controller->listAll() as $data) {
+     	echo '<li><a href="visualiza-paciente.html">'.$data['name'].'</a></li>';
+     }
+     ?>
      </ul>
   
 	 <!-- Modal -->
@@ -59,15 +75,15 @@
 	     <fieldset>  
 	     <div class="form-group">
 	         <label>Nome completo:</label>
-	         <input type="text" class="form-control"  name="codigo" autofocus required>
+	         <input type="text" name="name" class="form-control" autofocus required>
 	     </div>
          <div class="form-group">
 	         <label>Identificador:</label>
-	         <input type="text" class="form-control"  name="codigo" autofocus required>
+	         <input type="text" name="id" class="form-control"  autofocus>
 	     </div>
          <div class="form-group">
              <label>RG:</label>
-             <input type="text" class="form-control"  name="codigo" autofocus required>
+             <input type="text" name="rg" class="form-control" autofocus required>
          </div>
 
          </fieldset>
@@ -77,13 +93,13 @@
 	     <fieldset>  
          <div class="form-group">
 	         <label>CPF:</label>
-	          <input type="text" class="form-control" name="codigo" data-mask="999.999.999-99" placeholder="000.000.000-00"
+	          <input type="number" name="cpf" class="form-control" data-mask="999.999.999-99" placeholder="000.000.000-00"
               autofocus required>
 	     </div>
         <div class="form-group">
-             <label>Última edição:</label>
+             <label>ï¿½ltima ediï¿½ï¿½o:</label>
              <ul class = "nav">
-             <li class="li-modal">23 Março 2017 - 13:59:45</li>
+             <li class="li-modal">23 Marï¿½o 2017 - 13:59:45</li>
          </ul>
          </div>
          </fieldset>
@@ -91,7 +107,7 @@
        <div class="container-fluid">
        <div class="row">
         <div class="text-center">
-              <button type="submit" name="button" id="button" class="btn btn-primary ">Enviar</button>
+              <button type="submit" name="register" class="btn btn-primary ">Cadastrar</button>
              <button type="reset" name="button2" id="button2" class="btn btn-danger">Limpar</button>
              </div>
              </div>
