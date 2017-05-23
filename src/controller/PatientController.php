@@ -25,16 +25,26 @@ class PatientController
 		}
 		return self::$instance;
 	}
-	
+
 	public function register($name, $cpf, $rg, $photo)
 	{
 		$patient = new Patient($name, $cpf, $rg, $photo);
-		
+
 		self::$patientDAO->insert($patient);
 	}
-	
+
+    public function delete($patient)
+    {
+        self::$patientDAO->delete($patient);
+    }
+
 	public function listAll()
 	{
 		return self::$patientDAO->listAll();
 	}
+	
+	public function findById($id) {
+		return self::$patientDAO->findById($id);
+	}
+	
 }

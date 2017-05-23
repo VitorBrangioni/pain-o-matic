@@ -1,58 +1,68 @@
 body {
-  padding: 2%;
+    padding: 2%;
 }
 
 li {
-  background-color: #F5F5F5;
-  margin: 1%;
-  border-radius: 5%;
+    background-color: #F5F5F5;
+    margin: 1%;
+    border-radius: 5%;
 }
 
 .li-modal {
-  padding: 2%;
+    padding: 2%;
 }
 
 a:link, a:visited, a:hover, a:active {
-  color: black;
+    color: black;
 }
 
 .border {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
 .xs-image {
-  width: 38px;
+    width: 38px;
+}
+
+#canvas1 {
+    margin: auto;
 }
 
 .center {
-  display: inline-block;
-  margin-right: 1%;
+    display: inline-block;
+    margin-right: 1%;
 }
 
 .smaller-image {
-  width: 125px;
+    width: 125px;
 }
 
 #button, #button2 {
-	margin: 1%;
+    margin: 1%;
 }
 
 #voltar {
-  margin-bottom: 3%;
-  color: #fff;
+    margin-bottom: 3%;
+    color: #fff;
 
+}
+
+canvas {
+    position: relative;
 }
 
 input:disabled::-webkit-input-placeholder { /* WebKit browsers */
     color: black;
 }
+
 input:disabled:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: black;
 }
+
 input:disabled::-moz-placeholder { /* Mozilla Firefox 19+ */
     color: black;
 }
+
 input:disabled:-ms-input-placeholder { /* Internet Explorer 10+ */
     color: black;
 }
-

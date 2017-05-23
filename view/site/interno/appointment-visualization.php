@@ -7,20 +7,15 @@ use src\controller\PatientController;
 $appointmentController = AppointmentController::getInstance();
 $patientController = PatientController::getInstance();
 
+$appointment = $appointmentController->findById($_GET['aId']);
 $patient = $patientController->findById($_GET['pId']);
 
-if ($patient == null) {
-    echo "fail";
-}
 
 if (isset($_POST['register'])) {
-    $appointmentController->register($_GET['pId']);
-}
-
-if (isset($_POST['delete'])) {
-    $patientController->delete($patient);
-    header("Location: patient-management.php");
-    exit();
+    date_default_timezone_set('America/Sao_Paulo');
+    $time = date("H:i:s");
+    $date = date("Y-m-d");
+    $appointmentController->register($date, $time, $_GET['pId']);
 }
 
 ?>
@@ -36,7 +31,6 @@ if (isset($_POST['delete'])) {
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-    <script type="text/javascript" src="../../tools/jasny-bootstrap/jasny-bootstrap.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -53,6 +47,7 @@ if (isset($_POST['delete'])) {
             $("#btnSalvar").toggle();
             $("#btnLimpar").toggle();
             $("#ultEd").attr("disabled", true);
+            $("#dataConsl").attr("disabled", true);
         }
 
         function salvar() {
@@ -72,91 +67,68 @@ if (isset($_POST['delete'])) {
 
 <body>
 <form method="POST" action="">
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
 
                 <div class="input-group-btn">
-                    <a class="btn btn-danger" href="patient-management.php" role="button" id="voltar">Voltar</a>
+                    <a class="btn btn-danger" href="patient-visualization.php?pId=<?php echo $_GET['pId'] ?>" role="button" id="voltar">Voltar
+                    </a>
                 </div>
 
                 <div class="input-group-btn">
                     <button class="btn btn-success pull-right" type="submit" name="register">
-                        Adicionar Consulta
+                        Adicionar Diagrama
                     </button>
                 </div>
 
+                <div><br></div>
 
-                <a data-toggle="modal" data-target="#myModal2">
-                    <img class="xs-image border center" alt=""
-                         src="http://bit.ly/2nLlcLG"><strong><?= $patient['name']; ?></strong></a>
 
-                <legend><h2><strong>Consultas</strong></h2></legend>
+                <a data-toggle="modal" data-target="#myModal3"><h3><strong><?= $appointment['date'] ?></strong></h3></a>
+
+                <legend><h2><strong>Diagramas</strong></h2></legend>
                 <ul class="nav">
 
-                    <?php
-                    $result = $appointmentController->listAllPatientAppointments($_GET['pId']);
-
-                    foreach ($result as $data) {
-                        echo '<li>
-                        <div class="form-inline d-inline-block col-xs-12">
-                            <div class="d-inline-block col-md-3  col-xs-9">
-                                <a class="text-left btn btn-default btn-block" href="appointment-visualization.php?pId='
-                                . $_GET['pId'] . '&aId=' . $data['id'] . '">' . $data['date'] . ' -
-                                ' . $data['hora'] . '</a>
-                            </div>
-                            <div class="d-inline-block col-md-1 col-xs-3">
-                                <button type="button" name="delete"
-                                id="btnExcluir"
-                                class="btn btn-danger btn-block">Excluir</button>
-                            </div>
-                        </div>
-                        </li><br>';
-                    }
-                    ?>
                 </ul>
-
-
-
 
                 <!-- Modal -->
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="modal fade" id="myModal2" role="dialog">
+                            <div class="modal fade" id="myModal3" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title"><?= $patient['name']; ?></h4>
+                                            <h4 class="modal-title">29/04/2017 - 13:59:59</h4>
                                         </div>
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="modal-body">
-                                                    <img class="smaller-image border center-block" alt=""
-                                                         src="woman.jpg">
-
                                                     <form id="form1" name="form1" method="post" action="">
                                                         <div class="col-md-6">
                                                             <fieldset>
                                                                 <div class="form-group">
-                                                                    <label>Nome completo:</label>
-                                                                    <input name="nomePac" id="nomePac" type="text"
+                                                                    <label>Médico:</label>
+                                                                    <input name="nomeMed" id="nomeMed" type="text"
                                                                            class="form-control" name="codigo"
-                                                                           value="<?= $patient['name']; ?>" autofocus
-                                                                           required disabled>
+                                                                           value="Dr. Cleber Santos" autofocus required
+                                                                           disabled>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Identificador:</label>
-                                                                    <input name="idPac" type="text" class="form-control"
-                                                                           name="codigo" value="<?= $patient['id']; ?>"
+                                                                    <label>Paciente:</label>
+                                                                    <input name="nomePac" type="text"
+                                                                           class="form-control"
+                                                                           name="codigo" value="<?= $patient['name'] ?>"
                                                                            autofocus required disabled>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>RG:</label>
-                                                                    <input name="rgPac" type="text" class="form-control"
-                                                                           name="codigo" value="<?= $patient['rg']; ?>"
+                                                                    <label>Data:</label>
+                                                                    <input name="dataConsl" type="text"
+                                                                           class="form-control"
+                                                                           name="codigo"
+                                                                           value="<?= $appointment['date'] ?> às <?= $appointment['hora'] ?>"
                                                                            autofocus required disabled>
                                                                 </div>
 
@@ -165,13 +137,6 @@ if (isset($_POST['delete'])) {
 
                                                         <div class="col-md-6">
                                                             <fieldset>
-                                                                <div class="form-group">
-                                                                    <label>CPF:</label>
-                                                                    <input name="cpfPac" type="text"
-                                                                           class="form-control"
-                                                                           name="codigo" value="<?= $patient['cpf']; ?>"
-                                                                           autofocus required disabled>
-                                                                </div>
                                                                 <div class="form-group">
                                                                     <label>Última edição:</label>
                                                                     <input name="ultEd" type="text" class="form-control"
@@ -184,7 +149,8 @@ if (isset($_POST['delete'])) {
                                                         <div class="container-fluid">
                                                             <div class="row">
                                                                 <div class="text-center">
-                                                                    <button type="submit" name="register" id="btnSalvar"
+                                                                    <button type="submit" name="btnSalvar"
+                                                                            id="btnSalvar"
                                                                             onclick="salvar()" class="btn btn-success"
                                                                             style="display:none">Salvar
                                                                     </button>
@@ -193,8 +159,9 @@ if (isset($_POST['delete'])) {
                                                                             onclick="editar()" class="btn btn-primary">
                                                                         Editar
                                                                     </button>
-                                                                    <button type="button" name="delete"
+                                                                    <button type="button" name="btnExcluir"
                                                                             id="btnExcluir"
+                                                                            onclick="location.href = 'visualiza-paciente.html';"
                                                                             class="btn btn-danger">Excluir
                                                                     </button>
                                                                     <button type="reset" name="btnLimpar" id="btnLimpar"
@@ -221,24 +188,15 @@ if (isset($_POST['delete'])) {
 
 
                 <!--
-                    <label>Nome completo:</label>
-                <ul class = "nav">
-                 <li class="li-modal">23 Março 2017 - 13:59:45</li>
-                </ul> -->
+                 <label>Nome completo:</label>
+             <ul class = "nav">
+              <li class="li-modal">23 Março 2017 - 13:59:45</li>
+             </ul> -->
 
             </div>
         </div>
 
-
-        <!--
-         <label>Nome completo:</label>
-     <ul class = "nav">
-     <li class="li-modal">23 Mar�o 2017 - 13:59:45</li>
-     </ul> -->
-
     </div>
-    </div>
-
 </form>
 </body>
 </html>

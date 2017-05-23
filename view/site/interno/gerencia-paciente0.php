@@ -4,10 +4,9 @@ require_once '../../../vendor/autoload.php';
 
 use src\controller\PatientController;
 
-$patientController = PatientController::getInstance();
-
+$controller = PatientController::getInstance();
 if (isset($_POST['register'])) {
-    $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
+    $controller->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
 }
 
 ?>
@@ -23,14 +22,11 @@ if (isset($_POST['register'])) {
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-    <script type="text/javascript" src="../../tools/jasny-bootstrap/jasny-bootstrap.js"></script>
-
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
-
 
 </head>
 
@@ -40,7 +36,7 @@ if (isset($_POST['register'])) {
         <div class="col-md-12">
 
             <div class="input-group-btn">
-                <button type="button_add" class="btn btn-danger" data-toggle="#" data-target="#">Sair</button>
+                <button class="btn btn-danger" onclick="location.href='login.html';">Sair</button>
             </div>
 
             <div class="input-group-btn">
@@ -51,11 +47,10 @@ if (isset($_POST['register'])) {
 
             <legend><h2><strong>Pacientes</strong></h2></legend>
 
-            <ul class="nav">
-
+            <ul id="listPeople" class="nav">
                 <?php
-                foreach ($patientController->listAll() as $data) {
-                    echo '<li><a href="patient-visualization.php?pId=' . $data['id'] . '">' . $data['name'] . '</a></li>';
+                foreach ($controller->listAll() as $data) {
+                    echo '<li><a href="patient-visualization.php?id=' . $data['id'] . '">' . $data['name'] . '</a></li>';
                 }
                 ?>
             </ul>
@@ -71,8 +66,6 @@ if (isset($_POST['register'])) {
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title">Adicionar Paciente</h4>
                                     </div>
-
-                                    <!--MODAl-->
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="modal-body">
@@ -86,18 +79,19 @@ if (isset($_POST['register'])) {
                                                         <fieldset>
                                                             <div class="form-group">
                                                                 <label>Nome completo:</label>
-                                                                <input type="text" name="name" class="form-control"
-                                                                       autofocus required>
+                                                                <input name="nomePac" id="nomePac" type="text"
+                                                                       class="form-control" name="codigo" autofocus
+                                                                       required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Identificador:</label>
-                                                                <input type="text" name="id" class="form-control"
-                                                                       autofocus>
+                                                                <input name="idPac" type="text" class="form-control"
+                                                                       name="codigo" autofocus required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>RG:</label>
-                                                                <input type="text" name="rg" class="form-control"
-                                                                       autofocus required>
+                                                                <input name="rgPac" type="text" class="form-control"
+                                                                       name="codigo" autofocus required>
                                                             </div>
 
                                                         </fieldset>
@@ -107,16 +101,15 @@ if (isset($_POST['register'])) {
                                                         <fieldset>
                                                             <div class="form-group">
                                                                 <label>CPF:</label>
-                                                                <input type="number" name="cpf" class="form-control"
-                                                                       pattern="[\d]{11}"
-                                                                       data-mask="999.999.999-99"
+                                                                <input name="cpfPac" type="text" class="form-control"
+                                                                       name="codigo" data-mask="999.999.999-99"
                                                                        placeholder="000.000.000-00"
                                                                        autofocus required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Última edição:</label>
                                                                 <ul class="nav">
-                                                                    <li class="li-modal">29 Abril 2017 - 13:59:45</li>
+                                                                    <li class="li-modal">23 Março 2017 - 13:59:45</li>
                                                                 </ul>
                                                             </div>
                                                         </fieldset>
@@ -124,8 +117,9 @@ if (isset($_POST['register'])) {
                                                     <div class="container-fluid">
                                                         <div class="row">
                                                             <div class="text-center">
-                                                                <button type="submit" name="register"
-                                                                        class="btn btn-success ">Cadastrar
+                                                                <button type="submit" name="button" id="button"
+                                                                        class="btn btn-success " onclick="salvar()">
+                                                                    Salvar
                                                                 </button>
                                                                 <button type="reset" name="button2" id="button2"
                                                                         class="btn btn-warning">Limpar

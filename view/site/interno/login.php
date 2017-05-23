@@ -1,17 +1,13 @@
 <?php
+include_once '../global-includes/head.html';
 
-require_once '../../../vendor/autoload.php';
-
-use src\controller\PatientController;
-
-$patientController = PatientController::getInstance();
-
-if (isset($_POST['register'])) {
-    $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
-}
-
+/**
+ * Created by IntelliJ IDEA.
+ * User: Igor
+ * Date: 20/05/2017
+ * Time: 09:53
+ */
 ?>
-
 <html>
 <head>
     <title>Pain O' Meter</title>
@@ -23,8 +19,6 @@ if (isset($_POST['register'])) {
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-    <script type="text/javascript" src="../../tools/jasny-bootstrap/jasny-bootstrap.js"></script>
-
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -108,7 +102,6 @@ if (isset($_POST['register'])) {
                                                             <div class="form-group">
                                                                 <label>CPF:</label>
                                                                 <input type="number" name="cpf" class="form-control"
-                                                                       pattern="[\d]{11}"
                                                                        data-mask="999.999.999-99"
                                                                        placeholder="000.000.000-00"
                                                                        autofocus required>
