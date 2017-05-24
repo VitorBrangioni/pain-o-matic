@@ -2,7 +2,7 @@
 
 namespace model\dao;
 
-require_once  '../../vendor/autoload.php';
+//require_once  '../../vendor/autoload.php';
 
 use model\connection\Connection;
 use model\interfaces\DAOInterface;
@@ -70,7 +70,7 @@ class UserDAO implements DAOInterface
 	 * @param unknown $value
 	 * @return unknown
 	 */
-	public function findGeneric($fiel, $value)
+	public function findGeneric($fiel, $value) : User
 	{
 		try {
 			$sql = "SELECT * FROM user WHERE ".$fiel." = :value";
@@ -78,7 +78,7 @@ class UserDAO implements DAOInterface
 			$stmt->bindValue(":value", $value);
 			$stmt->execute();
 			
-			return $stmt->fetch(\PDO::FETCH_ASSOC);
+			return $this->populate($stmt->fetch(\PDO::FETCH_ASSOC));
 			
 		} catch (\PDOStatement $e) {
 			echo $e->errorCode();
@@ -162,7 +162,8 @@ class UserDAO implements DAOInterface
 	}
 	
 	// @TODO ?
-	private function populate($row)
+	private function populate($userFeth)
 	{
+		return new User($userFeth['username'], $userFeth['password']);
 	}
 }

@@ -2,8 +2,6 @@
 
 namespace model\pojo;
 
-require_once  '../../vendor/autoload.php';
-
 use model\pojo\Pojo;
 
 /**
@@ -15,6 +13,13 @@ class User extends Pojo
 {
 	private $username;
 	private $password;
+	
+	public function __construct($username, $password)
+	{
+		$this->setUsername($username);
+		$this->setPassword($password);
+		
+	}
 	
 	public function getUsername() {
 		return $this->username;

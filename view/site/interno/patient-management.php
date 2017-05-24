@@ -7,8 +7,21 @@ use src\controller\PatientController;
 $patientController = PatientController::getInstance();
 
 if (isset($_POST['register'])) {
-    $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
+//     $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
+
+	$imagem = $_FILES["cameraInput"];
+    
+    if($imagem != NULL) {
+    	$nomeFinal = time().'.jpg';
+    	if (move_uploaded_file($imagem['tmp_name'], "")) {
+    		$tamanhoImg = filesize($nomeFinal);
+    		
+    		$mysqlImg = addslashes(fread(fopen($nomeFinal, "r"), $tamanhoImg)); 
+    		
+    	}
+    }
 }
+
 
 ?>
 
@@ -76,8 +89,9 @@ if (isset($_POST['register'])) {
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="modal-body">
-                                                <input type="file" capture="camera" accept="image/*" id="cameraInput"
-                                                       name="cameraInput" class="hidden">
+                                                 <input type="file" capture="camera" accept="image/*" id="cameraInput"
+                                                       name="cameraInput" class="hidden"> 
+<!--                                                        <input type="file" name="imagem"/> -->
                                                 <label for="cameraInput" class="center-block"><img
                                                             class="smaller-image border center-block" alt=""
                                                             src="http://bit.ly/2nLlcLG"></label>
