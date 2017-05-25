@@ -31,27 +31,33 @@ if (isset($_POST['register'])) {
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-    <script type="text/javascript" src="../../tools/jasny-bootstrap/jasny-bootstrap.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
-
-
+  
 </head>
 
 <body>
+  <script>
+    $(document).ready(function(){
+       $('#form1').submit(function() {
+	   $('.alert').show();
+    }) 
+});
+  </script>
+  
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-
+          
+ 
             <div class="input-group-btn">
                 <button type="button_add" class="btn btn-danger" data-toggle="#" data-target="#">Sair</button>
             </div>
@@ -89,6 +95,7 @@ if (isset($_POST['register'])) {
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="modal-body">
+											 
                                                  <input type="file" capture="camera" accept="image/*" id="cameraInput"
                                                        name="cameraInput" class="hidden"> 
 <!--                                                        <input type="file" name="imagem"/> -->
@@ -105,12 +112,12 @@ if (isset($_POST['register'])) {
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Identificador:</label>
-                                                                <input type="text" name="id" class="form-control"
-                                                                       autofocus>
+                                                                <input type="text" name="id" class="form-control" pattern = "[0-9]+$" placeholder="Somente números"
+                                                                       autofocus required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>RG:</label>
-                                                                <input type="text" name="rg" class="form-control"
+                                                                <input type="text" name="rg" class="form-control" pattern = "[0-9]+$" placeholder="Somente números"
                                                                        autofocus required>
                                                             </div>
 
@@ -121,11 +128,7 @@ if (isset($_POST['register'])) {
                                                         <fieldset>
                                                             <div class="form-group">
                                                                 <label>CPF:</label>
-                                                                <input type="number" name="cpf" class="form-control"
-                                                                       pattern="[\d]{11}"
-                                                                       data-mask="999.999.999-99"
-                                                                       placeholder="000.000.000-00"
-                                                                       autofocus required>
+                                                                <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" data-mask="999.999.999-99" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$"  autofocus required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Última edição:</label>
@@ -138,12 +141,16 @@ if (isset($_POST['register'])) {
                                                     <div class="container-fluid">
                                                         <div class="row">
                                                             <div class="text-center">
-                                                                <button type="submit" name="register"
-                                                                        class="btn btn-success ">Cadastrar
+                                                                   <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Adicionado!
+        </div>                                                               <button type="submit" name="register"
+                                                                        class="btn btn-success btn-alert">Cadastrar
                                                                 </button>
                                                                 <button type="reset" name="button2" id="button2"
                                                                         class="btn btn-warning">Limpar
                                                                 </button>
+
                                                             </div>
                                                         </div>
                                                     </div>
