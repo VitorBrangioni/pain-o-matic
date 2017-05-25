@@ -24,21 +24,13 @@ var resloc = -1;
 var strokeColor = 'white';
 var strokeWidth = "10";
 
-var prof0 = new Image();
-var prof1 = new Image();
-var prof2 = new Image();
-var prof3 = new Image();
-var prof4 = new Image();
 
-
-var imagemURL0 = context.getImageData(0, 0, canvas.width, canvas.height)
-var imagemURL1 = context.getImageData(0, 0, canvas.width, canvas.height)
-var imagemURL2 = context.getImageData(0, 0, canvas.width, canvas.height)
-var imagemURL3 = context.getImageData(0, 0, canvas.width, canvas.height)
+var imagemURL0 = context.getImageData(0, 0, canvas.width, canvas.height);
+var imagemURL1 = context.getImageData(0, 0, canvas.width, canvas.height);
+var imagemURL2 = context.getImageData(0, 0, canvas.width, canvas.height);
+var imagemURL3 = context.getImageData(0, 0, canvas.width, canvas.height);
 var imagemURL4 = context.getImageData(0, 0, canvas.width, canvas.height);
 var aux = 0;
-
-context.save()
 
 context.outline = canvas.getContext("2d");
 
@@ -188,6 +180,14 @@ function Restore() {
         restore.pop();
         context.putImageData(restore[resloc], 0, 0);
     }
+}
+
+function transfere(prof0, prof25, prof50, prof75, prof100){
+    prof0 = imagemURL0;
+    prof25 = imagemURL1;
+    prof50= imagemURL2;
+    prof75 = imagemURL3;
+    prof100 = imagemURL4;
 }
 
 function Save(a) {
