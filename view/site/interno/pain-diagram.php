@@ -26,7 +26,16 @@ include_once '../global-includes/head.html';
         </div>
     </div>
 </div>
-<canvas class="col-md-12 img-responsive" id="canvas1"></canvas>
+
+<div>
+    <canvas class="center-block img-responsive" id="canvas1"></canvas>
+
+    <input type="range" id="prof" min="0" max="4" step="1" value="0"/>
+
+    <span id="ex6CurrentSliderValLabel">Current Slider Value: <p id="SliderValue"></p></span>
+</div>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -60,6 +69,8 @@ include_once '../global-includes/head.html';
         </div>
     </div>
 </div>
-<script src="index.js"></script>
+
+<script src="canvas1.js"></script>
+
 </body>
 </html>
