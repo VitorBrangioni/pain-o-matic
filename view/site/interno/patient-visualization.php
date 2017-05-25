@@ -44,9 +44,9 @@ if (isset($_POST['delete'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
 
     <script type="text/javascript">
-
         function editar() {
-            <!-- salvar editar excluir limpar -->
+            <!-- salvar editar
+            limpar -->
             $("#form1 :input").attr("disabled", false);
             $("#btnEditar").toggle();
             $("#btnExcluir").toggle();
@@ -54,7 +54,6 @@ if (isset($_POST['delete'])) {
             $("#btnLimpar").toggle();
             $("#ultEd").attr("disabled", true);
         }
-
         function salvar() {
             <!-- salvar editar excluir limpar -->
             $("#form1 :input").attr("disabled", true);
@@ -71,6 +70,18 @@ if (isset($_POST['delete'])) {
 </head>
 
 <body>
+<script>
+    $(document).ready(function () {
+        $('.btn-alert').click(function () {
+            $('.alert-adicionar').show();
+        })
+
+        $('.btn-alert-excluir').click(function () {
+            $('.alert-excluir').show();
+        })
+    });
+</script>
+
 <form method="POST" action="">
 
     <div class="container-fluid">
@@ -82,7 +93,7 @@ if (isset($_POST['delete'])) {
                 </div>
 
                 <div class="input-group-btn">
-                    <button class="btn btn-success pull-right" type="submit" name="register">
+                    <button class="btn btn-success pull-right btn-alert" type="submit" name="register">
                         Adicionar Consulta
                     </button>
                 </div>
@@ -97,22 +108,11 @@ if (isset($_POST['delete'])) {
 
                     <?php
                     $result = $appointmentController->listAllPatientAppointments($_GET['pId']);
-
                     foreach ($result as $data) {
-                        echo '<li>
-                        <div class="form-inline d-inline-block col-xs-12">
-                            <div class="d-inline-block col-md-3  col-xs-9">
-                                <a class="text-left btn btn-default btn-block" href="appointment-visualization.php?pId='
-                                . $_GET['pId'] . '&aId=' . $data['id'] . '">' . $data['date'] . ' -
-                                ' . $data['hora'] . '</a>
-                            </div>
-                            <div class="d-inline-block col-md-1 col-xs-3">
-                                <button type="button" name="delete"
-                                id="btnExcluir"
-                                class="btn btn-danger btn-block">Excluir</button>
-                            </div>
-                        </div>
-                        </li><br>';
+
+                        echo '<li><a href="appointment-visualization.php?pId='
+                            . $_GET['pId'] . '&aId=' . $data['id'] . '">' . $data['date'] . ' -
+                                ' . $data['hora'] . '</a></li>';
                     }
                     ?>
                 </ul>
@@ -216,6 +216,14 @@ if (isset($_POST['delete'])) {
 
                             </div>
                         </div>
+                    </div>
+                    <div class="alert alert-success alert-adicionar fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Consulta <strong>adicionada</strong> com sucesso!
+                    </div>
+                    <div class="alert alert-success alert-excluir fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Consulta <strong>excluída</strong> com sucesso!
                     </div>
                 </div>
 

@@ -3,19 +3,18 @@ require_once '../../../vendor/autoload.php';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
+use src\controller\DiagramController;
 
 $appointmentController = AppointmentController::getInstance();
 $patientController = PatientController::getInstance();
+$diagramController = DiagramController::getInstance();
 
 $appointment = $appointmentController->findById($_GET['aId']);
 $patient = $patientController->findById($_GET['pId']);
 
-
 if (isset($_POST['register'])) {
-    date_default_timezone_set('America/Sao_Paulo');
-    $time = date("H:i:s");
-    $date = date("Y-m-d");
-    $appointmentController->register($date, $time, $_GET['pId']);
+    //$thumb, $appointment_id, $prof0, $prof25, $prof50, $prof75, $prof100
+    $diagramController->register("consulta", $_GET['aId']);
 }
 
 ?>
@@ -77,7 +76,7 @@ if (isset($_POST['register'])) {
                 </div>
 
                 <div class="input-group-btn">
-                    <button class="btn btn-success pull-right" type="submit" name="register">
+                    <button class="btn btn-success pull-right btn-alert" type="submit" name="register">
                         Adicionar Diagrama
                     </button>
                 </div>
@@ -88,8 +87,16 @@ if (isset($_POST['register'])) {
                 <a data-toggle="modal" data-target="#myModal3"><h3><strong><?= $appointment['date'] ?></strong></h3></a>
 
                 <legend><h2><strong>Diagramas</strong></h2></legend>
-                <ul class="nav">
 
+                <ul class="nav">
+                    <?php
+
+                    foreach ($diagramController->listAll() as $data){ // listAllAppointmentDiagrams($_GET['aId'])
+
+                        echo '<li><a href="pain-diagram.php?pId='
+                            . $_GET['pId'] . '&aId=' . $_GET['pId'] . '&dId=' .$data['id'] . '"> ' . $data['thumbnail'] . '</a></li>';
+                    }
+                    ?>
                 </ul>
 
                 <!-- Modal -->
