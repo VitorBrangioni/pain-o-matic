@@ -90,11 +90,12 @@ if (isset($_POST['register'])) {
 
                 <ul class="nav">
                     <?php
-
+					$i = 1;
                     foreach ($diagramController->listAll() as $data){ // listAllAppointmentDiagrams($_GET['aId'])
-
-                        echo '<li><a href="pain-diagram.php?pId='
-                            . $_GET['pId'] . '&aId=' . $_GET['pId'] . '&dId=' .$data['id'] . '"> ' . $data['thumbnail'] . '</a></li>';
+                        echo '<li>';
+                        echo '<li><a href="pain-diagram.php?pId=' . $_GET['pId'] . '&aId='.$_GET['aId'].'"> Diagrama '.$i.'</a></li>';
+                        echo '</li>';
+                        $i++;
                     }
                     ?>
                 </ul>
