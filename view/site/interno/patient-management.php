@@ -7,12 +7,12 @@ use src\controller\UploadController;
 
 
 $patientController = PatientController::getInstance();
+$uploadController = UploadController::getInstance();
 
 if (isset($_POST['register'])) {
     $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
-    
+
     if (isset($_FILES['cameraInput'])) {
-    	$uploadController = UploadController::getInstance();
     	$uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name']);
     }
 
@@ -42,7 +42,11 @@ if (isset($_POST['register'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-
+    <style>
+        .breadcrumb > li + li:before {
+            content: "\3E"
+        }
+    </style>
 
 </head>
 
@@ -52,26 +56,33 @@ if (isset($_POST['register'])) {
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <div class="input-group-btn">
-                <button type="button_add" class="btn btn-danger" data-toggle="#" data-target="#">Sair</button>
-            </div>
+        <div class="col-xs-12">
 
-            <div class="input-group-btn">
-                <button type="button_add" class="btn btn-success pull-right" data-toggle="modal"
-                        data-target="#myModal1">Adicionar Paciente
-                </button>
-            </div>
+            <ol class="breadcrumb col-xs-12 inline-block">
+                <li><a type="button" class="btn btn-danger" href="../../../public/index.php" id="voltar">
+                        Sair
+                    </a></li>
+                <li class="active"><p class="btn btn-info">
+                        Pacientes
+                    </p></li>
+                <li class="pull-right">
+                    <a type="button_add" class="btn btn-success align-middle" data-toggle="modal"
+                       data-target="#myModal1">Adicionar Paciente
+                    </a>
+                </li>
+            </ol>
+
+
 
             <legend><h2><strong>Pacientes</strong></h2></legend>
 
-            <ul class="nav">
+            <div class="list-group">
                 <?php
                 foreach ($patientController->listAll() as $data) {
-                    echo '<li><a href="patient-visualization.php?pId=' . $data['id'] . '">' . $data['name'] . '</a></li>';
+                    echo '<a class="list-group-item list-group-item-action" href="patient-visualization.php?pId=' . $data['id'] . '">' . $data['name'] . '</a>';
                 }
                 ?>
-            </ul>
+            </div>
 
             <!-- Modal -->
             <div class="container-fluid">

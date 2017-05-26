@@ -2,16 +2,22 @@ var canvas = document.getElementById("canvas1");
 var section = document.getElementById("section1");
 canvas.crossOrigin = "Anonymous";
 
-var profund = document.getElementById("prof");
-
 var outlineImage = new Image();
+
 outlineImage.setAttribute('crossOrigin', 'anonymous');
-outlineImage.src = "corpo_transp.png";
+
+outlineImage.src = "../../images/corpo_humano.png";
+outlineImage.src = "../../images/corpo_humano.png";
+
+
+var profund = document.getElementById("prof");
 
 var imgDesenhada = outlineImage.clone;
 
-canvas.width = 600;
-canvas.height = 600;
+canvas.width = 900;
+canvas.height = 800;
+canvas.width = outlineImage.width;
+canvas.height = outlineImage.height;
 
 //canvas.width = window.innerWidth - 60;
 //canvas.height = window.innerHeight*0.6;
@@ -59,7 +65,7 @@ profund.addEventListener("change", function() {
     context.fillStyle = "white";
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillRect(0, 0, canvas.width, canvas.height);
-    document.getElementById("SliderValue").innerHTML = valor;
+    document.getElementById("SliderValue").innerHTML = 'Profundidade: ' + (valor*25) + '%';
 
     var imgURL;
 
@@ -83,18 +89,8 @@ profund.addEventListener("change", function() {
     }
 
     context.putImageData(imgURL, 0, 0, 0, 0, canvas.width, canvas.height);
-
-    console.log('imgURL = ' + imgURL);
-
-
-
-
-
-
     zerinho(event);
-    console.log("antes " + valor);
     aux = valor;
-    console.log("depois " + valor);
 }, false);
 
 function zerinho(event) {

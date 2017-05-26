@@ -36,7 +36,6 @@ if (isset($_POST['delete'])) {
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-    <script type="text/javascript" src="../../tools/jasny-bootstrap/jasny-bootstrap.js"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -65,6 +64,11 @@ if (isset($_POST['delete'])) {
             $("#btnLimpar").toggle();
         }
     </script>
+    <style>
+        .breadcrumb > li + li:before {
+            content: "\3E"
+        }
+    </style>
 
 
 </head>
@@ -86,36 +90,42 @@ if (isset($_POST['delete'])) {
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
 
-                <div class="input-group-btn">
-                    <a class="btn btn-danger" href="patient-management.php" role="button" id="voltar">Voltar</a>
-                </div>
+                <ol class="breadcrumb col-xs-12 inline-block">
+                    <li><a type="button" class="btn btn-danger" href="../../../public/index.php" id="voltar">
+                            Sair
+                        </a></li>
+                    <li><a class="btn btn-default" href="patient-management.php">
+                            Pacientes
+                        </a></li>
+                    <li><a class="btn btn-info">
+                            <?= $patient['name']; ?>
+                        </a></li>
+                    <li class="pull-right">
+                        <button class="btn btn-success" type="submit" name="register">
+                            Adicionar Consulta
+                        </button>
+                    </li>
+                </ol>
 
-                <div class="input-group-btn">
-                    <button class="btn btn-success pull-right btn-alert" type="submit" name="register">
-                        Adicionar Consulta
-                    </button>
-                </div>
-
-
-                <a data-toggle="modal" data-target="#myModal2">
-                    <img class="xs-image border center" alt=""
-                         src="http://bit.ly/2nLlcLG"><strong><?= $patient['name']; ?></strong></a>
+                <a class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#myModal2">
+                    <img class="xs-image border center" alt="" src="http://bit.ly/2nLlcLG"> <strong><?= $patient['name']; ?></strong></h3>
+                </a>
 
                 <legend><h2><strong>Consultas</strong></h2></legend>
-                <ul class="nav">
+                <div class="list-group">
 
                     <?php
                     $result = $appointmentController->listAllPatientAppointments($_GET['pId']);
                     foreach ($result as $data) {
 
-                        echo '<li><a href="appointment-visualization.php?pId='
-                            . $_GET['pId'] . '&aId=' . $data['id'] . '">' . $data['date'] . ' -
-                                ' . $data['hora'] . '</a></li>';
+                        echo '<a class="list-group-item list-group-item-action" href="appointment-visualization.php?pId='
+                            . $_GET['pId'] . '&aId=' . $data['id'] . '">Consulta ' . $data['date'] . ' -
+                                ' . $data['hora'] . '</a>';
                     }
                     ?>
-                </ul>
+                </div>
 
 
 
@@ -135,7 +145,7 @@ if (isset($_POST['delete'])) {
                                             <div class="row">
                                                 <div class="modal-body">
                                                     <img class="smaller-image border center-block" alt=""
-                                                         src="woman.jpg">
+                                                         src="">
 
                                                     <form id="form1" name="form1" method="post" action="">
                                                         <div class="col-md-6">
