@@ -3,28 +3,25 @@
 require_once '../../../vendor/autoload.php';
 
 use src\controller\PatientController;
+use src\controller\UploadController;
+
 
 $patientController = PatientController::getInstance();
 
 if (isset($_POST['register'])) {
     $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
-
-	/*$image_camera = $_FILES["cameraInput"];
     
-    if($image_camera != NULL) {
-    	$nomeFinal = time().'.jpg';
-    	if (move_uploaded_file($image_camera['tmp_name'], "")) {
-    		$tamanhoImg = filesize($nomeFinal);
-    		
-    		$mysqlImg = addslashes(fread(fopen($nomeFinal, "r"), $tamanhoImg)); 
-    		
-    	}
-    }*/
+    if (isset($_FILES['cameraInput'])) {
+    	$uploadController = UploadController::getInstance();
+    	$uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name']);
+    }
 
-    echo '<div class="alert alert-success">
+	
+
+    /* echo '<div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 Paciente adicionado!
-            </div>';
+            </div>'; */
 }
 
 
@@ -50,6 +47,8 @@ if (isset($_POST['register'])) {
 </head>
 
 <body>
+<form method="POST" action="" enctype="multipart/form-data">
+
 
 <div class="container-fluid">
     <div class="row">
@@ -91,8 +90,9 @@ if (isset($_POST['register'])) {
                                         <div class="row">
                                             <div class="modal-body">
                                                 <form id="form1" name="form1" method="post" action="">
-                                                <input type="file" capture="camera" accept="image/*" id="cameraInput"
-                                                       name="cameraInput" class="hidden">
+                                                 <input type="file" capture="camera" accept="image/*" id="cameraInput"
+                                                       name="cameraInput" class="hidden"> 
+                                                       
                                                 <label for="cameraInput" class="center-block"><img
                                                             class="smaller-image border center-block" alt=""
                                                             src="http://bit.ly/2nLlcLG"></label>
@@ -161,6 +161,6 @@ if (isset($_POST['register'])) {
         </div>
     </div>
 </div>
-
+</form>
 </body>
 </html>

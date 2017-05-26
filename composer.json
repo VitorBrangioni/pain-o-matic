@@ -8,7 +8,8 @@
 			"model\\connection\\" : "model/connection",
 			"model\\interfaces\\" : "model/interface",
 			"model\\pojo\\" : "model/pojo",
-			"src\\controller\\" : "src/controller"
+			"src\\controller\\" : "src/controller",
+			"src\\upload\\" : "src/upload"
 		}
 	}
 }
