@@ -12,6 +12,7 @@ $diagramController = DiagramController::getInstance();
 
 $appointment = $appointmentController->findById($_GET['aId']);
 $patient = $patientController->findById($_GET['pId']);
+$diagram = $diagramController->findById($_GET['dId']);
 
 if (isset($_POST['register'])) {
     //$thumb, $appointment_id, $prof0, $prof25, $prof50, $prof75, $prof100
@@ -28,41 +29,57 @@ if (isset($_POST['register'])) {
 <html>
 <head>
     <meta charset="UTF-8">
-
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .breadcrumb > li + li:before {
+            content: "\3E"
+        }
+    </style>
 </head>
 
 <body onload="zerinho()">
-<div class="container">
-    <div class="row">
-        <div class="col-xs-2 text-center margin-top-20">
-            <a role="button" href="appointment-visualization.php?pId=<?php echo $_GET['pId'] ?>&aId=<?php echo $_GET['aId'] ?>">Voltar
-            </a>
+<div class="col-xs-12">
+    <ol class="breadcrumb col-xs-12 inline-block">
+        <li><a type="button" class="btn btn-danger" href="../../../public/index.php" id="voltar">
+                Sair
+            </a></li>
+        <li><a class="btn btn-default" href="patient-management.php">
+                Pacientes
+            </a></li>
+        <li><a class="btn btn-default" href="patient-visualization.php?pId=<?php echo $_GET['pId'] ?>">
+                <?= $patient['name']; ?>
+            </a></li>
+        <li><a class="btn btn-default" href="appointment-visualization.php?pId=<?php echo $_GET['pId'] ?>&aId=<?php echo $_GET['aId'] ?>">
+                <?= $appointment['date']; ?>
+            </a></li>
+        <li><a class="btn btn-info">
+                Editar Diagrama
+            </a></li>
+        </li>
+        <li class="pull-right">
+                <button type="button" onclick="Clear()" class="text-center btn btn-danger">Limpar</button>
+                <a type="button" name="register" download="diagrama.png" onclick="Save(this)" class="text-center btn btn-success">Salvar</a>
+        </li>
+        <p><span class="badge badge-default">Descrição</span> <?= $diagram['thumbnail']; ?></p>
+    </ol>
 
-        </div>
-        <div class="col-xs-4 col-xs-offset-2 text-center">
-            <h2>Editar Modelo</h2>
-        </div>
-        <div class="col-xs-3 col-xs-offset-1 text-center">
-            <button type="button" onclick="Clear()" class="btn btn-block btn-danger">Limpar</button>
-            <a type="button" name="register" download="diagrama.png" onclick="Save(this)" class="btn btn-block btn-success">Salvar</a>
-        </div>
-    </div>
 </div>
-
 <div>
+    <br>
     <canvas class="center-block img-responsive" id="canvas1"></canvas>
+<br>
+    <div class="panel panel-default"><br>
+    <input class="sliderBonito center-block" type="range" id="prof" min="0" max="4" step="1" value="0"/>
 
-    <input type="range" id="prof" min="0" max="4" step="1" value="0"/>
-
-    <span id="ex6CurrentSliderValLabel">Current Slider Value: <p id="SliderValue"></p></span>
+    <span class="text-center" id="ex6CurrentSliderValLabel"><h3 id="SliderValue">Profundidade: 0%</h3></span>
 </div>
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <div class="btn-group btn-group-justified color-pallet" role="group" aria-label="...">
+        <div class="col-xs-12">
+            <div class="btn-group btn-group-justified color-pallet center-block" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn-grey"
                             style="background:black"
@@ -86,11 +103,13 @@ if (isset($_POST['register'])) {
                 <div class="btn-group" role="group">
                     <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(25)" id="btn"
                             style="background:white"
-                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
+                            class="strokeColor btn btn-default glyphicon glyphicon-erase"></button>
                 </div>
+                <br>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script src="canvas1.js"></script>

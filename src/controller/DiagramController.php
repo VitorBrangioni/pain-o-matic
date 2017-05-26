@@ -28,7 +28,7 @@ class DiagramController
 
 	public function register($thumbnail, $appointment_id)
 	{
-		$diagram = new Diagram($thumbnail, $appointment_id, null, null, null, null, null);
+		$diagram = new Diagram($thumbnail, $appointment_id, 0, 0, 0, 0, 0);
 
 		self::$diagramDAO->insert($diagram);
 	}
@@ -43,9 +43,9 @@ class DiagramController
 		return self::$diagramDAO->listAll();
 	}
 
-    public function listAllAppointmentDiagrams($appointmentId)
+    public function listAllAppointmentDiagrams($appointment_Id)
     {
-        return self::$diagramDAO->findGeneric("appointment_id", $appointmentId);
+        return self::$diagramDAO->findGeneric("appointment_id", $appointment_Id);
     }
 	
 	public function findById($id) {

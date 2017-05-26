@@ -14,7 +14,7 @@ $patient = $patientController->findById($_GET['pId']);
 
 if (isset($_POST['register'])) {
     //$thumb, $appointment_id, $prof0, $prof25, $prof50, $prof75, $prof100
-    $diagramController->register("consulta", $_GET['aId']);
+    $diagramController->register($_POST['thumbn'], $_GET['aId']);
 }
 
 ?>
@@ -61,6 +61,12 @@ if (isset($_POST['register'])) {
         }
     </script>
 
+    <style>
+        .breadcrumb > li + li:before {
+            content: "\3E"
+        }
+    </style>
+
 
 </head>
 
@@ -68,41 +74,42 @@ if (isset($_POST['register'])) {
 <form method="POST" action="">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
 
-                <div class="input-group-btn">
-                    <a class="btn btn-danger" href="patient-visualization.php?pId=<?php echo $_GET['pId'] ?>" role="button" id="voltar">Voltar
-                    </a>
+                <ol class="breadcrumb col-xs-12 inline-block">
+                    <li><a type="button" class="btn btn-danger" href="../../../public/index.php" id="voltar">
+                            Sair
+                        </a></li>
+                    <li><a class="btn btn-default" href="patient-management.php">
+                            Pacientes
+                        </a></li>
+                    <li><a class="btn btn-default" href="patient-visualization.php?pId=<?php echo $_GET['pId'] ?>">
+                            <?= $patient['name']; ?>
+                        </a></li></li>
+                    <li><a class="btn btn-info">
+                            <?= $appointment['date'] ?>
+                        </a></li>
+                    <li class="pull-right">
+                        <a type="button_add" class="btn btn-success " data-toggle="modal"
+                                data-target="#myModal1">
+                            Adicionar Diagrama
+                        </a>
+                    </li>
+                </ol>
+
+                <div>
+                <a class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#myModal3"><strong>Consulta Dia <?= $appointment['date'] ?></strong></a>
                 </div>
-
-                <div class="input-group-btn">
-                    <button class="btn btn-success pull-right btn-alert" type="submit" name="register">
-                        Adicionar Diagrama
-                    </button>
-                </div>
-
-                <div><br></div>
-
-
-                <a data-toggle="modal" data-target="#myModal3"><h3><strong><?= $appointment['date'] ?></strong></h3></a>
 
                 <legend><h2><strong>Diagramas</strong></h2></legend>
 
-                <ul class="nav">
+                <div class="list-group">
                     <?php
-					$i = 1;
-					$appointmentDiagrams = $diagramController->listAllAppointmentDiagrams($_GET['aId']);
-					
-					if ($appointmentDiagrams != null) {
-						foreach ($appointmentDiagrams as $data){ 
-	                        echo '<li>';
-	                        echo '<li><a href="pain-diagram.php?pId=' . $_GET['pId'] . '&aId='.$_GET['aId'].'"> Diagrama '.$i.'</a></li>';
-	                        echo '</li>';
-	                        $i++;
-	                    }
-					}
+                        foreach ($diagramController->listAllAppointmentDiagrams($_GET['aId']) as $data){
+                            echo '<a class="list-group-item list-group-item-action" href="pain-diagram.php?pId=' . $_GET['pId'] . '&aId='.$_GET['aId'].'&dId='.$data['id'].'"> Diagrama '.$data['thumbnail'].'</a>';
+                        }
                     ?>
-                </ul>
+                </div>
 
                 <!-- Modal -->
                 <div class="container-fluid">
@@ -113,12 +120,12 @@ if (isset($_POST['register'])) {
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">29/04/2017 - 13:59:59</h4>
+                                            <h4 class="modal-title">Informações da Consulta</h4>
                                         </div>
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="modal-body">
-                                                    <form id="form1" name="form1" method="post" action="">
+                                                    <form id="form3" name="form3" method="post" action="">
                                                         <div class="col-md-6">
                                                             <fieldset>
                                                                 <div class="form-group">
@@ -146,18 +153,6 @@ if (isset($_POST['register'])) {
 
                                                             </fieldset>
                                                         </div>
-
-                                                        <div class="col-md-6">
-                                                            <fieldset>
-                                                                <div class="form-group">
-                                                                    <label>Última edição:</label>
-                                                                    <input name="ultEd" type="text" class="form-control"
-                                                                           name="codigo"
-                                                                           value="clebersantos em 17/04/2017 19:40"
-                                                                           autofocus required disabled>
-                                                                </div>
-                                                            </fieldset>
-                                                        </div>
                                                         <div class="container-fluid">
                                                             <div class="row">
                                                                 <div class="text-center">
@@ -168,7 +163,8 @@ if (isset($_POST['register'])) {
                                                                     </button>
                                                                     <button type="button" name="btnEditar"
                                                                             id="btnEditar"
-                                                                            onclick="editar()" class="btn btn-primary">
+                                                                            onclick="editar()" class="btn btn-primary"
+                                                                            style="display:none">
                                                                         Editar
                                                                     </button>
                                                                     <button type="button" name="btnExcluir"
@@ -181,6 +177,62 @@ if (isset($_POST['register'])) {
                                                                             style="display:none">
                                                                         Limpar
                                                                     </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Modal -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="modal fade" id="myModal1" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Adicionar Diagrama</h4>
+                                        </div>
+
+                                        <!--MODAl-->
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="modal-body">
+                                                    <form id="form1" name="form1" method="post" action="">
+
+                                                        <div class="col-md-6">
+                                                            <fieldset>
+                                                                <div class="form-group">
+                                                                    <label>Descrição:</label>
+                                                                    <input type="text" name="thumbn" class="form-control"
+                                                                           autofocus required>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="text-center">
+                                                                    <button type="submit" name="register" class="btn btn-success btn-alert">Cadastrar
+                                                                    </button>
+                                                                    <button type="reset" name="button2" id="button2"
+                                                                            class="btn btn-warning">Limpar
+                                                                    </button>
+
                                                                 </div>
                                                             </div>
                                                         </div>
