@@ -16,8 +16,8 @@ var imgDesenhada = outlineImage.clone;
 
 canvas.width = 900;
 canvas.height = 800;
-canvas.width = outlineImage.width;
-canvas.height = outlineImage.height;
+/*canvas.width = outlineImage.width;
+canvas.height = outlineImage.height;*/
 
 //canvas.width = window.innerWidth - 60;
 //canvas.height = window.innerHeight*0.6;
