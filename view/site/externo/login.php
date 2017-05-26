@@ -41,15 +41,13 @@ if (isset($error)) {
 ?>
 </header>
 <form method="POST" action="">
-    <div class="container flex-center">
+    <div class="container flex-center align-middle">
         <div class="col-md-4">
             <h1>Pain-o-Matic</h1>
             <input type="text" name="user" class="form-control" placeholder="login">
             <input type="password" name="password" class="form-control" placeholder="senha">
-
             <button type="submit" name="logar" class="btn btn-primary btn-block">Entrar</button>
         </div>
-
     </div>
 </form>
 </body>

@@ -135,12 +135,6 @@ if (isset($_POST['register'])) {
                                                                 <label>CPF:</label>
                                                                 <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" data-mask="999.999.999-99" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$"  autofocus required>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label>Última edição:</label>
-                                                                <ul class="nav">
-                                                                    <li class="li-modal">29 Abril 2017 - 13:59:45</li>
-                                                                </ul>
-                                                            </div>
                                                         </fieldset>
                                                     </div>
                                                     <div class="container-fluid">

@@ -182,13 +182,6 @@ if (isset($_POST['delete'])) {
                                                                            name="codigo" value="<?= $patient['cpf']; ?>"
                                                                            autofocus required disabled>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label>Última edição:</label>
-                                                                    <input name="ultEd" type="text" class="form-control"
-                                                                           name="codigo"
-                                                                           value="clebersantos em 17/04/2017 19:40"
-                                                                           autofocus required disabled>
-                                                                </div>
                                                             </fieldset>
                                                         </div>
                                                         <div class="container-fluid">
