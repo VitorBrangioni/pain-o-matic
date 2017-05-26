@@ -29,7 +29,7 @@ class PatientController
 	public function register($name, $cpf, $rg, $photo)
 	{
 		$patient = new Patient($name, $cpf, $rg, $photo);
-
+		
 		self::$patientDAO->insert($patient);
 	}
 

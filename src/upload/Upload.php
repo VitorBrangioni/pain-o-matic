@@ -40,10 +40,10 @@ class Upload
     
     public function send()
     {
-    	 $fullTarget = ($this->newFileName != null)? $this->target.$this->newFileName: $this->target.$this->file->getPath();
+    	$fullTarget = ($this->newFileName != null)? $this->target.$this->newFileName.".".$this->file->getExtension(): $this->target.$this->file->getPath();
     	
     	try {
-	    	move_uploaded_file($this->file->getTempName(), $fullTarget);
+    		move_uploaded_file($this->file->getTempName(), $fullTarget);
     	} catch (\Exception $ex) {
     		throw new \Exception("Falha ao fazer upload!");
     	} 

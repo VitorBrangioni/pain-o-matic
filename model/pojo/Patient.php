@@ -16,11 +16,12 @@ class Patient extends Pojo
 	private $photo;
 
 
-	public function __construct($name, $cpf, $rg)
+	public function __construct($name, $cpf, $rg, $photo)
 	{
 		$this->setName($name);
 		$this->setCpf($cpf);
 		$this->setRg($rg);
+		$this->setPhoto($photo);
 	}
 	
     public function getName()

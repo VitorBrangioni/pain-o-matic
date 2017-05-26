@@ -24,10 +24,17 @@ class UploadController
 		return self::$instance;
 	}
 	
-	public function uploadProfileImage($fileName, $tempName)
+	public function uploadProfileImage($fullFileName, $tempName, $newImageName)
 	{
-		$file = new File($fileName, $tempName);
-		$upload = new Upload($file);
-		$upload->send();
+		echo "====".$fullFileName;
+		$newImageName = $newImageName."_".time();
+		$file = new File($fullFileName, $tempName);
+		$target = "../../images/patient-profile/";
+		
+		if ($file != null && $file->getTempName() != null) {
+			$upload = new Upload($file, $target, $newImageName);
+			$upload->send();
+		}
+		return $target.$newImageName.".".$file->getExtension();
 	}
 }

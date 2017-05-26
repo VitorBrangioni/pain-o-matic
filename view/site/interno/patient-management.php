@@ -9,19 +9,19 @@ use src\controller\UploadController;
 $patientController = PatientController::getInstance();
 
 if (isset($_POST['register'])) {
-    $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], null);
-    
-    if (isset($_FILES['cameraInput'])) {
+    $pathPhoto = null;
+	if (isset($_FILES['cameraInput']) || !['cameraInput']['name'] == null && !$_FILES['cameraInput']['tmp_name'] == null) {
     	$uploadController = UploadController::getInstance();
-    	$uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name']);
+    	$pathPhoto = $uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name'], $_POST['name']);
     }
+    $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], $pathPhoto);
 
 	
 
-    /* echo '<div class="alert alert-success">
+     echo '<div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 Paciente adicionado!
-            </div>'; */
+            </div>'; 
 }
 
 
@@ -47,7 +47,7 @@ if (isset($_POST['register'])) {
 </head>
 
 <body>
-<form method="POST" action="" enctype="multipart/form-data">
+<form method="POST" action="patient-management.php" enctype="multipart/form-data">
 
 
 <div class="container-fluid">

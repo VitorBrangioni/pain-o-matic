@@ -114,9 +114,10 @@ class PatientDAO implements DAOInterface
 			
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":name", $patient->getName());
-			$stmt->bindValue(":cpf", $patient->getCpf());
+			$stmt->bindValue(":cpf", (Integer)$patient->getCpf());
 			$stmt->bindValue(":rg", $patient->getRg());
-			$stmt->bindValue(":photo", $patient->getPhoto());
+			$stmt->bindValue(":photo", $patient->getPhoto()); 
+
 			$stmt->execute();
 			
 		} catch (Exception $e) {
