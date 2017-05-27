@@ -28,7 +28,7 @@ if (isset($_POST['delete'])) {
 
 <html>
 <head>
-    <title>Pain O' Meter</title>
+    <title>Pain O Matic</title>
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="style.css">
@@ -149,7 +149,7 @@ if (isset($_POST['delete'])) {
                                             <div class="row">
                                                 <div class="modal-body">
                                                     <img class="smaller-image border center-block" alt=""
-                                                         src="<?= $patient['name']; ?>">
+                                                         src="<?= $patient['photo']; ?>">
 
                                                     <form id="form1" name="form1" method="post" action="">
                                                         <div class="col-md-6">
@@ -195,11 +195,11 @@ if (isset($_POST['delete'])) {
                                                                             onclick="salvar()" class="btn btn-success"
                                                                             style="display:none">Salvar
                                                                     </button>
-                                                                    <button type="button" name="btnEditar"
+                                                                    <!--<button type="button" name="btnEditar"
                                                                             id="btnEditar"
                                                                             onclick="editar()" class="btn btn-primary">
                                                                         Editar
-                                                                    </button>
+                                                                    </button>-->
                                                                     <button type="submit" name="delete"
                                                                             id="btnExcluir"
                                                                             class="btn btn-danger">Excluir

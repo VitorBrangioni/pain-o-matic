@@ -23,7 +23,7 @@ if (isset($_POST['register'])) {
 
 <html>
 <head>
-    <title>Pain O' Meter</title>
+    <title>Pain O Matic</title>
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="style.css">

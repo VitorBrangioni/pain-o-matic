@@ -14,7 +14,7 @@ $appointment = $appointmentController->findById($_GET['aId']);
 $patient = $patientController->findById($_GET['pId']);
 $diagram = $diagramController->findById($_GET['dId']);
 
-if (isset($_POST['register'])) {
+if (isset($_POST['registrar'])) {
     //$thumb, $appointment_id, $prof0, $prof25, $prof50, $prof75, $prof100
     $prof0=$prof25=$prof50=$prof75=$prof100 = null;
 
@@ -28,6 +28,7 @@ if (isset($_POST['register'])) {
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Pain O Matic</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
 

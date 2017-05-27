@@ -164,12 +164,12 @@ if (isset($_POST['register'])) {
                                                                             onclick="salvar()" class="btn btn-success"
                                                                             style="display:none">Salvar
                                                                     </button>
-                                                                    <button type="button" name="btnEditar"
+                                                                    <!--<button type="button" name="btnEditar"
                                                                             id="btnEditar"
                                                                             onclick="editar()" class="btn btn-primary"
                                                                             style="display:none">
                                                                         Editar
-                                                                    </button>
+                                                                    </button>-->
                                                                     <button type="button" name="btnExcluir"
                                                                             id="btnExcluir"
                                                                             onclick="location.href = 'visualiza-paciente.html';"

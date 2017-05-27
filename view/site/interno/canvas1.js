@@ -223,9 +223,9 @@ function Save(a) {
     zerinho(event);
 
     var form = document.createElement("form");
-    form.setAttribute("action","http://localhost/save_server/");
+    form.setAttribute("name","registrar");
     form.setAttribute("enctype","multipart/form-data");
-    form.setAttribute("method","POST");
+    form.setAttribute("method","GET");
     form.setAttribute("target","_self");
     form.innerHTML = '<input type="hidden" name="image0" value="'+img0+'"/>';
     form.innerHTML += '<input type="hidden" name="image1" value="'+img1+'"/>';
@@ -233,7 +233,7 @@ function Save(a) {
     form.innerHTML += '<input type="hidden" name="image3" value="'+img3+'"/>';
     form.innerHTML += '<input type="hidden" name="image4" value="'+img4+'"/>';
     document.body.appendChild(form);
-    console.log("ok");
+    console.log("Form appendado!");
     //form.submit();
 
     var imgURL;
@@ -261,7 +261,7 @@ function Save(a) {
 }
 
 function Clear() {
-    var confirmClear = confirm('Are you sure you would like to clear your canvas? This cannot be undone.');
+    var confirmClear = confirm('Tem certeza que deseja reiniciar a profundidade atual?');
     if (confirmClear == true) {
         context.fillStyle = "white";
         context.clearRect(0, 0, canvas.width, canvas.height);
