@@ -59,7 +59,7 @@ class Patient extends Pojo
         return $this->photo;
     }
 
-    public function setPhoto(String $photo)
+    public function setPhoto($photo)
     {
         $this->photo = $photo;
     }

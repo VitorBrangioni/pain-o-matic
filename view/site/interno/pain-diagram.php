@@ -61,7 +61,7 @@ if (isset($_POST['register'])) {
                 <button type="button" onclick="Clear()" class="text-center btn btn-danger">Limpar</button>
                 <a type="button" name="register" download="diagrama.png" onclick="Save(this)" class="text-center btn btn-success">Salvar</a>
         </li>
-        <p><span class="badge badge-default">Descrição</span> <?= $diagram['thumbnail']; ?></p>
+        <!-- <p><span class="badge badge-default">Descrição</span> <?= $diagram['thumbnail']; ?></p> -->
     </ol>
 
 </div>

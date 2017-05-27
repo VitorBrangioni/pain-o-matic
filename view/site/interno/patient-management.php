@@ -15,7 +15,7 @@ if (isset($_POST['register'])) {
     	$uploadController = UploadController::getInstance();
     	$pathPhoto = $uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name'], $_POST['name']);
 	}
-
+	echo $_POST['cpf'];
     $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], $pathPhoto);
 
      echo '<div class="alert alert-success">

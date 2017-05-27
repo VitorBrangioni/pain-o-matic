@@ -105,9 +105,12 @@ if (isset($_POST['register'])) {
 
                 <div class="list-group">
                     <?php
-                        foreach ($diagramController->listAllAppointmentDiagrams($_GET['aId']) as $data){
-                            echo '<a class="list-group-item list-group-item-action" href="pain-diagram.php?pId=' . $_GET['pId'] . '&aId='.$_GET['aId'].'&dId='.$data['id'].'"> Diagrama '.$data['thumbnail'].'</a>';
-                        }
+                    $appointmentDiagrams = $diagramController->listAllAppointmentDiagrams($_GET['aId']);
+                    $i = 1;
+                    foreach ($appointmentDiagrams as $data){
+                        echo '<a class="list-group-item list-group-item-action" href="pain-diagram.php?pId=' . $_GET['pId'] . '&aId='.$_GET['aId'].'&dId='.$data['id'].'"> Diagrama '.$data['thumbnail'].'</a>';
+                        $i++;
+                    }
                     ?>
                 </div>
 

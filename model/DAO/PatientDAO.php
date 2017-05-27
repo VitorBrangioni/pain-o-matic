@@ -15,7 +15,7 @@ use model\pojo\Patient;
  * @author vitor.brangioni
  *
  */
-class PatientDAO implements DAOInterface
+class PatientDAO
 {
 	private static $instance;
 	private static $conn;
@@ -56,8 +56,9 @@ class PatientDAO implements DAOInterface
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $id);
 			$stmt->execute();
-			
+			//return $this->populate($stmt->fetch(\PDO::FETCH_ASSOC));
 			return $stmt->fetch(\PDO::FETCH_ASSOC);
+			
 			
 		} catch (\PDOStatement $e) {
 			echo $e->errorCode();
@@ -114,7 +115,7 @@ class PatientDAO implements DAOInterface
 			
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":name", $patient->getName());
-			$stmt->bindValue(":cpf", (Integer)$patient->getCpf());
+			$stmt->bindValue(":cpf", $patient->getCpf());
 			$stmt->bindValue(":rg", $patient->getRg());
 			$stmt->bindValue(":photo", $patient->getPhoto()); 
 
@@ -147,7 +148,7 @@ class PatientDAO implements DAOInterface
 	}
 	
 	// @DONE
-	public function delete(Pojo $patient)
+	public function delete($patient)
 	{
 		if (!$patient instanceof Patient) {
 			throw new \InvalidArgumentException();
@@ -157,7 +158,7 @@ class PatientDAO implements DAOInterface
 			$sql = "DELETE FROM patient WHERE id = :id";
 			
 			$stmt = self::$conn->prepare($sql);
-			$stmt->bindValue(":id", $patient->getId());
+			$stmt->bindValue(":id", $patient['id']);
 			$stmt->execute();
 			
 		} catch (\PDOStatement $e) {
@@ -166,7 +167,8 @@ class PatientDAO implements DAOInterface
 	}
 	
 	// @TODO ?
-	private function populate($row)
+	private function populate($fech)
 	{
+		return new Patient($fech['name'], $fech['rg'], $fech['cpf'], $fech['photo']);
 	}
 }

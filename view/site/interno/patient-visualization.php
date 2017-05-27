@@ -10,7 +10,6 @@ $patientController = PatientController::getInstance();
 $patient = $patientController->findById($_GET['pId']);
 
 if ($patient == null) {
-    echo "fail";
 }
 
 if (isset($_POST['register'])) {
@@ -20,8 +19,9 @@ if (isset($_POST['register'])) {
 if (isset($_POST['delete'])) {
     $patientController->delete($patient);
     header("Location: patient-management.php");
-    exit();
+    exit(); 
 }
+
 
 ?>
 
@@ -110,7 +110,10 @@ if (isset($_POST['delete'])) {
                 </ol>
 
                 <a class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#myModal2">
-                    <img class="xs-image border center" alt="" src="http://bit.ly/2nLlcLG"> <strong><?= $patient['name']; ?></strong></h3>
+                <?php 
+                 	echo '<img class="xs-image border center" alt="" src="'.$patient['photo'].'"> <strong>'.$patient['name'].'</strong></h3>';
+                ?>
+                   
                 </a>
 
                 <legend><h2><strong>Consultas</strong></h2></legend>
@@ -196,7 +199,7 @@ if (isset($_POST['delete'])) {
                                                                             onclick="editar()" class="btn btn-primary">
                                                                         Editar
                                                                     </button>
-                                                                    <button type="button" name="delete"
+                                                                    <button type="submit" name="delete"
                                                                             id="btnExcluir"
                                                                             class="btn btn-danger">Excluir
                                                                     </button>
