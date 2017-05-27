@@ -148,7 +148,7 @@ class PatientDAO
 	}
 	
 	// @DONE
-	public function delete($patient)
+	public function delete(Pojo $patient)
 	{
 		if (!$patient instanceof Patient) {
 			throw new \InvalidArgumentException();

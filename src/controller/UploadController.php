@@ -26,7 +26,6 @@ class UploadController
 	
 	public function uploadProfileImage($fullFileName, $tempName, $newImageName)
 	{
-		echo "====".$fullFileName;
 		$newImageName = $newImageName."_".time();
 		$file = new File($fullFileName, $tempName);
 		$target = "../../images/patient-profile/";

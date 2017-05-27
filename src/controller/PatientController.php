@@ -38,6 +38,11 @@ class PatientController
         self::$patientDAO->delete($patient);
     }
 
+    public function deleteId($id)
+    {
+        self::$patientDAO->deleteId($id);
+    }
+
 	public function listAll()
 	{
 		return self::$patientDAO->listAll();

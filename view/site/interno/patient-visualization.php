@@ -17,7 +17,8 @@ if (isset($_POST['register'])) {
 }
 
 if (isset($_POST['delete'])) {
-    $patientController->delete($patient);
+    var_dump($patient);
+    $patientController->delete($patientController->findById($_GET['pId']));
     header("Location: patient-management.php");
     exit(); 
 }
@@ -148,7 +149,7 @@ if (isset($_POST['delete'])) {
                                             <div class="row">
                                                 <div class="modal-body">
                                                     <img class="smaller-image border center-block" alt=""
-                                                         src="">
+                                                         src="<?= $patient['name']; ?>">
 
                                                     <form id="form1" name="form1" method="post" action="">
                                                         <div class="col-md-6">

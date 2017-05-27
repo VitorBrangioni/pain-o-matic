@@ -40,7 +40,7 @@ var aux = 0;
 
 context.outline = canvas.getContext("2d");
 
-profund.addEventListener("change", function() {
+profund.addEventListener("change", function atualizaCanvas() {
     var valor = parseInt(profund.value);
 
         switch (aux){
@@ -69,7 +69,7 @@ profund.addEventListener("change", function() {
 
     var imgURL;
 
-    switch (valor){
+    switch (valor) {
         case 0:
             imgURL = imagemURL0;
             break;
@@ -87,8 +87,8 @@ profund.addEventListener("change", function() {
             break;
 
     }
-
     context.putImageData(imgURL, 0, 0, 0, 0, canvas.width, canvas.height);
+
     zerinho(event);
     aux = valor;
 }, false);
@@ -187,8 +187,77 @@ function transfere(prof0, prof25, prof50, prof75, prof100){
 }
 
 function Save(a) {
-    var img = canvas.toDataURL("image/png");
-    a.href = img;
+    switch (aux){
+        case 0:
+            imagemURL0 = context.getImageData(0, 0, canvas.width, canvas.height);
+            break;
+        case 1:
+            imagemURL1 = context.getImageData(0, 0, canvas.width, canvas.height);
+            break;
+        case 2:
+            imagemURL2 = context.getImageData(0, 0, canvas.width, canvas.height);
+            break;
+        case 3:
+            imagemURL3 = context.getImageData(0, 0, canvas.width, canvas.height);
+            break;
+        case 4:
+            imagemURL4 = context.getImageData(0, 0, canvas.width, canvas.height);
+            break;
+    }
+
+    context.putImageData(imagemURL0, 0, 0, 0, 0, canvas.width, canvas.height);
+    var img0 = canvas.toDataURL("image/png");
+    console.log(img0);
+    context.putImageData(imagemURL1, 0, 0, 0, 0, canvas.width, canvas.height);
+    var img1 = canvas.toDataURL("image/png");
+    console.log(img1);
+    context.putImageData(imagemURL2, 0, 0, 0, 0, canvas.width, canvas.height);
+    var img2 = canvas.toDataURL("image/png");
+    console.log(img2);
+    context.putImageData(imagemURL3, 0, 0, 0, 0, canvas.width, canvas.height);
+    var img3 = canvas.toDataURL("image/png");
+    console.log(img3);
+    context.putImageData(imagemURL4, 0, 0, 0, 0, canvas.width, canvas.height);
+    var img4 = canvas.toDataURL("image/png");
+    console.log(img4);
+    zerinho(event);
+
+    var form = document.createElement("form");
+    form.setAttribute("action","http://localhost/save_server/");
+    form.setAttribute("enctype","multipart/form-data");
+    form.setAttribute("method","POST");
+    form.setAttribute("target","_self");
+    form.innerHTML = '<input type="hidden" name="image0" value="'+img0+'"/>';
+    form.innerHTML += '<input type="hidden" name="image1" value="'+img1+'"/>';
+    form.innerHTML += '<input type="hidden" name="image2" value="'+img2+'"/>';
+    form.innerHTML += '<input type="hidden" name="image3" value="'+img3+'"/>';
+    form.innerHTML += '<input type="hidden" name="image4" value="'+img4+'"/>';
+    document.body.appendChild(form);
+    console.log("ok");
+    //form.submit();
+
+    var imgURL;
+
+    switch (aux) {
+        case 0:
+            imgURL = imagemURL0;
+            break;
+        case 1:
+            imgURL = imagemURL1;
+            break;
+        case 2:
+            imgURL = imagemURL2;
+            break;
+        case 3:
+            imgURL = imagemURL3;
+            break;
+        case 4:
+            imgURL = imagemURL4;
+            break;
+
+    }
+    context.putImageData(imgURL, 0, 0, 0, 0, canvas.width, canvas.height);
+
 }
 
 function Clear() {
@@ -203,3 +272,4 @@ function Clear() {
     }
     zerinho();
 }
+
