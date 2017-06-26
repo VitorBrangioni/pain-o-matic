@@ -24,7 +24,7 @@ class Connection implements ConnectionInterface
     {
     	if (!isset(self::$instance)) {
     		try {
-    			self::$instance = new \PDO("mysql:host=localhost;dbname=pain_o_matic;port-;charset=utf8", "root", "root");
+    			self::$instance = new \PDO("mysql:host=localhost;dbname=pain_o_matic;port-;charset=utf8", "admin", "Admin@123");
     		} catch (PDOException $e) {
     			echo $e->getMessage();
     		}

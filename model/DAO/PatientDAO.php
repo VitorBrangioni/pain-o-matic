@@ -118,7 +118,7 @@ class PatientDAO
 			$stmt->bindValue(":cpf", $patient->getCpf());
 			$stmt->bindValue(":rg", $patient->getRg());
 			$stmt->bindValue(":photo", $patient->getPhoto()); 
-
+			
 			$stmt->execute();
 			
 		} catch (Exception $e) {
