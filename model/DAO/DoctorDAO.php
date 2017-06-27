@@ -2,7 +2,8 @@
 
 namespace model\dao;
 
-require_once '../connection/Connection.php';
+use model\connection\Connection;
+use model\pojo\Doctor;
 
 /**
  * 
@@ -60,6 +61,27 @@ class DoctorDAO
 		}
 	}
 	
+	/**
+	 *
+	 * @param Enum $fiel
+	 * @param unknown $value
+	 * @return unknown
+	 */
+	public function findGeneric($field, $value)
+	{
+		try {
+			$sql = "SELECT * FROM doctor WHERE ".$field." = :value";
+			$stmt = self::$conn->prepare($sql);
+			$stmt->bindValue(":value", $value);
+			$stmt->execute();
+			
+			return $this->populateDoctor($stmt->fetchAll(\PDO::FETCH_ASSOC));
+			
+		} catch (\PDOStatement $e) {
+			echo $e->errorCode();
+		}
+	}
+	
 	public function findById($id)
 	{
 		try {
@@ -91,19 +113,16 @@ class DoctorDAO
 	
 	private function populateDoctor($row)
 	{
+		$doctors = array();
+		
+		echo 'entrou';
+		foreach ($row as $data) {
+			$doctors[] = new Doctor($data['id'], $data['nome'], $data['user_id']);
+			
+			echo $data['nome'];
+		}
+		
+		return (count($doctors) == 1) ? $doctors[0]: $doctors;
 		
 	}
 }
-
-$dao = DoctorDAO::getInstance();
-$result = $dao->listAll();
-
-if ($result == null){
-	echo 'fail';
-}
-
-/* foreach ($result as $data) {
-	echo $data['nome'];
-}
- */
-echo $dao->findById(1)['nome'];

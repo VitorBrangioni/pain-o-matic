@@ -5,16 +5,17 @@ use src\controller\AppointmentController;
 use src\controller\PatientController;
 use src\controller\DiagramController;
 
+session_start();
 $appointmentController = AppointmentController::getInstance();
 $patientController = PatientController::getInstance();
 $diagramController = DiagramController::getInstance();
 
-$appointment = $appointmentController->findById($_GET['aId']);
-$patient = $patientController->findById($_GET['pId']);
+$appointment = $appointmentController->findById($_SESSION['appointmentId']);
+$patient = $patientController->findById($_SESSION['patientId']);
 
 if (isset($_POST['register'])) {
     //$thumb, $appointment_id, $prof0, $prof25, $prof50, $prof75, $prof100
-    $diagramController->register($_POST['thumbn'], $_GET['aId']);
+    $diagramController->register($_POST['thumbn'], $_SESSION['appointmentId']);
 }
 
 ?>
@@ -83,7 +84,7 @@ if (isset($_POST['register'])) {
                     <li><a class="btn btn-default" href="patient-management.php">
                             Pacientes
                         </a></li>
-                    <li><a class="btn btn-default" href="patient-visualization.php?pId=<?php echo $_GET['pId'] ?>">
+                    <li><a class="btn btn-default" href="patient-visualization.php">
                             <?= $patient['name']; ?>
                         </a></li></li>
                     <li><a class="btn btn-info">
@@ -105,10 +106,10 @@ if (isset($_POST['register'])) {
 
                 <div class="list-group">
                     <?php
-                    $appointmentDiagrams = $diagramController->listAllAppointmentDiagrams($_GET['aId']);
+                    $appointmentDiagrams = $diagramController->listAllAppointmentDiagrams($_SESSION['appointmentId']);
                     $i = 1;
                     foreach ($appointmentDiagrams as $data){
-                        echo '<a class="list-group-item list-group-item-action" href="pain-diagram.php?pId=' . $_GET['pId'] . '&aId='.$_GET['aId'].'&dId='.$data['id'].'"> Diagrama '.$data['thumbnail'].'</a>';
+                        echo '<a class="list-group-item list-group-item-action" href="pain-diagram.php"> Diagrama '.$data['thumbnail'].'</a>';
                         $i++;
                     }
                     ?>

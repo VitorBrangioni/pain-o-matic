@@ -164,6 +164,6 @@ class UserDAO implements DAOInterface
 	// @TODO ?
 	private function populate($userFeth)
 	{
-		return new User($userFeth['username'], $userFeth['password']);
+		return new User($userFeth['id'], $userFeth['username'], $userFeth['password']);
 	}
 }

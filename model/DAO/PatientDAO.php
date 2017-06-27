@@ -6,9 +6,8 @@ namespace model\dao;
 
 
 use model\connection\Connection;
-use model\interfaces\DAOInterface;
-use model\pojo\Pojo;
 use model\pojo\Patient;
+use model\pojo\Pojo;
 
 /**
  *

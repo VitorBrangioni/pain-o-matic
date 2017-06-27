@@ -4,21 +4,18 @@ require_once '../../../vendor/autoload.php';
 use src\controller\AppointmentController;
 use src\controller\PatientController;
 
+session_start();
 $appointmentController = AppointmentController::getInstance();
 $patientController = PatientController::getInstance();
-
-$patient = $patientController->findById($_GET['pId']);
-
-if ($patient == null) {
-}
+$patient = $patientController->findById($_SESSION['patientId']);
 
 if (isset($_POST['register'])) {
-    $appointmentController->register($_GET['pId']);
+	$appointmentController->register($_SESSION['patientId']);
 }
 
 if (isset($_POST['delete'])) {
     var_dump($patient);
-    $patientController->delete($patientController->findById($_GET['pId']));
+    $patientController->delete($patientController->findById($_SESSION['patientId']));
     header("Location: patient-management.php");
     exit(); 
 }
@@ -42,11 +39,10 @@ if (isset($_POST['delete'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+    <script src="../../tools/js/utils.js"></script>
 
     <script type="text/javascript">
         function editar() {
-            <!-- salvar editar
-            limpar -->
             $("#form1 :input").attr("disabled", false);
             $("#btnEditar").toggle();
             $("#btnExcluir").toggle();
@@ -55,7 +51,6 @@ if (isset($_POST['delete'])) {
             $("#ultEd").attr("disabled", true);
         }
         function salvar() {
-            <!-- salvar editar excluir limpar -->
             $("#form1 :input").attr("disabled", true);
             $("#btnEditar").toggle();
             $("#btnEditar").attr("disabled", false);
@@ -121,11 +116,10 @@ if (isset($_POST['delete'])) {
                 <div class="list-group">
 
                     <?php
-                    $result = $appointmentController->listAllPatientAppointments($_GET['pId']);
+                    $result = $appointmentController->listAllPatientAppointments($_SESSION['patientId']);
                     foreach ($result as $data) {
 
-                        echo '<a class="list-group-item list-group-item-action" href="appointment-visualization.php?pId='
-                            . $_GET['pId'] . '&aId=' . $data['id'] . '">Consulta ' . $data['date'] . ' -
+                        echo '<a class="list-group-item list-group-item-action" onClick="utilsAppointmentAjax('.$data['id'].')" href="appointment-visualization.php">Consulta ' . $data['date'] . ' -
                                 ' . $data['hora'] . '</a>';
                     }
                     ?>

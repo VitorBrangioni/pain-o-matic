@@ -4,6 +4,7 @@ namespace src\controller;
 
 use model\dao\UserDAO;
 use model\pojo\User;
+use model\dao\DoctorDAO;
 
 class LoginController
 {
@@ -15,10 +16,14 @@ class LoginController
 	{
 		session_start();
 		$userDao = UserDAO::getInstance();
+		$doctorDao = DoctorDAO::getInstance();
 		try {
 			$userInput = filter_input(INPUT_POST, 'user');
 			$pwdInput = filter_input(INPUT_POST, 'password');
 			$user = $userDao->findGeneric("username", $userInput);
+			$doctor = $doctorDao->findGeneric('user_id', $user->getId());
+			
+			echo 'id'.$user->getId();
 			
 			if (password_verify($pwdInput, $user->getPassword()) === false) {
 				throw new \Exception('Invalid password');
@@ -33,13 +38,13 @@ class LoginController
 				//$userDao->edit($user);
 			}
 			
-			$_SESSION['user_logged_in'] = 'yes';
-			$_SESSION['user'] = $userInput;
+			$_SESSION['userLoggedIn'] = 'true';
+			$_SESSION['user'] = $user->getUsername();
+			$_SESSION['userId'] = $user->getId();
+			$_SESSION['doctorName'] = $doctor->getName();
 			
 			header('HTTP/1.1 302 Redirect');
 			header('Location: ../view/site/interno/patient-management.php'); 
-			
-			echo 'LOGADO';
 			  
 		} catch (Exception $e) {
 			header('HTTP/1.1 401 Anauthorized');

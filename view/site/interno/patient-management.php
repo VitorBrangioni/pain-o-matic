@@ -5,9 +5,10 @@ require_once '../../../vendor/autoload.php';
 use src\controller\PatientController;
 use src\controller\UploadController;
 
-
+session_start();
 $patientController = PatientController::getInstance();
 $uploadController = UploadController::getInstance();
+$_SESSION['patientId'] = null;
 
 if (isset($_POST['register'])) {
     $pathPhoto = null;
@@ -16,6 +17,10 @@ if (isset($_POST['register'])) {
     	$pathPhoto = $uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name'], $_POST['name']);
 	}
     $patientController->register($_POST['name'], $_POST['cpf'], $_POST['rg'], $pathPhoto);
+}
+
+if (isset($_POST['test'])) {
+	echo 'deu';
 }
 
 
@@ -36,15 +41,19 @@ if (isset($_POST['register'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <script src="../../tools/js/utils.js"></script>
     <style>
         .breadcrumb > li + li:before {
             content: "\3E"
         }
     </style>
-
+    
 </head>
 
 <body>
+<header>
+	<h3>Ola, <?php echo $_SESSION['doctorName'] ?></h3>
+</header>
 <form method="POST" action="patient-management.php" enctype="multipart/form-data">
 
 
@@ -72,11 +81,16 @@ if (isset($_POST['register'])) {
 
             <div class="list-group">
                 <?php
+                
+                $filePath = "../../tools/js/test.php";
                 foreach ($patientController->listAll() as $data) {
-                    echo '<a class="list-group-item list-group-item-action" href="patient-visualization.php?pId=' . $data['id'] . '">' . $data['name'] . '</a>';
+//                     echo '<a class="list-group-item list-group-item-action" href="patient-visualization.php?pId=' . $data['id'] . '">' . $data['name'] . '</a>';
+                     echo '<a onClick="utilsPatientAjax('.$data['id'].')" href="patient-visualization.php" class="list-group-item list-group-item-action">' . $data['name'] . '</a>';
+//                     echo '<input type="submit" name="btnClient" Class="list-group-item list-group-item-action">';
+//                     echo "<input type='submit' name='btnClient'>";
                 }
                 ?>
-            </div>
+            </div>`
 
             <!-- Modal -->
             <div class="container-fluid">
@@ -107,7 +121,7 @@ if (isset($_POST['register'])) {
                                                             <div class="form-group">
                                                                 <label>Nome completo:</label>
                                                                 <input type="text" name="name" class="form-control"
-                                                                       autofocus required>
+                                                                   o    autofocus required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Identificador:</label>
@@ -124,7 +138,7 @@ if (isset($_POST['register'])) {
                                                     </div>
 
                                                     <div class="col-md-6">
-                                                        <fieldset>
+                                                        <fieldset>`
                                                             <div class="form-group">
                                                                 <label>CPF:</label>
                                                                 <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" data-mask="999.999.999-99" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$"  autofocus required>
@@ -161,5 +175,6 @@ if (isset($_POST['register'])) {
     </div>
 </div>
 </form>
+
 </body>
 </html>
