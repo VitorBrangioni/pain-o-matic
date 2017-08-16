@@ -4,8 +4,8 @@ namespace src\controller;
 
 //require_once '../../vendor/autoload.php';
 
-use model\pojo\Diagram;
 use model\dao\DiagramDAO;
+use model\pojo\Diagram;
 
 class DiagramController
 {
@@ -26,11 +26,35 @@ class DiagramController
 		return self::$instance;
 	}
 
-	public function register($thumbnail, $appointment_id)
+	public function register($title, $desc, $appointmentId)
 	{
-		$diagram = new Diagram($thumbnail, $appointment_id, 0, 0, 0, 0, 0);
-
+		$diagram = new Diagram($title, $desc, "", $appointmentId);
 		self::$diagramDAO->insert($diagram);
+		$diagramId = (int) self::$diagramDAO->getConn()->lastInsertId();
+		
+		header("Location: http://localhost/pain-o-matic/view/internal/pain-diagram.php?appointmentId=$appointmentId&diagramId=$diagramId");
+	}
+	
+	public function saveDiagramImg($diagramId, $imgBase64)
+	{
+		$success = false;
+		$diagram = self::$diagramDAO->findById($diagramId);
+		
+		if (empty($diagram->getImage())) {
+			$diagram->setImage(sha1($diagram->getTitle()) . uniqid('', true) . '-' .time().'.png');
+		}
+		self::$diagramDAO->edit($diagram);
+		
+		$removeHeaders = substr($imgBase64, strpos($imgBase64, ",") +1);
+		$decode = base64_decode($removeHeaders);
+		
+		$success = $fopen = fopen("/var/www/html/pain-o-matic/view/images/diagrams/{$diagram->getImage()}", 'wb');
+		$success = fwrite($fopen, $decode);
+		$success = fclose($fopen);
+		
+		if ($success === false || $diagram == null) {
+			throw new \Exception('Falha ao salvar Diagrama');
+		}
 	}
 
     public function delete($diagram)

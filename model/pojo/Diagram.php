@@ -10,35 +10,24 @@ namespace model\pojo;
 class Diagram extends Pojo
 {
 	private $id;
+	private $title;
+	private $desc;
+	private $image;
+	private $idAppointment;
+	
 	private $thumbnail;
-	private $appointment_id;
     private $prof0;
     private $prof25;
     private $prof50;
     private $prof75;
     private $prof100;
-
-
-	public function __construct($thumbnail, $appointment_id, $prof0, $prof25, $prof50, $prof75, $prof100)
-	{
-		$this->setThumbnail($thumbnail);
-		$this->setAppointmentId($appointment_id);
-		$this->setProf0($prof0);
-        $this->setProf25($prof25);
-        $this->setProf50($prof50);
-        $this->setProf75($prof75);
-        $this->setProf100($prof100);
-
-	}
-	
-    public function getThumbnail()
+    
+    public function __construct($title, $desc, $img, $idAppointment)
     {
-        return $this->thumbnail;
-    }
-
-    public function setThumbnail($thumbnail)
-    {
-        $this->thumbnail = $thumbnail;
+    	$this->setTitle($title);
+    	$this->setDesc($desc);
+    	$this->setImage($img);
+    	$this->setAppointmentId($idAppointment);
     }
 
     /**
@@ -62,97 +51,70 @@ class Diagram extends Pojo
      */
     public function getAppointmentId()
     {
-        return $this->appointment_id;
+    	return $this->idAppointment;
     }
 
     /**
      * @param mixed $appointment_id
      */
-    public function setAppointmentId($appointment_id)
+    public function setAppointmentId($idAppointment)
     {
-        $this->appointment_id = $appointment_id;
+    	$this->idAppointment= $idAppointment;
     }
 
     /**
-     * @return mixed
+     * image
+     * @return unkown
      */
-    public function getProf0()
+    public function getImage()
     {
-        return $this->prof0;
+        return $this->image;
     }
 
     /**
-     * @param mixed $prof0
+     * image
+     * @param unkown $image
      */
-    public function setProf0($prof0)
+    public function setImage($image)
     {
-        $this->prof0 = $prof0;
+        $this->image = $image;
     }
 
     /**
-     * @return mixed
+     * desc
+     * @return unkown
      */
-    public function getProf25()
+    public function getDesc()
     {
-        return $this->prof25;
+        return $this->desc;
     }
 
     /**
-     * @param mixed $prof25
+     * desc
+     * @param unkown $desc
      */
-    public function setProf25($prof25)
+    public function setDesc($desc)
     {
-        $this->prof25 = $prof25;
+        $this->desc = $desc;
+    }
+
+
+    /**
+     * title
+     * @return unkown
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
-     * @return mixed
+     * title
+     * @param unkown $title
      */
-    public function getProf50()
+    public function setTitle($title)
     {
-        return $this->prof50;
+        $this->title = $title;
     }
-
-    /**
-     * @param mixed $prof50
-     */
-    public function setProf50($prof50)
-    {
-        $this->prof50 = $prof50;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProf75()
-    {
-        return $this->prof75;
-    }
-
-    /**
-     * @param mixed $prof75
-     */
-    public function setProf75($prof75)
-    {
-        $this->prof75 = $prof75;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProf100()
-    {
-        return $this->prof100;
-    }
-
-    /**
-     * @param mixed $prof100
-     */
-    public function setProf100($prof100)
-    {
-        $this->prof100 = $prof100;
-    }
-
-
 
 }

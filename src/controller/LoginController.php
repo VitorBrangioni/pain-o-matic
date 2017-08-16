@@ -44,7 +44,7 @@ class LoginController
 			$_SESSION['doctorName'] = $doctor->getName();
 			
 			header('HTTP/1.1 302 Redirect');
-			header('Location: ../view/site/interno/patient-management.php'); 
+			header('Location: ../view/internal/patient-management.php'); 
 			  
 		} catch (Exception $e) {
 			header('HTTP/1.1 401 Anauthorized');

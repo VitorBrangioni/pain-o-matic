@@ -19,7 +19,6 @@ class UploadController
 	{
 		if (!isset(self::$instance) || !isset(self::$patientDAO)) {
 			self::$instance = new UploadController();
-			//self::$patientDAO = PatientDAO::getInstance();
 		}
 		return self::$instance;
 	}
@@ -28,7 +27,7 @@ class UploadController
 	{
 		$newImageName = $newImageName."_".time();
 		$file = new File($fullFileName, $tempName);
-		$target = "../../images/patient-profile/";
+		$target = "../images/patient-profile/";
 		
 		if ($file != null && $file->getTempName() != null) {
 			$upload = new Upload($file, $target, $newImageName);

@@ -33,6 +33,11 @@ class DiagramDAO implements DAOInterface
 		return self::$instance;
 	}
 	
+	public static function getConn() : \PDO
+	{
+		return self::$conn;
+	}
+	
 	// @DONE
 	public function listAll()
 	{
@@ -57,7 +62,7 @@ class DiagramDAO implements DAOInterface
 			$stmt->bindValue(":id", $id);
 			$stmt->execute();
 			
-			return $stmt->fetch(\PDO::FETCH_ASSOC);
+			return $this->populate($stmt->fetch(\PDO::FETCH_ASSOC));
 			
 		} catch (\PDOStatement $e) {
 			echo $e->errorCode();
@@ -111,21 +116,21 @@ class DiagramDAO implements DAOInterface
 		}
 		
 		try {
-			$sql = "INSERT INTO diagram (thumbnail, appointment_id, prof0, prof25, prof50, prof75, prof100)
-			    VALUES (:thumbnail, :appointment_id, :prof0, :prof25, :prof50, :prof75, :prof100)";
+			$sql = "INSERT INTO diagram (id, title, description, img_diagram, appointment_id)
+			    VALUES (null, :title, :desc, :img_diagram, :appointment_id)";
 			
 			$stmt = self::$conn->prepare($sql);
-			$stmt->bindValue(":thumbnail", $diagram->getThumbnail());
-            $stmt->bindValue(":appointment_id", $diagram->getAppointmentId());
-            $stmt->bindValue(":prof0", $diagram->getProf0());
-            $stmt->bindValue(":prof25", $diagram->getProf25());
-            $stmt->bindValue(":prof50", $diagram->getProf50());
-            $stmt->bindValue(":prof75", $diagram->getProf75());
-            $stmt->bindValue(":prof100", $diagram->getProf100());
-
-            $stmt->execute();
+			$stmt->bindValue(":title", $diagram->getTitle());
+			$stmt->bindValue(":desc", $diagram->getDesc());
+			$stmt->bindValue(":img_diagram", $diagram->getImage());
+			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId());
+            $result = $stmt->execute();
+            
+            if (!$result) {
+	            throw new \PDOException("Nao foi possivel adicionar o diagrama. Entre em contato com adm.");
+            }
 			
-		} catch (Exception $e) {
+		} catch (\PDOException $e) {
 			echo $e->getMessage();
 		}
 	}
@@ -138,12 +143,15 @@ class DiagramDAO implements DAOInterface
 		}
 		
 		try {
-			$sql = "UPDATE diagram SET diagramname = ':diagramname', password = ':password' WHERE id = :id";
+			$sql = "UPDATE diagram SET title = :title, description = :desc, img_diagram = :img, appointment_id = :appointment_id WHERE id = :id";
 			
-			self::$conn->prepare($sql);
-			$stmt->bindValue(":diagramname", $diagram->getdiagramname());
-			$stmt->bindValue(":password", $diagram->getPassword());
+			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $diagram->getId());
+			$stmt->bindValue(":title", $diagram->getTitle());
+			$stmt->bindValue(":desc", $diagram->getDesc());
+			$stmt->bindValue(":img", $diagram->getImage());
+			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId());
+			
 			$stmt->execute();
 			
 		} catch (\PDOStatement $e) {
@@ -173,5 +181,9 @@ class DiagramDAO implements DAOInterface
 	// @TODO ?
 	private function populate($row)
 	{
+		$diagram = new Diagram($row['title'], $row['description'], $row['img_diagram'], $row['appointment_id']);
+		$diagram->setId($row['id']);
+		
+		return $diagram;
 	}
 }
