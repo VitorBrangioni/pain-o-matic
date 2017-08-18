@@ -2,11 +2,16 @@
 
 include_once '../includes/head.html';
 require_once '../../vendor/autoload.php';
+require_once '../../config/config.php';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
 use src\controller\DiagramController;   
 
+$step1 = 'come-back';
+$step2 = 'come-back';
+$step3 = 'come-back';
+$step4 = 'active';
 
 $appointmentController = AppointmentController::getInstance();
 $patientController = PatientController::getInstance();
@@ -24,7 +29,19 @@ $diagram = $diagramController->findById($_GET['diagramId']);
 <head>
     <title>Pain O Matic</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" href="../tools/css/nav.css">
+    <link rel="stylesheet" href="../tools/css/global.css">
     <link rel="stylesheet" href="../tools/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <script src="../tools/js/nav.js"></script>
 
     <style>
         .breadcrumb > li + li:before {
@@ -34,32 +51,27 @@ $diagram = $diagramController->findById($_GET['diagramId']);
 </head>
 
 <body onload="zerinho()">
+<input type="hidden" name="diagramId" id="diagramId" value="<?= $_GET['diagramId']; ?>">
 
-<div class="col-xs-12">
-    <ol class="breadcrumb col-xs-12 inline-block">
-        <li><a type="button" class="btn btn-danger" href="../../../public/index.php" id="voltar">
-                Sair
-            </a></li>
-        <li><a class="btn btn-default" href="patient-management.php">
-                Pacientes
-            </a></li>
-        <li><a class="btn btn-default" href="patient-visualization.php?pId=<?php echo $_GET['pId'] ?>">
-                <?= $patient['name']; ?>
-            </a></li>
-        <li><a class="btn btn-default" href="appointment-visualization.php?pId=<?php echo $_GET['pId'] ?>&aId=<?php echo $_GET['aId'] ?>">
-                <?= $appointment['date']; ?>
-            </a></li>
-        <li><a class="btn btn-info">
-                Editar Diagrama
-            </a></li>
-        </li>
-        <li class="pull-right">
-                <button type="button" onclick="Clear()" class="text-center btn btn-danger">Limpar</button>
-                <a type="button" name="register" download="diagrama.png" onclick="Save(this)" class="text-center btn btn-success">Salvar</a>
-        </li>
-    </ol>
+<nav>
+    <?php include '../includes/nav.html' ?>
+</nav>
 
-</div>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-md-push-8">
+                <a onclick="Clear()" class="text-center btn btn-danger ">
+                    <span class="glyphicon glyphicon-erase"></span> Limpar
+                </a>
+                <a name="register" download="diagrama.png" onclick="Save(this)" class="text-center btn btn-success ">
+                    <span class="glyphicon glyphicon-save"></span> Salvar
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
 <div>
     <br>
     <canvas class="center-block img-responsive" id="canvas1"></canvas>

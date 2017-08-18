@@ -1,0 +1,39 @@
+<div class="wizard">
+    <button type="submit" class="btn btn-danger pull-right">Sair <span class="glyphicon glyphicon-log-out"></span></button>
+    <div class="wizard-inner">
+        <div class="connecting-line"></div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="<?= $step1; ?>">
+                <a href="patient-management.php" title="Pacientes">
+                            <span class="round-tab">
+                                <i class="fa fa-group"></i>
+                            </span>
+                        </a>
+            </li>
+
+            <li role="presentation" class="<?= $step2; ?>">
+                <a href="patient-visualization.php?patientId=<?= $_GET['patientId']; ?>" title="Consultas">
+                            <span class="round-tab">
+                                <i class="fa fa-stethoscope"></i>
+                            </span>
+                        </a>
+            </li>
+            <li role="presentation" class="<?= $step3; ?>">
+                <a href="appointment-visualization.php?patientId=<?= $_GET['patientId']; ?>&appointmentId=<?= $_GET['appointmentId']; ?>"
+                    title="Diagramas">
+                            <span class="round-tab">
+                                <i class="fa fa-child"></i>
+                            </span>
+                        </a>
+            </li>
+
+            <li role="presentation" class="<?= $step4; ?>">
+                <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Registrar dor">
+                            <span class="round-tab">
+                                <i class="fa fa-heartbeat"></i>
+                            </span>
+                        </a>
+            </li>
+        </ul>
+    </div>
+</div>

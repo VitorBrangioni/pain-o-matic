@@ -1,5 +1,7 @@
 <?php
+
 require_once '../../vendor/autoload.php';
+require '../../config/config.php';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
@@ -8,17 +10,19 @@ session_start();
 $appointmentController = AppointmentController::getInstance();
 $patientController = PatientController::getInstance();
 $patient = $patientController->findById($_GET['patientId']);
+$step1 = 'come-back';
+$step2 = 'active';
 
 if (isset($_POST['register'])) {
 	$appointmentController->register($_GET['patientId']);
 }
 
-if (isset($_POST['delete'])) {
+/* if (isset($_POST['delete'])) {
     var_dump($patient);
     $patientController->delete($patientController->findById($_GET['patientId']));
     header("Location: patient-management.php");
     exit(); 
-}
+} */
 
 
 ?>
@@ -28,7 +32,7 @@ if (isset($_POST['delete'])) {
     <title>Pain O Matic</title>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="../tools/css/style.css">
+   <!-- <link rel="stylesheet" href="../tools/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
@@ -39,7 +43,20 @@ if (isset($_POST['delete'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
-    <script src="../tools/js/utils.js"></script>
+    <script src="../tools/js/utils.js"></script>-->
+
+    <link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" href="../tools/css/nav.css">
+    <link rel="stylesheet" href="../tools/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <script src="../tools/js/nav.js"></script>
 
     <script type="text/javascript">
         function editar() {
@@ -82,36 +99,33 @@ if (isset($_POST['delete'])) {
     });
 </script>
 
+<nav>
+    <?php include '../includes/nav.html'; ?>
+</nav>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <a class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#myModal2">
+                    <?php 
+                 	    echo '<img class="xs-image border center" alt="" src="'.$patient['photo'].'"> <strong>'.$patient['name'].'</strong></h3>';
+                    ?>
+                </a>
+            </div>
+            <div class="col-md-2 col-md-push-8">
+                <form method="post" action="">
+                    <input type="submit" name="register" value="Adicionar Consulta" class="btn btn-success btn-block">
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
 <form method="POST" action="">
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-
-                <ol class="breadcrumb col-xs-12 inline-block">
-                    <li><a type="button" class="btn btn-danger" href="../../../public/index.php" id="voltar">
-                            Sair
-                        </a></li>
-                    <li><a class="btn btn-default" href="patient-management.php">
-                            Pacientes
-                        </a></li>
-                    <li><a class="btn btn-info">
-                            <?= $patient['name']; ?>
-                        </a></li>
-                    <li class="pull-right">
-                        <button class="btn btn-success" type="submit" name="register">
-                            Adicionar Consulta
-                        </button>
-                    </li>
-                </ol>
-
-                <a class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#myModal2">
-                <?php 
-                 	echo '<img class="xs-image border center" alt="" src="'.$patient['photo'].'"> <strong>'.$patient['name'].'</strong></h3>';
-                ?>
-                   
-                </a>
-
                 <legend><h2><strong>Consultas</strong></h2></legend>
                 <div class="list-group">
 
@@ -120,15 +134,11 @@ if (isset($_POST['delete'])) {
                     foreach ($result as $data) {
 
                         echo '<a class="list-group-item list-group-item-action" onClick="utilsAppointmentAjax('.$data['id'].')" 
-								href="appointment-visualization.php?appointmentId=' .$data['id']. '">Consulta ' . $data['date'] . ' -
+								href="appointment-visualization.php?patientId=' .$_GET['patientId']. '&appointmentId=' .$data['id']. '">Consulta ' . $data['date'] . ' -
                                 ' . $data['hora'] . '</a>';
                     }
                     ?>
                 </div>
-
-
-
-
                 <!-- Modal -->
                 <div class="container-fluid">
                     <div class="row">

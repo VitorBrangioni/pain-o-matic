@@ -2,10 +2,9 @@
 
 namespace src\controller;
 
-//require_once '../../vendor/autoload.php';
-
 use model\dao\DiagramDAO;
 use model\pojo\Diagram;
+use model\dao\AppointmentDAO;
 
 class DiagramController
 {
@@ -28,11 +27,11 @@ class DiagramController
 
 	public function register($title, $desc, $appointmentId)
 	{
-		$diagram = new Diagram($title, $desc, "", $appointmentId);
+		$diagram = new Diagram($title, $desc, null, $appointmentId);
+		$appointment = AppointmentDAO::getInstance()->findById($appointmentId);
 		self::$diagramDAO->insert($diagram);
 		$diagramId = (int) self::$diagramDAO->getConn()->lastInsertId();
-		
-		header("Location: http://localhost/pain-o-matic/view/internal/pain-diagram.php?appointmentId=$appointmentId&diagramId=$diagramId");
+		header("Location: http://localhost/pain-o-matic/view/internal/pain-diagram.php?patientId={$appointment['patient_id']}&appointmentId=$appointmentId&diagramId=$diagramId");
 	}
 	
 	public function saveDiagramImg($diagramId, $imgBase64)
@@ -40,9 +39,13 @@ class DiagramController
 		$success = false;
 		$diagram = self::$diagramDAO->findById($diagramId);
 		
-		if (empty($diagram->getImage())) {
+		if ($diagram->getImage() === "diagram-model.png") {
 			$diagram->setImage(sha1($diagram->getTitle()) . uniqid('', true) . '-' .time().'.png');
 		}
+		
+		/* if (empty($diagram->getImage())) {
+			$diagram->setImage(sha1($diagram->getTitle()) . uniqid('', true) . '-' .time().'.png');
+		} */
 		self::$diagramDAO->edit($diagram);
 		
 		$removeHeaders = substr($imgBase64, strpos($imgBase64, ",") +1);
@@ -53,7 +56,10 @@ class DiagramController
 		$success = fclose($fopen);
 		
 		if ($success === false || $diagram == null) {
-			throw new \Exception('Falha ao salvar Diagrama');
+			// throw new \Exception('Falha ao salvar Diagrama');
+			header("Location falha");
+		} else {
+			header("Location sucesso");
 		}
 	}
 

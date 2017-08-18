@@ -116,16 +116,21 @@ class DiagramDAO implements DAOInterface
 		}
 		
 		try {
-			$sql = "INSERT INTO diagram (id, title, description, img_diagram, appointment_id)
-			    VALUES (null, :title, :desc, :img_diagram, :appointment_id)";
+			$sql = "INSERT INTO diagram (title, description, appointment_id)
+			    VALUES (:title, :desc, :appointment_id)";
 			
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":title", $diagram->getTitle());
 			$stmt->bindValue(":desc", $diagram->getDesc());
-			$stmt->bindValue(":img_diagram", $diagram->getImage());
-			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId());
+			$stmt->bindValue(":appointment_id", (int) $diagram->getAppointmentId());
+			
+			/* echo $diagram->getDesc();
+			$stmt->bindValue(":title", "test");
+			$stmt->bindValue(":description", "aror");
+			// $stmt->bindValue(":img_diagram", $diagram->getImage());
+			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId()); */
+			
             $result = $stmt->execute();
-            
             if (!$result) {
 	            throw new \PDOException("Nao foi possivel adicionar o diagrama. Entre em contato com adm.");
             }
@@ -146,11 +151,11 @@ class DiagramDAO implements DAOInterface
 			$sql = "UPDATE diagram SET title = :title, description = :desc, img_diagram = :img, appointment_id = :appointment_id WHERE id = :id";
 			
 			$stmt = self::$conn->prepare($sql);
-			$stmt->bindValue(":id", $diagram->getId());
 			$stmt->bindValue(":title", $diagram->getTitle());
 			$stmt->bindValue(":desc", $diagram->getDesc());
 			$stmt->bindValue(":img", $diagram->getImage());
 			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId());
+			$stmt->bindValue(":id", $diagram->getId());
 			
 			$stmt->execute();
 			

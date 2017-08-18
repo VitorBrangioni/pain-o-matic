@@ -6,6 +6,7 @@ namespace src\controller;
 
 use model\pojo\Patient;
 use model\dao\PatientDAO;
+use src\controller\UploadController;
 
 class PatientController
 {
@@ -28,6 +29,18 @@ class PatientController
 
 	public function register($name, $cpf, $rg, $photo)
 	{
+
+		$pathPhoto = "test.png";
+		/*if (['cameraInput']['name'] !== null && $_FILES['cameraInput']['tmp_name'] !== null) {
+			$uploadController = UploadController::getInstance();
+			$pathPhoto = $uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name'], $_POST['name']);
+		}*/
+		if (file_exists($_FILES['cameraInput']['tmp_name']) || is_uploaded_file($_FILES['cameraInput']['tmp_name'])) {
+			$uploadController = UploadController::getInstance();
+			$pathPhoto = $uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name'], $_POST['name']);
+		}
+
+
 		$patient = new Patient($name, $cpf, $rg, $photo);
 		
 		self::$patientDAO->insert($patient);

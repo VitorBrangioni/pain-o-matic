@@ -108,16 +108,20 @@ class PatientDAO
 		if (!$patient instanceof Patient) {
 			throw new \InvalidArgumentException();
 		}
-		
+		$emptyImage = ($patient->getPhoto() === null) ? true : false;
+
 		try {
-			$sql = "INSERT INTO patient (id, name, cpf, rg, photo) VALUES (null, :name, :cpf, :rg, :photo)";
-			
+			$sql = ($emptyImage) ?
+				"INSERT INTO patient (id, name, cpf, rg) VALUES (null, :name, :cpf, :rg)":
+				"INSERT INTO patient (id, name, cpf, rg, photo) VALUES (null, :name, :cpf, :rg, :photo)";
+
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":name", $patient->getName());
 			$stmt->bindValue(":cpf", $patient->getCpf());
 			$stmt->bindValue(":rg", $patient->getRg());
-			$stmt->bindValue(":photo", $patient->getPhoto()); 
-			
+			if (!$emptyImage) {
+				$stmt->bindValue(":photo", $patient->getPhoto()); 
+			}
 			$stmt->execute();
 			
 		} catch (Exception $e) {

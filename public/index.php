@@ -1,2 +1,2 @@
 <?php
-include_once '../view/site/externo/login.php';
+include_once '../view/external/login.php';

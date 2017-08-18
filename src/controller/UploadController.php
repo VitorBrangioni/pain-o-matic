@@ -25,7 +25,11 @@ class UploadController
 	
 	public function uploadProfileImage($fullFileName, $tempName, $newImageName)
 	{
-		$newImageName = $newImageName."_".time();
+
+		if ($newImageName !== "superman-profile.png") {
+			$newImageName = $newImageName."_".time();
+		}
+
 		$file = new File($fullFileName, $tempName);
 		$target = "../images/patient-profile/";
 		

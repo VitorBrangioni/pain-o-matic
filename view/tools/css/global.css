@@ -53,6 +53,17 @@ body {
     margin-top: 40px;
 }
 
+.btn.btn-success {
+    color: #fff;
+    background-color: #22cffc;
+    border-color: #22cffc;
+}
+
+.btn.btn-success:hover {
+    color: #22cffc;
+    background-color: white;
+    border-color: #22cffc;
+}
 
 @media only screen and (min-width : 320px) {
     .container img {

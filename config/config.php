@@ -6,3 +6,8 @@ const DIR_IMG = BASE_URL.'view/images/';
 const DIR_DIAGRAMS = DIR_IMG.'diagrams/';
 // define('DIR_DIAGRAMS', 'localhost/pain-o-matic/view/images/diagrams/');
 const DIR_PATIENT_PROFILE = '';
+
+$step1 = 'disabled';
+$step2 = 'disabled';
+$step3 = 'disabled';
+$step4 = 'disabled';
