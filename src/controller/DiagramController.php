@@ -31,6 +31,7 @@ class DiagramController
 		$appointment = AppointmentDAO::getInstance()->findById($appointmentId);
 		self::$diagramDAO->insert($diagram);
 		$diagramId = (int) self::$diagramDAO->getConn()->lastInsertId();
+		
 		header("Location: http://localhost/pain-o-matic/view/internal/pain-diagram.php?patientId={$appointment['patient_id']}&appointmentId=$appointmentId&diagramId=$diagramId");
 	}
 	
