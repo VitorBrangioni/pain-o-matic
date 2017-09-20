@@ -15,14 +15,8 @@ class Diagram extends Pojo
 	private $image;
 	private $idAppointment;
 	
-	private $thumbnail;
-    private $prof0;
-    private $prof25;
-    private $prof50;
-    private $prof75;
-    private $prof100;
-    
-    public function __construct($title, $desc, $img, $idAppointment)
+
+	public function __construct($title, $desc, $img, $idAppointment)
     {
     	$this->setTitle($title);
     	$this->setDesc($desc);

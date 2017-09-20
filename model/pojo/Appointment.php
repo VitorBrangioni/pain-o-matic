@@ -12,10 +12,10 @@ class Appointment extends Pojo
 	private $hour;
 	private $patientId;
 
-    public function __construct($date, $time, $patId)
+    public function __construct($date, $hour, $patId)
     {
         $this->setDate($date);
-        $this->setHour($time);
+        $this->setHour($hour);
         $this->setPatientId($patId);
     }
 	

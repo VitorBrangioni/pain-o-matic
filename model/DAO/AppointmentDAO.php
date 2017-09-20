@@ -81,22 +81,6 @@ class AppointmentDAO implements DAOInterface
 		}
 	}
 	
-	// @TODO
-	public function findByObject(Pojo $patient)
-	{
-		try {
-			$sql = "SELECT * FROM appointment WHERE id = :id";
-			$stmt = self::$conn->prepare($sql);
-			$stmt->bindValue(":id", $patient->getId());
-			$stmt->execute();
-			
-			return $stmt->fetch(\PDO::FETCH_ASSOC);
-			
-		} catch (\PDOStatement $e) {
-			echo $e->errorCode();
-		}
-	}
-	
 	// @DONE
 	public function insert(Pojo $appointment)
 	{

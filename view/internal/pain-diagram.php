@@ -1,8 +1,8 @@
 <?php
 
-include_once '../includes/head.html';
 require_once '../../vendor/autoload.php';
 require_once '../../config/config.php';
+include_once '../includes/head.html';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
@@ -20,6 +20,7 @@ $diagramController = DiagramController::getInstance();
 $appointment = $appointmentController->findById($_GET['appointmentId']);
 $patient = $patientController->findById(1);
 $diagram = $diagramController->findById($_GET['diagramId']);
+
 
 ?>
 
@@ -52,6 +53,7 @@ $diagram = $diagramController->findById($_GET['diagramId']);
 
 <body onload="zerinho()">
 <input type="hidden" name="diagramId" id="diagramId" value="<?= $_GET['diagramId']; ?>">
+<input type="hidden" name="diagramImg" id="diagramImg" value="<?= $diagram->getImage(); ?>">
 
 <nav>
     <?php include '../includes/nav.html' ?>
@@ -60,16 +62,49 @@ $diagram = $diagramController->findById($_GET['diagramId']);
 <header>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 col-md-push-8">
-                <a onclick="Clear()" class="text-center btn btn-danger ">
-                    <span class="glyphicon glyphicon-erase"></span> Limpar
-                </a>
-                <a name="register" download="diagrama.png" onclick="Save(this)" class="text-center btn btn-success ">
-                    <span class="glyphicon glyphicon-save"></span> Salvar
-                </a>
-            </div>
+        
+        
+        	<?php if ($_GET['mode'] === 'edit'): ?>
+        	
+	            <div class="col-md-2 col-md-push-8">
+	                <a onclick="Clear()" class="text-center btn btn-danger ">
+	                    <span class="glyphicon glyphicon-erase"></span> Limpar
+	                </a>
+	                <a name="register" download="diagrama.png" onclick="Save(this)" class="text-center btn btn-success ">
+	                    <span class="glyphicon glyphicon-save"></span> Salvar
+	                </a>
+	            </div>
+            
+            <?php endif; ?>
+            
+            <?php if ($_GET['mode'] === 'view'): ?>
+        	
+	            <div class="col-md-2 col-md-push-10">
+	    			 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#diagram-detail">Detalhes</button>
+	            </div>
+            
+            <?php endif; ?>
         </div>
     </div>
+    
+    <!-- Modal -->
+	 <div class="modal fade" id="diagram-detail" role="dialog">
+	    <div class="modal-dialog modal-lg">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Detalhes do Diagrama</h4>
+	        </div>
+	        <div class="modal-body">
+		          <h2><?= $diagram->getTitle(); ?></h2>
+	        		<p><?= $diagram->getDesc(); ?></p>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 </header>
 
 <div>
@@ -83,41 +118,45 @@ $diagram = $diagramController->findById($_GET['diagramId']);
 </div>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="btn-group btn-group-justified color-pallet center-block" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn-grey"
-                            style="background:black"
-                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn"
-                            style="background:red"
-                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn"
-                            style="background:orange"
-                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn"
-                            style="background:yellow"
-                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(25)" id="btn"
-                            style="background:white"
-                            class="strokeColor btn btn-default glyphicon glyphicon-erase"></button>
-                </div>
-                <br>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+
+<?php if ($_GET['mode'] === 'edit'): ?>
+	<div class="container-fluid">
+	    <div class="row">
+	        <div class="col-xs-12">
+	            <div class="btn-group btn-group-justified color-pallet center-block" role="group" aria-label="...">
+	                <div class="btn-group" role="group">
+	                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn-grey"
+	                            style="background:black"
+	                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
+	                </div>
+	                <div class="btn-group" role="group">
+	                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn"
+	                            style="background:red"
+	                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
+	                </div>
+	                <div class="btn-group" role="group">
+	                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn"
+	                            style="background:orange"
+	                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
+	                </div>
+	                <div class="btn-group" role="group">
+	                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(10)" id="btn"
+	                            style="background:yellow"
+	                            class="strokeColor btn btn-default glyphicon glyphicon-pencil"></button>
+	                </div>
+	                <div class="btn-group" role="group">
+	                    <button type="button" onclick="strokeCOLOR(this); strokeWIDTHVal(25)" id="btn"
+	                            style="background:white"
+	                            class="strokeColor btn btn-default glyphicon glyphicon-erase"></button>
+	                </div>
+	                <br>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	</div>
+
+<?php endif; ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="../tools/js/canvas.js"></script>

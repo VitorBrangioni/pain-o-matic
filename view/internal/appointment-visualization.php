@@ -30,15 +30,6 @@ if (isset($_POST['submit'])) {
         <title>Pain O' Meter</title>
         <meta charset="UTF-8">
 
-        <!--<link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-        
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
--->
 
     <link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
@@ -86,7 +77,7 @@ if (isset($_POST['submit'])) {
 	        	
 	                $diagrams = $diagramController->listAllAppointmentDiagrams($_GET['appointmentId']);
 	                foreach ($diagrams as $data) {
-	        	        echo '<a href="pain-diagram.php?patientId=' .$_GET['patientId']. '&appointmentId=' .$_GET['appointmentId']. '&diagramId=' .$data['id']. '">
+	        	        echo '<a href="pain-diagram.php?patientId=' .$_GET['patientId']. '&appointmentId=' .$_GET['appointmentId']. '&diagramId=' .$data['id']. '&mode=view">
                                 <div class="col-lg-4 padding-top-15">
                                     <div class="card">
                                         <img src="../images/diagrams/' .$data['img_diagram']. '">
