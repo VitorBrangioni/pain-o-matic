@@ -209,6 +209,9 @@ if (isset($_POST['register'])) {
                                                                             id="btnExcluir"
                                                                             class="btn btn-danger">Excluir
                                                                     </button>
+                                                                    <a href="./nursing-historic.php?patientId=<?= $patient['id'] ?>"
+                                                                            class="btn btn-info">Historico de Enfermagem
+                                                                    </a>
                                                                     <button type="reset" name="btnLimpar" id="btnLimpar"
                                                                             class="btn btn-warning"
                                                                             style="display:none">

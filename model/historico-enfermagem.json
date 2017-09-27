@@ -1,0 +1,34 @@
+{
+    "identificacao" : {
+        "data": $da,
+        "hora": "",
+        "clinica": "",
+        "numeroProntuario" : "",
+        "telefone": "",
+        "celular": "",
+        "falarCom": "",
+        "nome": "",
+        "idade": "",
+        "sexo": "",
+        "cor": "",
+        "profissaoOcupacao": "",
+        "rendaFamiliarMensal": "",
+        "nacionalidade": "",
+        "naturalidade": "",
+        "estadoCivil": "",
+        "escolaridade": "",
+        "procedencia": "",
+        "informante": ""
+    },
+    "queixaPrincipal": "",
+    "historiaProgressa": "",
+    "controleSaudeHabitos": {
+        "relatoAlergia": {
+            "sim": "quais"
+        }
+    },
+    "habitoFazerExameMedicoRegularmente":   {
+        "": ""
+    }
+
+}

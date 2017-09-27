@@ -41,7 +41,7 @@ class LoginController
 			$_SESSION['userLoggedIn'] = 'true';
 			$_SESSION['user'] = $user->getUsername();
 			$_SESSION['userId'] = $user->getId();
-			$_SESSION['doctorName'] = $doctor->getName();
+			$_SESSION['doctorName'] = $doctor['name'];
 			
 			header('HTTP/1.1 302 Redirect');
 			header('Location: ../view/internal/patient-management.php'); 

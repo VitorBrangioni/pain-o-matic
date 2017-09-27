@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <script src="../tools/js/nav.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     </head>
 
     <body>
@@ -64,7 +64,6 @@ if (isset($_POST['submit'])) {
                         <a type="button_add" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">
                             Novo Diagrama
                         </a>
-                        <!--<input type="submit" name="submit" value="Novo Diagrama" class="btn btn-success btn-block">-->
                     </div>
                 </div>
             </div>
@@ -117,7 +116,6 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                         <div class="modal-footer">
-                            
                                 <input type="submit" name="submit" value="Adicionar" class="btn btn-success btn-block">
                         </div>
                     </div>
@@ -195,6 +193,9 @@ if (isset($_POST['submit'])) {
                                                                             id="btnExcluir"
                                                                             class="btn btn-danger">Excluir
                                                                     </button>
+                                                                    <a href="./nursing-historic.php?patientId=<?= $patient['id'] ?>"
+                                                                            class="btn btn-info">Historico de Enfermagem
+                                                                    </a>
                                                                     <button type="reset" name="btnLimpar" id="btnLimpar"
                                                                             class="btn btn-warning"
                                                                             style="display:none">
