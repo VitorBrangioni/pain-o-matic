@@ -5,7 +5,7 @@ namespace model\dao;
 use model\connection\Connection;
 use model\pojo\NursingHistoric;
 
-/**
+/**	
  * 
  * @author vitor.brangioni
  *

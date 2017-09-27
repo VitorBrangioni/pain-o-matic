@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
                     <div class="container">
                     <?php 
 	        	
-	                $diagrams = $diagramController->listAllAppointmentDiagrams($_GET['appointmentId']);
+                    $diagrams = $diagramController->listAllAppointmentDiagrams($_GET['appointmentId']);
 	                foreach ($diagrams as $data) {
 	        	        echo '<a href="pain-diagram.php?patientId=' .$_GET['patientId']. '&appointmentId=' .$_GET['appointmentId']. '&diagramId=' .$data['id']. '&mode=view">
                                 <div class="col-lg-4 padding-top-15">

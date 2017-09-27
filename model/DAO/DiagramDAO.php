@@ -114,15 +114,15 @@ class DiagramDAO implements DAOInterface
 		if (!$diagram instanceof Diagram) {
 			throw new \InvalidArgumentException();
 		}
-		
+
 		try {
 			$sql = "INSERT INTO diagram (title, description, appointment_id)
-			    VALUES (:title, :desc, :appointment_id)";
+			    VALUES (:title, :description, :appointment_id)";
 			
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":title", $diagram->getTitle());
-			$stmt->bindValue(":desc", $diagram->getDesc());
-			$stmt->bindValue(":appointment_id", (int) $diagram->getAppointmentId());
+			$stmt->bindValue(":description", $diagram->getDesc());
+			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId());
 			
 			/* echo $diagram->getDesc();
 			$stmt->bindValue(":title", "test");

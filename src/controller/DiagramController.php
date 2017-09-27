@@ -57,10 +57,7 @@ class DiagramController
 		$success = fclose($fopen);
 		
 		if ($success === false || $diagram == null) {
-			// throw new \Exception('Falha ao salvar Diagrama');
-			header("Location falha");
-		} else {
-			header("Location sucesso");
+			throw new \Exception('Falha ao salvar Diagrama');
 		}
 	}
 

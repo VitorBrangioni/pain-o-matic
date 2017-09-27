@@ -51,10 +51,10 @@ if (isset($_POST['cadastrar'])) {
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#home">Home</a></li>
-                            <li><a href="#menu1">Menu 1</a></li>
+                            <li class="active"><a href="#home">Identificalção</a></li>
+                            <!-- <li><a href="#menu1">Menu 1</a></li>
                             <li><a href="#menu2">Menu 2</a></li>
-                            <li><a href="#menu3">Menu 3</a></li>
+                            <li><a href="#menu3">Menu 3</a></li> -->
                         </ul>
     
                         <div class="tab-content">
