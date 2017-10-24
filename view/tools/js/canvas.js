@@ -3,10 +3,14 @@ var section = document.getElementById("section1");
 canvas.crossOrigin = "Anonymous";
 
 var profund = document.getElementById("prof");
+var diagramImg = document.getElementById("diagramImg").value;
 
 var outlineImage = new Image();
 outlineImage.setAttribute('crossOrigin', 'anonymous');
-outlineImage.src = "corpo_transp.png";
+outlineImage.src = "../images/diagrams/" + diagramImg;
+
+
+
 
 var imgDesenhada = outlineImage.clone;
 
@@ -192,7 +196,19 @@ function transfere(prof0, prof25, prof50, prof75, prof100){
 
 function Save(a) {
     var img = canvas.toDataURL("image/png");
+    console.log(img);
     a.href = img;
+
+    var diagramId = document.getElementById('diagramId').value;
+
+    $.ajax({
+        url: '../../src/utils/saveDiagramImg.php',
+        data: {imgBase64: "img", diagramId: diagramId},
+        type: 'post',
+        success: function(php_script_response){
+            alert(php_script_response);
+        }
+});
 }
 
 function Clear() {
