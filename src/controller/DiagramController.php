@@ -48,7 +48,7 @@ class DiagramController
 			$diagram->setImage(sha1($diagram->getTitle()) . uniqid('', true) . '-' .time().'.png');
 		} */
 		self::$diagramDAO->edit($diagram);
-		
+		// echo "$imgBase64";
 		$removeHeaders = substr($imgBase64, strpos($imgBase64, ",") +1);
 		$decode = base64_decode($removeHeaders);
 		

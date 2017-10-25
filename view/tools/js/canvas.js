@@ -203,7 +203,7 @@ function Save(a) {
 
     $.ajax({
         url: '../../src/utils/saveDiagramImg.php',
-        data: {imgBase64: "img", diagramId: diagramId},
+        data: {imgBase64: img, diagramId: diagramId},
         type: 'post',
         success: function(php_script_response){
             alert(php_script_response);
