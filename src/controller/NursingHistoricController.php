@@ -50,12 +50,15 @@ class NursingHistoricController
 
 	public function save($patientId)
 	{
+
 		$formArray = $this->generateArray();
 		$historic = self::$dao->findGeneric("patient_id", $patientId);
 
 		if ($historic === null) {
+			echo 'insert';
 			self::$dao->insert(new NursingHistoric(json_encode($formArray), $patientId));
 		} else {
+			echo 'update';
 			self::$dao->update(new NursingHistoric(json_encode($formArray), $patientId));
 		}
 	}

@@ -15,6 +15,17 @@ $step2 = 'disabled';
 $step3 = 'disabled';
 $step4 = 'disabled';
 
+
+
+if (isset($_POST['test'])) {
+    # code...
+    echo "CRRRIOU";
+
+    header("Location: Falhou/".$_POST['test']);
+    
+}
+
+
 if (isset($_POST['submit'])) {
     $pathPhoto = null;
 
@@ -58,6 +69,7 @@ if (isset($_POST['submit'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <script src="../tools/js/nav.js"></script>
+    <!-- <script src="../tools/js/ajax.js"></script> -->
 
     
 </head>
@@ -81,8 +93,16 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </header>
+
+<form action="" method="post">
+<div class="col-md-4">
+        <input type="text" name="patient-name" id="patient-name" class="form-control">
+    </div>
+</form>
+
 <form method="POST" action="patient-management.php" enctype="multipart/form-data">
 
+   
 
 <div class="container-fluid">
     <div class="row">
@@ -93,9 +113,19 @@ if (isset($_POST['submit'])) {
                 <?php
                 
                 $filePath = "../../tools/js/test.php";
-                foreach ($patientController->listAll() as $data) {
-                     echo '<a onClick="utilsPatientAjax('.$data['id'].')" href="patient-visualization.php?patientId='.$data['id']. '" class="list-group-item list-group-item-action">' . $data['name'] . '</a>';
+                
+                if (isset($_POST['patient-name'])) {
+                    foreach ($patientController->findByName($_POST['patient-name']) as $data) {
+                        echo '<a onClick="utilsPatientAjax('.$data['id'].')" href="patient-visualization.php?patientId='.$data['id']. '" class="list-group-item list-group-item-action">' . $data['name'] . '</a>';
+                    }
+                } else {
+                    foreach ($patientController->listAll() as $data) {
+                         echo '<a onClick="utilsPatientAjax('.$data['id'].')" href="patient-visualization.php?patientId='.$data['id']. '" class="list-group-item list-group-item-action">' . $data['name'] . '</a>';
+                    }
                 }
+                
+
+
                 ?>
             </div>
 

@@ -64,5 +64,11 @@ class PatientController
 	public function findById($id) {
 		return self::$patientDAO->findById($id);
 	}
+
+	public function findByName($name)
+	{
+		return self::$patientDAO->findGeneric("name", $name);
+		// header("Location: Falhou/".$name);
+	}
 	
 }

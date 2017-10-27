@@ -51,10 +51,10 @@ if (isset($_POST['cadastrar'])) {
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#home">Identificalção</a></li>
-                            <!-- <li><a href="#menu1">Menu 1</a></li>
+                            <li class="active"><a href="#home">Identificação</a></li>
+                            <li><a href="#queixa-principal">Queixa Principal</a></li>
                             <li><a href="#menu2">Menu 2</a></li>
-                            <li><a href="#menu3">Menu 3</a></li> -->
+                            <li><a href="#menu3">Menu 3</a></li>
                         </ul>
     
                         <div class="tab-content">
@@ -130,12 +130,41 @@ if (isset($_POST['cadastrar'])) {
                                         <input type="text" name="naturalidade" class="form-control">
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <label for="">Estado Civil:</label>
+                                        <select class="form-control" name="estado-civil" id="estado-civil">
+                                            <option value="solteiro">Solteiro</option>
+                                            <option value="casado">Casado</option>
+                                            <option value="uniao-estavel">Uniao Estavel</option>
+                                            <option value="divorciado">Divorciado</option>
+                                            <option value="viuvo">Viuvo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label for="">Escolaridade:</label>
+                                        <select class="form-control" name="estado-civil" id="estado-civil">
+                                            <option value="fundamental-incompleto">Fundamental Incompleto</option>
+                                            <option value="fundamental-completo">Fundamental Completo</option>
+                                            <option value="medio-completo">Medio Completo</option>
+                                            <option value="medio-incompleto">Medio Incompleto</option>
+                                            <option value="viuvo">Viuvo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">Procedencia:</label>
+                                        <input type="text" name="procedencia" id="procedencia" class="control-form">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="">Informante:</label>
+                                        <input type="text" name="procedencia" id="procedencia" class="control-form">
+                                    </div>
+                                </div>
+
                             </div>
-                            <div id="menu1" class="tab-pane fade">
-                                <h3>Menu 1</h3>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat.
-                                </p>
+                            <div id="queixa-principal" class="tab-pane fade">
+                                <h3>Queixa Principal:</h3>
+                                <textarea name="queixa-principal" id="queixa-principal" cols="235" rows="25" class="control-form"></textarea>
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <h3>Menu 2</h3>

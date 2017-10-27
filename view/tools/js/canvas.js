@@ -9,9 +9,6 @@ var outlineImage = new Image();
 outlineImage.setAttribute('crossOrigin', 'anonymous');
 outlineImage.src = "../images/diagrams/" + diagramImg;
 
-
-
-
 var imgDesenhada = outlineImage.clone;
 
 canvas.width = 600;
