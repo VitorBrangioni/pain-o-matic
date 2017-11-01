@@ -215,14 +215,6 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="alert alert-success alert-adicionar fade in">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        Consulta <strong>adicionada</strong> com sucesso!
-                    </div>
-                    <div class="alert alert-success alert-excluir fade in">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        Consulta <strong>excluída</strong> com sucesso!
-                    </div>
                 </div>
     </body>
 

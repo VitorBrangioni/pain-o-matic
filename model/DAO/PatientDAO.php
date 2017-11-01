@@ -123,6 +123,7 @@ class PatientDAO
 				$stmt->bindValue(":photo", $patient->getPhoto()); 
 			}
 			$stmt->execute();
+			return self::$conn->lastInsertId();
 			
 		} catch (Exception $e) {
 			echo $e->getMessage();

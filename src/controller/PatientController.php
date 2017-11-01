@@ -7,6 +7,7 @@ namespace src\controller;
 use model\pojo\Patient;
 use model\dao\PatientDAO;
 use src\controller\UploadController;
+use src\controller\NursingHistoricController;
 
 class PatientController
 {
@@ -39,11 +40,12 @@ class PatientController
 			$uploadController = UploadController::getInstance();
 			$pathPhoto = $uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name'], $_POST['name']);
 		}
-
-
 		$patient = new Patient($name, $cpf, $rg, $photo);
+		$patientId = self::$patientDAO->insert($patient);
 		
-		self::$patientDAO->insert($patient);
+		NursingHistoricController::getInstance()->save($patientId);
+
+		header("Location: http://localhost/view/internal/nursing-historic.php?patientId=$patientId");
 	}
 
     public function delete($patient)
@@ -67,8 +69,11 @@ class PatientController
 
 	public function findByName($name)
 	{
-		return self::$patientDAO->findGeneric("name", $name);
-		// header("Location: Falhou/".$name);
+		if ($name === "") {
+			return $this->listAll();
+		} else {
+			return self::$patientDAO->findGeneric("name", $name);
+		}
 	}
 	
 }

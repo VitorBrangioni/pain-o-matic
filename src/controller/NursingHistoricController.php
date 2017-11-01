@@ -63,12 +63,27 @@ class NursingHistoricController
 		}
 	}
 
+	public function getNursingHistoric($patientId)
+	{
+		$nursingHistoric = self::$dao->findGeneric('patient_id', $patientId);
+		
+		if ($nursingHistoric == null) {
+			throw new \Exception("Erro ao buscar historico de enfermagem");
+		}
+		return json_decode($nursingHistoric->getQuestions(), true);
+	}
+
+	public function getFieldValue($nursingHistoric, $category, $field)
+	{
+		return (isset($nursingHistoric[$category][$field]))  ? $nursingHistoric[$category][$field] : "";
+	}
+
 	private function generateArray()
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$array = array();
 
-			$array[] = array("identificacao" =>
+			$array['identificacao'] = 
 				array(
 					"clinica" => $_POST['clinica'],
 					"numProntuario" => $_POST['numProntuario'],
@@ -82,14 +97,22 @@ class NursingHistoricController
 					"profOcup" => $_POST['profOcup'],
 					"rendaFam" => $_POST['rendaFam'],
 					"nacionalidade" => $_POST['nacionalidade'],
-					"naturalidade" => $_POST['naturalidade']
-				)
-			);
+					"naturalidade" => $_POST['naturalidade'],
+					"estado-civil" => $_POST['estado-civil'],
+					"escolaridade" => $_POST['escolaridade'],
+					"procedencia" => $_POST['procedencia'],
+					"informante" => $_POST['informante']
+				);
+			$array['queixa-principal'] = 
+				array(
+					'queixa-principal' => $_POST['queixa-principal']
+				);
 			return $array;
 		}
 
 
 	}
+
 
 	
 }

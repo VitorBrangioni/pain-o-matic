@@ -156,10 +156,11 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="number" name="cpf" class="form-control" placeholder="CPF" required>
+                                    <input type="text" pattern="\d*" name="cpf" class="form-control" placeholder="CPF" maxlength="11" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="number" name="rg" class="form-control" placeholder="RG" required>
+                                    <!-- <input type="number" name="rg" class="form-control" placeholder="RG" required> -->
+                                    <input type="text" name="rg" class="form-control" placeholder="RG" maxlength="16" required>
                                 </div>
                             </div>
                         </div>

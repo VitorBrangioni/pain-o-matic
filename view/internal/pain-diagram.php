@@ -81,6 +81,7 @@ $diagram = $diagramController->findById($_GET['diagramId']);
         	
 	            <div class="col-md-2 col-md-push-10">
 	    			 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#diagram-detail">Detalhes</button>
+					 <button class="btn btn-success">Baixar Imagem</button>
 	            </div>
             
             <?php endif; ?>

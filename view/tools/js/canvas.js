@@ -193,7 +193,7 @@ function transfere(prof0, prof25, prof50, prof75, prof100){
 
 function Save(a) {
     var img = canvas.toDataURL("image/png");
-    console.log(img);
+    // console.log(img);
     a.href = img;
 
     var diagramId = document.getElementById('diagramId').value;
@@ -203,7 +203,7 @@ function Save(a) {
         data: {imgBase64: img, diagramId: diagramId},
         type: 'post',
         success: function(php_script_response){
-            alert(php_script_response);
+            alert("Diagrama salvo com sucesso!");
         }
 });
 }
