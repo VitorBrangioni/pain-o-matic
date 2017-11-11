@@ -61,6 +61,8 @@ class NursingHistoricController
 			echo 'update';
 			self::$dao->update(new NursingHistoric(json_encode($formArray), $patientId));
 		}
+
+		header('Location: ../../view/internal/patient-visualization.php?patientId='.$patientId); 
 	}
 
 	public function getNursingHistoric($patientId)

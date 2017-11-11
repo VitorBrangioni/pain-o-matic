@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
                     <div class="col-md-2">
                         <a class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#myModal2">
                             <?php 
-                 	            echo '<img class="xs-image border center" alt="" src="'.$patient['photo'].'"> <strong>'.$patient['name'].'</strong></h3>';
+                 	            echo '<img class="profile-img border center" alt="" src="'.$patient['photo'].'"> <strong>'.$patient['name'].'</strong></h3>';
                             ?>
                         </a>
                     </div>
