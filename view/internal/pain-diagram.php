@@ -113,7 +113,7 @@ $diagram = $diagramController->findById($_GET['diagramId']);
     <canvas class="center-block img-responsive" id="canvas1"></canvas>
 <br>
     <div class="panel panel-default"><br>
-    <input class="sliderBonito center-block" type="range" id="prof" min="0" max="4" step="1" value="0"/>
+    <input class="slider-profundidade center-block" type="range" id="prof" min="0" max="4" step="1" value="0"/>
 
     <span class="text-center" id="ex6CurrentSliderValLabel"><h3 id="SliderValue">Profundidade: 0%</h3></span>
 </div>

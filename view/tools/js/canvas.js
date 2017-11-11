@@ -88,7 +88,7 @@ profund.addEventListener("change", function() {
     console.log('imgURL = ' + imgURL);
 
 
-
+    Save(imgURL);
 
 
 
@@ -195,6 +195,8 @@ function Save(a) {
     var img = canvas.toDataURL("image/png");
     // console.log(img);
     a.href = img;
+
+    console.log(img);
 
     var diagramId = document.getElementById('diagramId').value;
 
