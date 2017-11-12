@@ -129,7 +129,6 @@ class DiagramDAO implements DAOInterface
 			$stmt->bindValue(":description", "aror");
 			// $stmt->bindValue(":img_diagram", $diagram->getImage());
 			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId()); */
-			
             $result = $stmt->execute();
             if (!$result) {
 	            throw new \PDOException("Nao foi possivel adicionar o diagrama. Entre em contato com adm.");
@@ -148,12 +147,19 @@ class DiagramDAO implements DAOInterface
 		}
 		
 		try {
-			$sql = "UPDATE diagram SET title = :title, description = :desc, img_diagram = :img, appointment_id = :appointment_id WHERE id = :id";
+			$sql = "UPDATE diagram SET title = :title, description = :desc,
+						img_diagram_depth1 = :img_depth1, img_diagram_depth2 = :img_depth2,
+						img_diagram_depth3 = :img_depth3, img_diagram_depth4 = :img_depth4,
+						appointment_id = :appointment_id
+							WHERE id = :id";
 			
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":title", $diagram->getTitle());
 			$stmt->bindValue(":desc", $diagram->getDesc());
-			$stmt->bindValue(":img", $diagram->getImage());
+			$stmt->bindValue(":img_depth1", $diagram->getImageDepth1());
+			$stmt->bindValue(":img_depth2", $diagram->getImageDepth2());
+			$stmt->bindValue(":img_depth3", $diagram->getImageDepth3());
+			$stmt->bindValue(":img_depth4", $diagram->getImageDepth4());
 			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId());
 			$stmt->bindValue(":id", $diagram->getId());
 			
@@ -186,7 +192,7 @@ class DiagramDAO implements DAOInterface
 	// @TODO ?
 	private function populate($row)
 	{
-		$diagram = new Diagram($row['title'], $row['description'], $row['img_diagram'], $row['appointment_id']);
+		$diagram = new Diagram($row['title'], $row['description'], $row['appointment_id'], $row['img_diagram_depth1'], $row['img_diagram_depth2'], $row['img_diagram_depth3'], $row['img_diagram_depth4']);
 		$diagram->setId($row['id']);
 		
 		return $diagram;

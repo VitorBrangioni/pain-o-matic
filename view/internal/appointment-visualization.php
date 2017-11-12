@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
 	        	        echo '<a href="pain-diagram.php?patientId=' .$_GET['patientId']. '&appointmentId=' .$_GET['appointmentId']. '&diagramId=' .$data['id']. '&mode=view">
                                 <div class="col-lg-4 padding-top-15">
                                     <div class="card">
-                                        <img src="../images/diagrams/' .$data['img_diagram']. '">
+                                        <img src="../images/diagrams/' .$data['img_diagram_depth1']. '">
                                         <div class="card-info">
                                             <h4>' .$data['title']. '</h4>
                                             <p>

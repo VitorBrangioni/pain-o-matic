@@ -3,7 +3,7 @@ var section = document.getElementById("section1");
 canvas.crossOrigin = "Anonymous";
 
 var profund = document.getElementById("prof");
-var diagramImg = document.getElementById("diagramImg").value;
+var diagramImg = document.getElementById("diagramImgDepth1").value;
 
 var outlineImage = new Image();
 outlineImage.setAttribute('crossOrigin', 'anonymous');
@@ -35,8 +35,10 @@ var aux = 0;
 
 context.outline = canvas.getContext("2d");
 
+
 profund.addEventListener("change", function() {
-    var valor = parseInt(profund.value);
+    var depth = parseInt(profund.value);
+    console.log(depth);
 
         switch (aux){
             case 0:
@@ -60,22 +62,44 @@ profund.addEventListener("change", function() {
     context.fillStyle = "white";
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillRect(0, 0, canvas.width, canvas.height);
-    document.getElementById("SliderValue").innerHTML = valor;
+    document.getElementById("SliderValue").innerHTML = depth;
+    document.getElementById("depth").value = depth;
 
     var imgURL;
 
-    switch (valor){
-        case 0:
-            imgURL = imagemURL0;
-            break;
+    var url = new URL(window.location.href);
+    var mode = url.searchParams.get("mode");
+
+
+    switch (depth){
         case 1:
             imgURL = imagemURL1;
             break;
         case 2:
             imgURL = imagemURL2;
             break;
+
+            /* if (mode === 'edit') {
+                imgURL = imagemURL2;
+            } else if (mode === 'view') {
+                canvas.remove();
+                var diagramImg =  document.getElementById('diagramImgDepth2').value;
+                document.getElementById('arroz').innerHTML = "<img src='../images/diagrams/" +diagramImg+ "' alt=''>";
+            } */
+
+           /*  if (document.getElementById('diagramImgDepth2').value === null) {
+                document.getElementById
+            } */
+            /* imgURL = document.getElementById('diagramImgDepth2').value;
+
+            document.getElementById('arroz').innerHTML = "<img src='../images/diagrams/" +imgURL+ "' alt=''>"; */
+
+            break;
         case 3:
             imgURL = imagemURL3;
+           /*  imgURL = document.getElementById('diagramImgDepth3').value;
+            
+                        document.getElementById('arroz').innerHTML = "<img src='../images/diagrams/" +imgURL+ "' alt=''>"; */
             break;
         case 4:
             imgURL = imagemURL4;
@@ -86,17 +110,23 @@ profund.addEventListener("change", function() {
     context.putImageData(imgURL, 0, 0, 0, 0, canvas.width, canvas.height);
 
     console.log('imgURL = ' + imgURL);
-
-
-    Save(imgURL);
-
+    // console.log('new Image = ' + new ImageData());
 
 
     zerinho(event);
-    console.log("antes " + valor);
-    aux = valor;
-    console.log("depois " + valor);
+    console.log("antes " + depth);
+    aux = depth;
+    console.log("depois " + depth);
 }, false);
+
+/* function getDepth(profund) {
+    return new Promise(function(resolve, reject) {
+
+        profund.addEventListener('change', function () {
+            return resolve(profund.value);
+        });
+    });
+} */
 
 function zerinho(event) {
     context.outline.drawImage(outlineImage, 0, 0, canvas.width, canvas.height);
@@ -139,11 +169,15 @@ function stop(event) {
         context.stroke();
         context.closePath();
         isDrawing = false;
+        event.preventDefault();
+        setTimeout(function() {
+            Save(canvas.toDataURL());
+        }, 1500);
     }
-    event.preventDefault();
     zerinho();
     restore.push(context.getImageData(0, 0, canvas.width, canvas.height));
     resloc += 1;
+
 }
 
 function getX(event) {
@@ -196,16 +230,19 @@ function Save(a) {
     // console.log(img);
     a.href = img;
 
-    console.log(img);
+    console.log(depth);
 
     var diagramId = document.getElementById('diagramId').value;
+    var depth = document.getElementById('depth').value;
+
+    console.log(depth);
 
     $.ajax({
         url: '../../src/utils/saveDiagramImg.php',
-        data: {imgBase64: img, diagramId: diagramId},
+        data: {imgBase64: img, diagramId: diagramId, depth: depth},
         type: 'post',
         success: function(php_script_response){
-            alert("Diagrama salvo com sucesso!");
+            console.log("Diagrama salvo com sucesso!");
         }
 });
 }

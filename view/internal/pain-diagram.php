@@ -53,7 +53,11 @@ $diagram = $diagramController->findById($_GET['diagramId']);
 
 <body onload="zerinho()">
 <input type="hidden" name="diagramId" id="diagramId" value="<?= $_GET['diagramId']; ?>">
-<input type="hidden" name="diagramImg" id="diagramImg" value="<?= $diagram->getImage(); ?>">
+<input type="hidden" name="diagramImg" id="diagramImgDepth1" value="<?= $diagram->getImageDepth1(); ?>">
+<input type="hidden" name="diagramImg" id="diagramImgDepth2" value="<?= $diagram->getImageDepth2(); ?>">
+<input type="hidden" name="diagramImg" id="diagramImgDepth3" value="<?= $diagram->getImageDepth3(); ?>">
+<input type="hidden" name="diagramImg" id="diagramImgDepth4" value="<?= $diagram->getImageDepth4(); ?>">
+<input type="hidden" name="depth" id="depth" value="1">
 
 <nav>
     <?php include '../includes/nav.html' ?>
@@ -112,12 +116,15 @@ $diagram = $diagramController->findById($_GET['diagramId']);
     <br>
     <canvas class="center-block img-responsive" id="canvas1"></canvas>
 
+	<div id="arroz">
+	
+	</div>
 	<div class="row">
 		<div class="col-md-1">
 			<span>Superficial</span>
 		</div>
 		<div class="col-md-10">
-		    <input class="slider-profundidade center-block" type="range" id="prof" min="0" max="4" step="1" value="0"/>
+		    <input class="slider-profundidade center-block" type="range" id="prof" min="1" max="4" step="1" value="1"/>
 		    <span class="text-center" id="ex6CurrentSliderValLabel"><h3 id="SliderValue">Profundidade: 0%</h3></span>
 		</div>
 		<div class="col-md-1">
