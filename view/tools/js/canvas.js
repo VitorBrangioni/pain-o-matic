@@ -34,6 +34,31 @@ var imagemURL4 = context.getImageData(0, 0, canvas.width, canvas.height);
 var aux = 0;
 
 context.outline = canvas.getContext("2d");
+var mode = document.getElementById('mode').value;
+
+function viewMode(idDiagramImgDepth) {
+    if (mode === 'view') {
+        var diagramImg =  document.getElementById(idDiagramImgDepth).value;
+        document.getElementById('diagram-img').
+            innerHTML = "<img src='../images/diagrams/" +diagramImg+ "' alt='Pain Diagram' class='img-responsive center-block'>";
+    }
+}
+
+if (mode === 'view') {
+    canvas.remove();
+    viewMode('diagramImgDepth1');
+} else if(mode === 'edit') {
+    // @DOING
+    /* imagemURL1 = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    context.fillStyle = "white";
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    context.putImageData(imagemURL1
+        , 0, 0, 0, 0, canvas.width, canvas.height); */
+
+}
 
 
 profund.addEventListener("change", function() {
@@ -41,9 +66,6 @@ profund.addEventListener("change", function() {
     console.log(depth);
 
         switch (aux){
-            case 0:
-                imagemURL0 = context.getImageData(0, 0, canvas.width, canvas.height);
-                break;
             case 1:
                 imagemURL1 = context.getImageData(0, 0, canvas.width, canvas.height);
                 break;
@@ -68,43 +90,24 @@ profund.addEventListener("change", function() {
     var imgURL;
 
     var url = new URL(window.location.href);
-    var mode = url.searchParams.get("mode");
-
 
     switch (depth){
         case 1:
             imgURL = imagemURL1;
+            viewMode('diagramImgDepth1');
             break;
         case 2:
             imgURL = imagemURL2;
-            break;
-
-            /* if (mode === 'edit') {
-                imgURL = imagemURL2;
-            } else if (mode === 'view') {
-                canvas.remove();
-                var diagramImg =  document.getElementById('diagramImgDepth2').value;
-                document.getElementById('arroz').innerHTML = "<img src='../images/diagrams/" +diagramImg+ "' alt=''>";
-            } */
-
-           /*  if (document.getElementById('diagramImgDepth2').value === null) {
-                document.getElementById
-            } */
-            /* imgURL = document.getElementById('diagramImgDepth2').value;
-
-            document.getElementById('arroz').innerHTML = "<img src='../images/diagrams/" +imgURL+ "' alt=''>"; */
-
+            viewMode('diagramImgDepth2');
             break;
         case 3:
             imgURL = imagemURL3;
-           /*  imgURL = document.getElementById('diagramImgDepth3').value;
-            
-                        document.getElementById('arroz').innerHTML = "<img src='../images/diagrams/" +imgURL+ "' alt=''>"; */
+            viewMode('diagramImgDepth3');
             break;
         case 4:
             imgURL = imagemURL4;
+            viewMode('diagramImgDepth4');
             break;
-
     }
 
     context.putImageData(imgURL, 0, 0, 0, 0, canvas.width, canvas.height);
@@ -118,15 +121,6 @@ profund.addEventListener("change", function() {
     aux = depth;
     console.log("depois " + depth);
 }, false);
-
-/* function getDepth(profund) {
-    return new Promise(function(resolve, reject) {
-
-        profund.addEventListener('change', function () {
-            return resolve(profund.value);
-        });
-    });
-} */
 
 function zerinho(event) {
     context.outline.drawImage(outlineImage, 0, 0, canvas.width, canvas.height);

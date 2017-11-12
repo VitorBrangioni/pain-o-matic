@@ -36,7 +36,9 @@ class DiagramController
 			throw new \Exception("Erro ao criar diagrama");
 			
 		}
-		
+		session_start();
+		$_SESSION['mode'] = 'edit';
+
 		header("Location: http://localhost/view/internal/pain-diagram.php?patientId={$appointment['patient_id']}&appointmentId=$appointmentId&diagramId=$diagramId&mode=edit");
 	}
 	

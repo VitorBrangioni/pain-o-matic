@@ -22,6 +22,19 @@ $patient = $patientController->findById(1);
 $diagram = $diagramController->findById($_GET['diagramId']);
 
 
+session_start();
+
+$mode = 'view';
+
+if (isset($_SESSION['mode']) && $_SESSION['mode'] === 'edit') {
+	$mode = $_SESSION['mode'];
+	unset($_SESSION['mode']);
+}
+
+
+
+
+
 ?>
 
 
@@ -58,6 +71,7 @@ $diagram = $diagramController->findById($_GET['diagramId']);
 <input type="hidden" name="diagramImg" id="diagramImgDepth3" value="<?= $diagram->getImageDepth3(); ?>">
 <input type="hidden" name="diagramImg" id="diagramImgDepth4" value="<?= $diagram->getImageDepth4(); ?>">
 <input type="hidden" name="depth" id="depth" value="1">
+<input type="hidden" name="mode" id="mode" value="<?= $mode ?>">
 
 <nav>
     <?php include '../includes/nav.html' ?>
@@ -115,10 +129,9 @@ $diagram = $diagramController->findById($_GET['diagramId']);
 <div>
     <br>
     <canvas class="center-block img-responsive" id="canvas1"></canvas>
-
-	<div id="arroz">
-	
+	<div id="diagram-img" class="center">
 	</div>
+
 	<div class="row">
 		<div class="col-md-1">
 			<span>Superficial</span>
