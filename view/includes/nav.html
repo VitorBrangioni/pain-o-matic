@@ -12,14 +12,14 @@
             </li>
 
             <li role="presentation" class="<?= $step2; ?>">
-                <a href="patient-visualization.php?patientId=<?= $_GET['patientId']; ?>" title="Consultas">
+                <a href="patient-visualization.php?patientId=<?= $_GET['patientId']?? null; ?>" title="Consultas">
                             <span class="round-tab">
                                 <i class="fa fa-stethoscope"></i>
                             </span>
                         </a>
             </li>
             <li role="presentation" class="<?= $step3; ?>">
-                <a href="appointment-visualization.php?patientId=<?= $_GET['patientId']; ?>&appointmentId=<?= $_GET['appointmentId']; ?>"
+                <a href="appointment-visualization.php?patientId=<?= $_GET['patientId'] ?? null; ?>&appointmentId=<?= $_GET['appointmentId'] ?? null; ?>"
                     title="Diagramas">
                             <span class="round-tab">
                                 <i class="fa fa-child"></i>

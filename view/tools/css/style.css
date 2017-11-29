@@ -23,3 +23,8 @@
 .slider-profundidade {
     width: 50% !important;
 }
+
+.diagram-img {
+    /* width: 30% !important; */
+    height: 100% !important;
+}

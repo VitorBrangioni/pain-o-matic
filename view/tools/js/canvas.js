@@ -39,8 +39,9 @@ var mode = document.getElementById('mode').value;
 function viewMode(idDiagramImgDepth) {
     if (mode === 'view') {
         var diagramImg =  document.getElementById(idDiagramImgDepth).value;
+        
         document.getElementById('diagram-img').
-            innerHTML = "<img src='../images/diagrams/" +diagramImg+ "' alt='Pain Diagram' class='img-responsive center-block'>";
+            innerHTML = "<img src='../images/diagrams/" +diagramImg+ "' alt='Pain Diagram' class='img-responsive center-block' style='height: 100%'>";
     }
 }
 

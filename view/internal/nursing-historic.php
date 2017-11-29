@@ -55,8 +55,8 @@ $nursHistoric = $controller->getNursingHistoric($_GET['patientId']);
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#home">Identificação</a></li>
                             <li><a href="#queixa-principal">Queixa Principal</a></li>
-                            <li><a href="#menu2">Menu 2</a></li>
-                            <li><a href="#menu3">Menu 3</a></li>
+                            <!-- <li><a href="#menu2">Menu 2</a></li> -->
+                            <!-- <li><a href="#menu3">Menu 3</a></li> -->
                         </ul>
     
                         <div class="tab-content">

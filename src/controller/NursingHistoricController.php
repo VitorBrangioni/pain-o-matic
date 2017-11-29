@@ -51,18 +51,18 @@ class NursingHistoricController
 	public function save($patientId)
 	{
 
-		$formArray = $this->generateArray();
 		$historic = self::$dao->findGeneric("patient_id", $patientId);
-
+		
 		if ($historic === null) {
 			echo 'insert';
 			self::$dao->insert(new NursingHistoric(json_encode($formArray), $patientId));
 		} else {
 			echo 'update';
+			$formArray = $this->generateArray();
 			self::$dao->update(new NursingHistoric(json_encode($formArray), $patientId));
+			header('Location: ../../view/internal/patient-visualization.php?patientId='.$patientId); 
 		}
 
-		header('Location: ../../view/internal/patient-visualization.php?patientId='.$patientId); 
 	}
 
 	public function getNursingHistoric($patientId)
@@ -87,23 +87,23 @@ class NursingHistoricController
 
 			$array['identificacao'] = 
 				array(
-					"clinica" => $_POST['clinica'],
-					"numProntuario" => $_POST['numProntuario'],
-					"falarCom" => $_POST['falarCom'],
-					"tel" => $_POST['tel'],
-					"cel" => $_POST['cel'],
-					"nome" => $_POST['nome'],
-					"idade" => $_POST['idade'],
-					"cor" => $_POST['cor'],
-					"sexo" => $_POST['sexo'],
-					"profOcup" => $_POST['profOcup'],
-					"rendaFam" => $_POST['rendaFam'],
-					"nacionalidade" => $_POST['nacionalidade'],
-					"naturalidade" => $_POST['naturalidade'],
-					"estado-civil" => $_POST['estado-civil'],
-					"escolaridade" => $_POST['escolaridade'],
-					"procedencia" => $_POST['procedencia'],
-					"informante" => $_POST['informante']
+					"clinica" => $_POST['clinica'] ?? '',
+					"numProntuario" => $_POST['numProntuario'] ?? '',
+					"falarCom" => $_POST['falarCom'] ?? '',
+					"tel" => $_POST['tel'] ?? '',
+					"cel" => $_POST['cel'] ?? '',
+					"nome" => $_POST['nome'] ?? '',
+					"idade" => $_POST['idade'] ?? '',
+					"cor" => $_POST['cor'] ?? '',
+					"sexo" => $_POST['sexo'] ?? '',
+					"profOcup" => $_POST['profOcup'] ?? '',
+					"rendaFam" => $_POST['rendaFam'] ?? '',
+					"nacionalidade" => $_POST['nacionalidade'] ?? '',
+					"naturalidade" => $_POST['naturalidade'] ?? '',
+					"estado-civil" => $_POST['estado-civil'] ?? '',
+					"escolaridade" => $_POST['escolaridade'] ?? '',
+					"procedencia" => $_POST['procedencia'] ?? '',
+					"informante" => $_POST['informante'] ?? ''
 				);
 			$array['queixa-principal'] = 
 				array(

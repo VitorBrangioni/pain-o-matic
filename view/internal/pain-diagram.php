@@ -89,7 +89,7 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] === 'edit') {
 	                    <span class="glyphicon glyphicon-erase"></span> Limpar
 	                </a>
 	                <a name="register" download="diagrama.png" onclick="Save(this)" class="text-center btn btn-success ">
-	                    <span class="glyphicon glyphicon-save"></span> Salvar
+	                    <span class="glyphicon glyphicon-save"></span> Download
 	                </a>
 	            </div>
             
@@ -126,7 +126,7 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] === 'edit') {
 	  </div>
 </header>
 
-<div>
+<div style="height: 600px">
     <br>
     <canvas class="center-block img-responsive" id="canvas1"></canvas>
 	<div id="diagram-img" class="center">

@@ -30,14 +30,12 @@ if (isset($_POST['submit'])) {
         <title>Pain O' Meter</title>
         <meta charset="UTF-8">
 
-
     <link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="../tools/css/nav.css">
     <link rel="stylesheet" href="../tools/css/card.css">
     <link rel="stylesheet" href="../tools/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -68,6 +66,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
         </header>
+        <legend><h2><strong>Diagramas</strong></h2></legend>
         <section>
             <form method="POST" action="">
                 <div class="index-content">
