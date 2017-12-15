@@ -29,11 +29,10 @@ $nursHistoric = $controller->getNursingHistoric($_GET['patientId']);
         <link rel="stylesheet" href="../tools/css/nav.css">
         <link rel="stylesheet" href="../tools/css/global.css">
         <link rel="stylesheet" href="../tools/css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../tools/font-awesome-4.7.0/css/font-awesome.min.css">
 
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="../tools/jquery/jquery-3.2.1.min.js"></script>
+        <script src="../tools/bootstrap-3/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <script src="../tools/js/nav.js"></script>

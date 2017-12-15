@@ -24,9 +24,10 @@ if (isset($_POST['logar'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../view/tools/bootstrap-3/css/bootstrap.min.css" rel="stylesheet">
     <link href="../view/tools/css/login.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+    <!-- <script src="../tools/jquery/jquery-3.2.1.min.js"></script> -->
+    
+  <script src="../tools/bootstrap-3/js/bootstrap.min.js"></script>
 </head>
 
 <body>
