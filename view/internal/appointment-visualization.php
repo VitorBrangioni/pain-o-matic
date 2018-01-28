@@ -1,13 +1,12 @@
 <?php
 require_once '../../vendor/autoload.php';
+require_once '../../config/managementSession.php';
 require '../../config/config.php';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
 use src\controller\DiagramController;
 
-
-session_start();
 $appointmentController = AppointmentController::getInstance();
 $patientController = PatientController::getInstance();
 $diagramController = DiagramController::getInstance();

@@ -23,8 +23,6 @@ class LoginController
 			$user = $userDao->findGeneric("username", $userInput);
 			$doctor = $doctorDao->findGeneric('user_id', $user->getId());
 			
-			echo 'id'.$user->getId();
-			
 			if (password_verify($pwdInput, $user->getPassword()) === false) {
 				throw new \Exception('Invalid password');
 			}
