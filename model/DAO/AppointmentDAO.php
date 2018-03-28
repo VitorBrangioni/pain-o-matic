@@ -89,13 +89,16 @@ class AppointmentDAO implements DAOInterface
 		}
 		
 		try {
-			$sql = "INSERT INTO appointment (id, date, hora, patient_id) VALUES (null, :date, :hora, :patientId)";
+			$sql = "INSERT INTO appointment (id, data, date, hora, patient_id) VALUES (null, :data, :date, :hora, :patientId)";
 			
 			$stmt = self::$conn->prepare($sql);
+			$stmt->bindValue(":data", $appointment->getData());
 			$stmt->bindValue(":date", $appointment->getDate());
 			$stmt->bindValue(":hora", $appointment->getHour());
 			$stmt->bindValue(":patientId", $appointment->getPatientId());
 			$stmt->execute();
+
+			return self::$conn->lastInsertId();
 			
 		} catch (Exception $e) {
 			echo $e->getMessage();
