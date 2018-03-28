@@ -21,6 +21,10 @@ if (isset($_POST['submit'])) {
 	$diagramController->register($_POST['title'], $_POST['desc'], $_GET['appointmentId']);
 }
 
+if (isset($_POST['redirectQuestions'])) {
+    $appointmentController->viewQuestions($_GET['appointmentId']);
+}
+
 ?>
 
     <html>
@@ -90,8 +94,23 @@ if (isset($_POST['submit'])) {
                                     </div>
                                 </div>
                             </a>';
-	                }
-	                ?>
+                    }
+                    //
+                    echo '<div class="col-lg-4 padding-top-15">
+                    <button type="submit" name="redirectQuestions">
+                                    <div class="card">
+                                        <img src="../images/appointment-data.png">
+                                        <div class="card-info">
+                                            <h4> Dados da Consulta</h4>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <a href="" class="blue-button"></a>
+                                    </div>
+                                    </button>
+                                </div>';
+                    ?>
+                    
                     </div>
                 </div>
             </form>
