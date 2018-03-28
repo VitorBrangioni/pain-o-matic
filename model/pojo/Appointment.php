@@ -8,16 +8,32 @@ namespace model\pojo;
 class Appointment extends Pojo
 {
 	private $id;
+	private $data;
 	private $date;
 	private $hour;
 	private $patientId;
 
-    public function __construct($date, $hour, $patId)
+    public function __construct($data, $date, $hour, $patId)
     {
+		$this->setData($data);
         $this->setDate($date);
         $this->setHour($hour);
         $this->setPatientId($patId);
-    }
+	}
+	
+	public function getData()
+	{
+		return $this->data;
+	}
+	
+	public function setData(String $data)
+	{
+		json_decode($data);
+		if (json_last_error() != JSON_ERROR_NONE) {
+			throw new \Exception("Invalid Json format");
+		}
+		$this->data = $data;
+	}
 	
 	public function getDate()
 	{
