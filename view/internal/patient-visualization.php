@@ -15,7 +15,7 @@ $step1 = 'come-back';
 $step2 = 'active';
 
 if (isset($_POST['register'])) {
-	$appointmentController->register($_GET['patientId']);
+    $appointmentController->create($_GET['patientId']);
 }
 
 /* if (isset($_POST['delete'])) {
