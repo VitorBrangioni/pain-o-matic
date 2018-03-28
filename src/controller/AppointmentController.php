@@ -4,8 +4,11 @@ namespace src\controller;
 
 //require_once '../../vendor/autoload.php';
 
+
 use model\dao\AppointmentDAO;
 use model\pojo\Appointment;
+
+use src\controller\ScopeController;
 
 class AppointmentController
 {
@@ -25,23 +28,47 @@ class AppointmentController
 		return self::$instance;
 	}
 
-    /*public function register($date, $time, $patientId)
-    {
-        $appointment = new Appointment($date, $time, $patientId);
+	public function create(int $patientId)
+	{
+		session_start();
+		$_SESSION['patientId'] = $patientId;
+		header("Location: http://localhost/view/internal/create-appointment.php");
+	}
 
-        self::$appointmentDAO->insert($appointment);
-    }*/
-
-    public function register($patientId)
+    public function save(int $patientId)
     {
+		$jsonData = json_encode($_POST, JSON_UNESCAPED_UNICODE);
         date_default_timezone_set('America/Sao_Paulo');
         $time = date("H:i:s");
         $date = date("Y-m-d");
-        $appointment = new Appointment($date, $time, $patientId);
+        $appointment = new Appointment($jsonData, $date, $time, $patientId);
+		
+		$appointmentId = self::$appointmentDAO->insert($appointment);
+		
+		session_start();
+		$_SESSION['scope'] = $_POST;
+		
+		header("Location: http://localhost/view/internal/appointment-visualization.php?patientId=$patientId&appointmentId=$appointmentId");
+	}
 
-        self::$appointmentDAO->insert($appointment);
-    }
+	public function viewQuestions(int $appointmentId)
+	{
+		$appointment = $this->findById($appointmentId);
 
+		$input = iconv('UTF-8', 'UTF-8//IGNORE', \utf8_encode($appointment['data']));
+		$questionsArray = json_decode($input, true);
+		session_start();
+		$_SESSION['scope'] = $questionsArray;
+		$patientId = $appointment['patient_id'];
+
+		header("Location: http://localhost/view/internal/create-appointment.php?patientId=$patientId&appointmentId=$appointmentId");
+	}
+
+	private function findJsonQuestions(int $appointmentId)
+	{
+		return self::$appointmentDAO->findById($appointmentId)['data'];
+	}
+	
 	public function listAll()
 	{
 		return self::$appointmentDAO->listAll();
