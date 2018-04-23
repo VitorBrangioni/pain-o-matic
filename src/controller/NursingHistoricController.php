@@ -92,7 +92,6 @@ class NursingHistoricController
 					"falarCom" => $_POST['falarCom'] ?? '',
 					"tel" => $_POST['tel'] ?? '',
 					"cel" => $_POST['cel'] ?? '',
-					"nome" => $_POST['nome'] ?? '',
 					"idade" => $_POST['idade'] ?? '',
 					"cor" => $_POST['cor'] ?? '',
 					"sexo" => $_POST['sexo'] ?? '',
@@ -101,9 +100,7 @@ class NursingHistoricController
 					"nacionalidade" => $_POST['nacionalidade'] ?? '',
 					"naturalidade" => $_POST['naturalidade'] ?? '',
 					"estado-civil" => $_POST['estado-civil'] ?? '',
-					"escolaridade" => $_POST['escolaridade'] ?? '',
-					"procedencia" => $_POST['procedencia'] ?? '',
-					"informante" => $_POST['informante'] ?? ''
+					"escolaridade" => $_POST['escolaridade'] ?? ''
 				);
 			$array['queixa-principal'] = 
 				array(

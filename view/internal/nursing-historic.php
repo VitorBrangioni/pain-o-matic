@@ -90,10 +90,6 @@ $nursHistoric = $controller->getNursingHistoric($_GET['patientId']);
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="">Nome:</label>
-                                        <input type="text" name="nome" class="form-control" value="<?= $controller->getFieldValue($nursHistoric, 'identificacao', 'nome'); ?>">
-                                    </div>
                                     <div class="col-md-2">
                                         <label for="">Idade:</label>
                                         <input type="number" name="idade" class="form-control" value="<?= $controller->getFieldValue($nursHistoric, 'identificacao', 'idade'); ?>">
@@ -106,11 +102,11 @@ $nursHistoric = $controller->getNursingHistoric($_GET['patientId']);
                                             <option value="F">Pardo</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-1">
                                         <label for="">Sexo:</label>
                                         <select class="form-control" name="sexo" id="sel1">
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Femenino</option>
+                                            <option value="M">M</option>
+                                            <option value="F">F</option>
                                         </select>
                                     </div>
                                 </div>
@@ -152,14 +148,6 @@ $nursHistoric = $controller->getNursingHistoric($_GET['patientId']);
                                             <option value="medio-incompleto">Medio Incompleto</option>
                                             <option value="viuvo">Viuvo</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">Procedencia:</label>
-                                        <input type="text" name="procedencia" id="procedencia" class="control-form" value="<?= $controller->getFieldValue($nursHistoric, 'identificacao', 'procedencia'); ?>">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">Informante:</label>
-                                        <input type="text" name="informante" id="informante" class="control-form" value="<?= $controller->getFieldValue($nursHistoric, 'identificacao', 'informante'); ?>">
                                     </div>
                                 </div>
 
