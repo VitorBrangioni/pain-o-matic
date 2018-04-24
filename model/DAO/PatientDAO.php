@@ -36,7 +36,7 @@ class PatientDAO
 	public function listAll()
 	{
 		try {
-			$sql = "SELECT * FROM patient";
+			$sql = "SELECT * FROM public.'patient'";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->execute();
 			
@@ -51,7 +51,7 @@ class PatientDAO
 	public function findById($id)
 	{
 		try {
-			$sql = "SELECT * FROM patient WHERE id = :id";
+			$sql = "SELECT * FROM public.'patient' WHERE id = :id";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $id);
 			$stmt->execute();
@@ -74,7 +74,7 @@ class PatientDAO
 	public function findGeneric($field, $value)
 	{
 		try {
-			$sql = "SELECT * FROM patient WHERE ".$field." = :value";
+			$sql = "SELECT * FROM public.'patient' WHERE ".$field." = :value";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":value", $value);
 			$stmt->execute();
@@ -90,7 +90,7 @@ class PatientDAO
 	public function findByObject(Pojo $patient)
 	{
 		try {
-			$sql = "SELECT * FROM patient WHERE id = :id";
+			$sql = "SELECT * FROM public.'patient' WHERE id = :id";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $patient->getId());
 			$stmt->execute();

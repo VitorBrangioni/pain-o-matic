@@ -66,14 +66,14 @@ class UserDAO implements DAOInterface
 	//@DONE
 	/**
 	 *
-	 * @param Enum $fiel
+	 * @param Enum $field
 	 * @param unknown $value
 	 * @return unknown
 	 */
-	public function findGeneric($fiel, $value) : User
+	public function findGeneric($field, $value) : User
 	{
 		try {
-			$sql = "SELECT * FROM user WHERE ".$fiel." = :value";
+			$sql = 'SELECT * FROM public."user" WHERE '.$field.' = :value';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":value", $value);
 			$stmt->execute();
@@ -89,7 +89,7 @@ class UserDAO implements DAOInterface
 	public function findByObject(User $user)
 	{
 		try {
-			$sql = "SELECT * FROM doctor WHERE id = :id";
+			$sql = "SELECT * FROM user WHERE id = :id";
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $user->getId());
 			$stmt->execute();

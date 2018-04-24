@@ -24,9 +24,10 @@ class Connection implements ConnectionInterface
     {
     	if (!isset(self::$instance)) {
     		try {
-    			self::$instance = new \PDO("pgsql:host=localhost dbname=pain_o_matic user=root password=root");
+                self::$instance = new \PDO("pgsql:host=localhost dbname=nonpain user=root password=root");
+                self::$instance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     		} catch (PDOException $e) {
-    			echo $e->getMessage();
+                throw new \Exception($e->getMessage());
     		}
     	}
     	return self::$instance;
