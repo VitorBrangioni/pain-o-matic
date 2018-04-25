@@ -45,8 +45,8 @@ class NursingHistoricDAO
 	public function insert(NursingHistoric $nursingHistoric)
 	{
 		try {
-			$sql = "insert into nursingHistoric (questions, patient_id)
-				VALUES (:questions, :patientId)";
+			$sql = 'insert into public."nursingHistoric" (questions, patient_id)
+				VALUES (:questions, :patientId)';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":questions", $nursingHistoric->getQuestions());
 			$stmt->bindValue(":patientId", $nursingHistoric->getPadientId());
@@ -60,8 +60,8 @@ class NursingHistoricDAO
 	public function update(NursingHistoric $nursingHistoric)
 	{
 		try {
-			$sql = "UPDATE nursingHistoric SET questions = :questions
-						WHERE patient_id = :patientId";
+			$sql = 'UPDATE public."nursingHistoric" SET questions = :questions
+						WHERE patient_id = :patientId';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":questions", $nursingHistoric->getQuestions());
 			$stmt->bindValue(":patientId", $nursingHistoric->getPadientId());
@@ -81,7 +81,7 @@ class NursingHistoricDAO
 	public function findGeneric($field, $value)
 	{
 		try {
-			$sql = "SELECT * FROM nursingHistoric WHERE ".$field." = :value";
+			$sql = 'SELECT * FROM public."nursingHistoric" WHERE '.$field.' = :value';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":value", $value);
 			$stmt->execute();
@@ -96,7 +96,7 @@ class NursingHistoricDAO
 	public function findById($id)
 	{
 		try {
-			$sql = "SELECT * FROM nursingHistoric WHERE id = :id";
+			$sql = 'SELECT * FROM public."nursingHistoric" WHERE id = :id';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $id);
 			$stmt->execute();
@@ -111,7 +111,7 @@ class NursingHistoricDAO
 	public function findByObject(NursingHistoric $nursingHistoric)
 	{
 		try {
-			$sql = "SELECT * FROM nursingHistoric WHERE id = :id";
+			$sql = 'SELECT * FROM public."nursingHistoric" WHERE id = :id';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $nursingHistoric->getId());
 			$stmt->execute();

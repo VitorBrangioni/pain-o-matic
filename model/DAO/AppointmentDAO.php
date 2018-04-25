@@ -31,7 +31,7 @@ class AppointmentDAO implements DAOInterface
 	public function listAll()
 	{
 		try {
-			$sql = "SELECT * FROM appointment";
+			$sql = 'SELECT * FROM public."appointment"';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->execute();
 			
@@ -46,7 +46,7 @@ class AppointmentDAO implements DAOInterface
 	public function findById($id)
 	{
 		try {
-			$sql = "SELECT * FROM appointment WHERE id = :id";
+			$sql = 'SELECT * FROM public."appointment" WHERE id = :id';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $id);
 			$stmt->execute();
@@ -68,8 +68,7 @@ class AppointmentDAO implements DAOInterface
 	 public function findGeneric($field, $value)
 	{
 		try {
-			$sql = "SELECT * FROM appointment WHERE ".$field." = :value";
-			//$sql = "SELECT * FROM appointment WHERE patient_id = :value";
+			$sql = 'SELECT * FROM "public".appointment WHERE '.$field.' = :value';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":value", $value);
 			$stmt->execute();
@@ -89,10 +88,10 @@ class AppointmentDAO implements DAOInterface
 		}
 		
 		try {
-			$sql = "INSERT INTO appointment (id, data, date, hora, patient_id) VALUES (null, :data, :date, :hora, :patientId)";
+			$sql = 'INSERT INTO public."appointment" (questions, date, hora, patient_id) VALUES (:questions, :date, :hora, :patientId)';
 			
 			$stmt = self::$conn->prepare($sql);
-			$stmt->bindValue(":data", $appointment->getData());
+			$stmt->bindValue(":questions", $appointment->getQuestions());
 			$stmt->bindValue(":date", $appointment->getDate());
 			$stmt->bindValue(":hora", $appointment->getHour());
 			$stmt->bindValue(":patientId", $appointment->getPatientId());

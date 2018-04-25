@@ -36,7 +36,7 @@ class PatientDAO
 	public function listAll()
 	{
 		try {
-			$sql = "SELECT * FROM public.'patient'";
+			$sql = 'SELECT * FROM public."patient"';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->execute();
 			
@@ -51,7 +51,7 @@ class PatientDAO
 	public function findById($id)
 	{
 		try {
-			$sql = "SELECT * FROM public.'patient' WHERE id = :id";
+			$sql = 'SELECT * FROM public."patient" WHERE id = :id';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $id);
 			$stmt->execute();
@@ -74,7 +74,7 @@ class PatientDAO
 	public function findGeneric($field, $value)
 	{
 		try {
-			$sql = "SELECT * FROM public.'patient' WHERE ".$field." = :value";
+			$sql = 'SELECT * FROM public."patient" WHERE '.$field.' = :value';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":value", $value);
 			$stmt->execute();
@@ -112,8 +112,8 @@ class PatientDAO
 
 		try {
 			$sql = ($emptyImage) ?
-				"INSERT INTO patient (id, name, cpf, rg) VALUES (null, :name, :cpf, :rg)":
-				"INSERT INTO patient (id, name, cpf, rg, photo) VALUES (null, :name, :cpf, :rg, :photo)";
+				'INSERT INTO public."patient" (name, cpf, rg) VALUES (:name, :cpf, :rg)':
+				'INSERT INTO public."patient" (name, cpf, rg, photo) VALUES (:name, :cpf, :rg, :photo)';
 
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":name", $patient->getName());

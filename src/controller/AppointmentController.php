@@ -55,8 +55,9 @@ class AppointmentController
 	{
 		$appointment = $this->findById($appointmentId);
 
-		$input = iconv('UTF-8', 'UTF-8//IGNORE', \utf8_encode($appointment['data']));
+		$input = iconv('UTF-8', 'UTF-8//IGNORE', \utf8_encode($appointment['questions']));
 		$questionsArray = json_decode($input, true);
+		var_dump($questionsArray);
 		session_start();
 		$_SESSION['scope'] = $questionsArray;
 		$patientId = $appointment['patient_id'];
@@ -66,7 +67,7 @@ class AppointmentController
 
 	private function findJsonQuestions(int $appointmentId)
 	{
-		return self::$appointmentDAO->findById($appointmentId)['data'];
+		return self::$appointmentDAO->findById($appointmentId)['questions'];
 	}
 	
 	public function listAll()
