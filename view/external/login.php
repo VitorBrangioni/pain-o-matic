@@ -1,7 +1,5 @@
 <?php 
 
-require_once '../vendor/autoload.php';
-
 use src\controller\LoginController;
 
 if (isset($_POST['logar'])) {
@@ -19,15 +17,13 @@ if (isset($_POST['logar'])) {
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>NonPain</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../view/tools/bootstrap-3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../view/tools/css/login.css" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
-    <!-- <script src="../tools/jquery/jquery-3.2.1.min.js"></script> -->
     
-  <script src="../tools/bootstrap-3/js/bootstrap.min.js"></script>
+    <script src="../tools/bootstrap-3/js/bootstrap.min.js"></script>
+    <link href="../view/tools/css/login.css" rel="stylesheet">
 </head>
 
 <body>
@@ -44,7 +40,7 @@ if (isset($error)) {
 <form method="POST" action="">
     <div class="container flex-center align-middle">
         <div class="col-md-4">
-            <h1>Pain-o-Matic</h1>
+            <h1 class="text-center">NonPain</h1>
             <input type="text" name="user" class="form-control" placeholder="login">
             <input type="password" name="password" class="form-control" placeholder="senha">
             <button type="submit" name="logar" class="btn btn-primary btn-block">Entrar</button>
