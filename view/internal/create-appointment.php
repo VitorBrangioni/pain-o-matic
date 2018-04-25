@@ -1,22 +1,17 @@
 <?php
 
-
 require_once '../../vendor/autoload.php';
 require_once '../../config/scope.php';
 
 use src\controller\AppointmentController;
-use src\controller\ScopeController;
 
 $step1 = 'come-back';
 $step2 = 'active';
 
 $controller = AppointmentController::getInstance();
 
-
 if (isset($_POST['save'])) {
-    $patientId = $_SESSION['patientId'];
-    unset($_SESSION['patientId']);
-   $controller->save($patientId);
+    $controller->save($_POST['patientId']);
 }
 
 ?>
@@ -32,6 +27,7 @@ if (isset($_POST['save'])) {
     <?php include '../includes/nav.html'; ?>
 </nav>
     <form action="" method="post">
+        <input type="hidden" name="patientId" value="<?= $scope['patientId'] ?>">
         <div class="container">
             <div class="row">
                 <section>
@@ -1338,10 +1334,11 @@ if (isset($_POST['save'])) {
 
                                 </div>
                                 <ul class="list-inline pull-right">
-                                    <?php if (!isset($scope)): ?>
+
+                                    <?php if(isset($scope['create-mode'])): ?>
                                         <input type="submit" name="save" value="Salvar" class="btn btn-success">
                                     <?php else: ?>
-                                        <a href="http://localhost/view/internal/appointment-visualization.php?patientId=<?= $_GET['patientId']?? null ?>&appointmentId=<?= $_GET['appointmentId']?? null ?>" class="btn btn-primary">Sair</a>
+                                    <a href="http://localhost/view/internal/appointment-visualization.php?patientId=<?= $_GET['patientId']?? null ?>&appointmentId=<?= $_GET['appointmentId']?? null ?>" class="btn btn-primary">Sair</a>
                                     <?php endif ?>
                                 </ul>
                             </div>

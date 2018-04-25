@@ -14,6 +14,7 @@ class AppointmentController
 {
 	private static $instance;
 	private static $appointmentDAO;
+	private static $scope;
 
 	private function __construct()
 	{
@@ -24,14 +25,15 @@ class AppointmentController
 		if (!isset(self::$instance) || !isset(self::$appointmentDAO)) {
 			self::$instance = new AppointmentController();
 			self::$appointmentDAO = AppointmentDAO::getInstance();
+			self::$scope = ScopeController::getInstance();
 		}
 		return self::$instance;
 	}
 
 	public function create(int $patientId)
 	{
-		session_start();
-		$_SESSION['patientId'] = $patientId;
+		self::$scope->add(['patientId' => $patientId, 'create-mode']);
+
 		header("Location: http://localhost/view/internal/create-appointment.php");
 	}
 
@@ -42,11 +44,9 @@ class AppointmentController
         $time = date("H:i:s");
         $date = date("Y-m-d");
         $appointment = new Appointment($jsonData, $date, $time, $patientId);
-		
 		$appointmentId = self::$appointmentDAO->insert($appointment);
 		
-		session_start();
-		$_SESSION['scope'] = $_POST;
+		self::$scope->add($_POST);
 		
 		header("Location: http://localhost/view/internal/appointment-visualization.php?patientId=$patientId&appointmentId=$appointmentId");
 	}
@@ -57,10 +57,9 @@ class AppointmentController
 
 		$input = iconv('UTF-8', 'UTF-8//IGNORE', \utf8_encode($appointment['questions']));
 		$questionsArray = json_decode($input, true);
-		var_dump($questionsArray);
-		session_start();
-		$_SESSION['scope'] = $questionsArray;
 		$patientId = $appointment['patient_id'];
+
+		self::$scope->add($questionsArray);
 
 		header("Location: http://localhost/view/internal/create-appointment.php?patientId=$patientId&appointmentId=$appointmentId");
 	}
