@@ -2,12 +2,10 @@
 
 require_once '../../vendor/autoload.php';
 require_once '../../config/managementSession.php';
-require '../../config/config.php';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
 
-session_start();
 $appointmentController = AppointmentController::getInstance();
 $patientController = PatientController::getInstance();
 $patient = $patientController->findById($_GET['patientId']);

@@ -2,7 +2,6 @@
 
 require_once '../../vendor/autoload.php';
 require_once '../../config/managementSession.php';
-require_once '../../config/config.php';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
@@ -21,8 +20,6 @@ $appointment = $appointmentController->findById($_GET['appointmentId']);
 $patient = $patientController->findById(1);
 $diagram = $diagramController->findById($_GET['diagramId']);
 
-
-session_start();
 
 $mode = 'view';
 
@@ -75,7 +72,6 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] === 'edit') {
         	
 	            <div class="col-md-2 col-md-push-10">
 	    			 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#diagram-detail">Detalhes</button>
-					 <button class="btn btn-success">Baixar Imagem</button>
 	            </div>
             
             <?php endif; ?>

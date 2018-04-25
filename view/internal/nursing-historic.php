@@ -4,7 +4,6 @@ use src\controller\NursingHistoricController;
 
 require_once '../../vendor/autoload.php';
 require_once '../../config/managementSession.php';
-require_once '../../config/config.php';
 include_once '../includes/head.html';
 
 $controller = NursingHistoricController::getInstance();
