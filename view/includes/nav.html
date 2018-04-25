@@ -1,34 +1,36 @@
 <div class="wizard">
-    <button type="submit" class="btn btn-danger pull-right">Sair <span class="glyphicon glyphicon-log-out"></span></button>
+    <button type="submit" class="btn btn-danger pull-right">Sair
+        <span class="glyphicon glyphicon-log-out"></span>
+    </button>
     <div class="wizard-inner">
         <div class="connecting-line"></div>
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="<?= $step1; ?>">
                 <a href="patient-management.php" title="Pacientes">
-                            <span class="round-tab fa fa-group">
-                            </span>
-                        </a>
+                    <span class="round-tab fa fa-group">
+                    </span>
+                </a>
             </li>
 
             <li role="presentation" class="<?= $step2; ?>">
                 <a href="patient-visualization.php?patientId=<?= $_GET['patientId']?? null; ?>" title="Consultas">
-                                           <span class="round-tab fa fa-stethoscope">
-                            </span>
-                                                  </a>
+                    <span class="round-tab fa fa-stethoscope">
+                    </span>
+                </a>
             </li>
             <li role="presentation" class="<?= $step3; ?>">
-                <a href="appointment-visualization.php?patientId=<?= $_GET['patientId'] ?? null; ?>&appointmentId=<?= $_GET['appointmentId'] ?? null; ?>"
+                <a href="appointment-visualization.php?patientId=<?= $_GET['patientId'] ?? null; ?>&appointmentId=<?= $_GET['appointmentId'] ?? null; ?>"
                     title="Diagramas">
-                            <span class="round-tab fa fa-child">
-                            </span>
-                        </a>
+                    <span class="round-tab fa fa-child">
+                    </span>
+                </a>
             </li>
 
             <li role="presentation" class="<?= $step4; ?>">
                 <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Registrar dor">
-                            <span class="round-tab fa fa-heartbeat">
-                            </span>
-                        </a>
+                    <span class="round-tab fa fa-heartbeat">
+                    </span>
+                </a>
             </li>
         </ul>
     </div>
