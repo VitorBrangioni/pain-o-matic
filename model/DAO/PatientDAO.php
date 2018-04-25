@@ -2,9 +2,6 @@
 
 namespace model\dao;
 
-//require_once  '../../vendor/autoload.php';
-
-
 use model\connection\Connection;
 use model\pojo\Patient;
 use model\pojo\Pojo;
