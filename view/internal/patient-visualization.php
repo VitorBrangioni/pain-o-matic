@@ -18,14 +18,6 @@ if (isset($_POST['register'])) {
     $appointmentController->create($_GET['patientId']);
 }
 
-/* if (isset($_POST['delete'])) {
-    var_dump($patient);
-    $patientController->delete($patientController->findById($_GET['patientId']));
-    header("Location: patient-management.php");
-    exit(); 
-} */
-
-
 ?>
 
 <html>
