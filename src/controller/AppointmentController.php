@@ -2,12 +2,10 @@
 
 namespace src\controller;
 
-//require_once '../../vendor/autoload.php';
-
-
-use model\dao\AppointmentDAO;
 use model\pojo\Appointment;
+use model\dao\AppointmentDAO;
 
+use src\controller\RouteController;
 use src\controller\ScopeController;
 
 class AppointmentController
@@ -32,9 +30,7 @@ class AppointmentController
 
 	public function create(int $patientId)
 	{
-		self::$scope->add(['patientId' => $patientId, 'create-mode']);
-
-		header("Location: http://localhost/view/internal/create-appointment.php");
+		RouteController::redirect('create-appointment', ['patientId' => $patientId, 'create-mode' => true]);
 	}
 
     public function save(int $patientId)
@@ -47,8 +43,8 @@ class AppointmentController
 		$appointmentId = self::$appointmentDAO->insert($appointment);
 		
 		self::$scope->add($_POST);
-		
-		header("Location: http://localhost/view/internal/appointment-visualization.php?patientId=$patientId&appointmentId=$appointmentId");
+
+		header("Location: appointment-visualization.php?patientId=$patientId&appointmentId=$appointmentId");
 	}
 
 	public function viewQuestions(int $appointmentId)
@@ -61,7 +57,7 @@ class AppointmentController
 
 		self::$scope->add($questionsArray);
 
-		header("Location: http://localhost/view/internal/create-appointment.php?patientId=$patientId&appointmentId=$appointmentId");
+		header("Location: create-appointment.php?patientId=$patientId&appointmentId=$appointmentId");
 	}
 
 	private function findJsonQuestions(int $appointmentId)
