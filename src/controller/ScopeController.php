@@ -2,8 +2,6 @@
 
 namespace src\controller;
 
-//require_once '../../vendor/autoload.php';
-
 class ScopeController
 {
     private static $instance;
@@ -19,5 +17,11 @@ class ScopeController
 			self::$instance = new ScopeController();
 		}
 		return self::$instance;
+	}
+
+	public function add(array $values)
+	{
+		session_start();
+		$_SESSION['scope'] = $values;
 	}
 }
