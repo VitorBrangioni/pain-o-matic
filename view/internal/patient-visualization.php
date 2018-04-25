@@ -29,76 +29,12 @@ if (isset($_POST['register'])) {
 ?>
 
 <html>
+ 
 <head>
-    <title>Pain O Matic</title>
-    <meta charset="UTF-8">
-
-   <!-- <link rel="stylesheet" href="../tools/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
-    <script src="../tools/js/utils.js"></script>-->
-
-    <link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../tools/css/nav.css">
-    <link rel="stylesheet" href="../tools/css/global.css">
-    <link rel="stylesheet" href="../tools/css/style.css">
-    <link rel="stylesheet" href="../tools/font-awesome-4.7.0/css/font-awesome.min.css">
-
-    <script src="../tools/jquery/jquery-3.2.1.min.js"></script>
-    <script src="../tools/bootstrap-3/js/bootstrap.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script> -->
-    <script src="../tools/js/nav.js"></script>
-
-    <script type="text/javascript">
-        function editar() {
-            $("#form1 :input").attr("disabled", false);
-            $("#btnEditar").toggle();
-            $("#btnExcluir").toggle();
-            $("#btnSalvar").toggle();
-            $("#btnLimpar").toggle();
-            $("#ultEd").attr("disabled", true);
-        }
-        function salvar() {
-            $("#form1 :input").attr("disabled", true);
-            $("#btnEditar").toggle();
-            $("#btnEditar").attr("disabled", false);
-            $("#btnExcluir").toggle();
-            $("#btnExcluir").attr("disabled", false);
-            $("#btnSalvar").toggle();
-            $("#btnLimpar").toggle();
-        }
-    </script>
-    <style>
-        .breadcrumb > li + li:before {
-            content: "\3E"
-        }
-    </style>
-
-
+    <?php include '../includes/head.html'; ?>
 </head>
 
 <body>
-<script>
-    $(document).ready(function () {
-        $('.btn-alert').click(function () {
-            $('.alert-adicionar').show();
-        })
-
-        $('.btn-alert-excluir').click(function () {
-            $('.alert-excluir').show();
-        })
-    });
-</script>
-
 <nav>
     <?php include '../includes/nav.html'; ?>
 </nav>

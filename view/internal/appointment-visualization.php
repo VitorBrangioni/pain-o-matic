@@ -29,26 +29,9 @@ if (isset($_POST['redirectQuestions'])) {
 
     <html>
 
-    <head>
-        <title>Pain O' Meter</title>
-        <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-    <link rel="stylesheet" href="../tools/css/nav.css">
-    <link rel="stylesheet" href="../tools/css/card.css">
-    <link rel="stylesheet" href="../tools/css/style.css">
-    <link rel="stylesheet" href="../tools/css/global.css">
-    <link rel="stylesheet" href="../tools/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-
-    <script src="../tools/jquery/jquery-3.2.1.min.js"></script>
-    <script src="../tools/bootstrap-3/js/bootstrap.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> -->
-    </head>
-
+<head>
+    <?php include '../includes/head.html'; ?>
+</head>
     <body>
         <nav>
             <?php include '../includes/nav.html'; ?>
@@ -71,7 +54,7 @@ if (isset($_POST['redirectQuestions'])) {
                 </div>
             </div>
         </header>
-        <legend><h2><strong>Diagramas</strong></h2></legend>
+        <legend><h2><strong>Consulta - <?= $appointment['date'] ?>, <?= $appointment['hora'] ?></strong></h2></legend>
         <section>
             <form method="POST" action="">
                 <div class="index-content">

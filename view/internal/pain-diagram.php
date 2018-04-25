@@ -3,7 +3,6 @@
 require_once '../../vendor/autoload.php';
 require_once '../../config/managementSession.php';
 require_once '../../config/config.php';
-include_once '../includes/head.html';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
@@ -31,37 +30,14 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] === 'edit') {
 	$mode = $_SESSION['mode'];
 	unset($_SESSION['mode']);
 }
-
-
-
-
-
 ?>
 
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Pain O Matic</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-    <link rel="stylesheet" href="../tools/css/nav.css">
-    <link rel="stylesheet" href="../tools/css/global.css">
-    <link rel="stylesheet" href="../tools/css/style.css">
-	<link rel="stylesheet" href="../tools/font-awesome-4.7.0/css/font-awesome.min.css">
-
-    <script src="../tools/jquery/jquery-3.2.1.min.js"></script>
-    <script src="../tools/bootstrap-3/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <script src="../tools/js/nav.js"></script>
-
-    <style>
-        .breadcrumb > li + li:before {
-            content: "\3E"
-        }
-    </style>
+    <?php include '../includes/head.html'; ?>
 </head>
 
 <body onload="zerinho()">

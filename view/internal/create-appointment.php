@@ -3,8 +3,6 @@
 
 require_once '../../vendor/autoload.php';
 require_once '../../config/scope.php';
-// require_once '../../config/managementSession.php';
-// require_once '../../config/config.php';
 
 use src\controller\AppointmentController;
 use src\controller\ScopeController;
@@ -27,95 +25,13 @@ if (isset($_POST['save'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href="../tools/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="../tools/css/tab.css" rel="stylesheet">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            //Initialize tooltips
-            $('.nav-tabs > li a[title]').tooltip();
-
-            //Wizard
-            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
-                var $target = $(e.target);
-
-                if ($target.parent().hasClass('disabled')) {
-                    return false;
-                }
-            });
-
-            $(".next-step").click(function (e) {
-
-                var $active = $('.wizard .nav-tabs li.active');
-                $active.next().removeClass('disabled');
-                nextTab($active);
-
-            });
-            $(".prev-step").click(function (e) {
-
-                var $active = $('.wizard .nav-tabs li.active');
-                prevTab($active);
-
-            });
-        });
-
-        function nextTab(elem) {
-            $(elem).next().find('a[data-toggle="tab"]').click();
-        }
-        function prevTab(elem) {
-            $(elem).prev().find('a[data-toggle="tab"]').click();
-        }
-
-
-        $(document).ready(function () {
-            //Add Inactive Class To All Accordion Headers
-            $('.accordion-header').toggleClass('inactive-header');
-
-            //Set The Accordion Content Width
-            var contentwidth = $('.accordion-header').width();
-            $('.accordion-content').css({});
-
-            //Open The First Accordion Section When Page Loads
-            $('.accordion-header').first().toggleClass('active-header').toggleClass('inactive-header');
-            $('.accordion-content').first().slideDown().toggleClass('open-content');
-
-            // The Accordion Effect
-            $('.accordion-header').click(function () {
-                if ($(this).is('.inactive-header')) {
-                    $('.active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle().toggleClass('open-content');
-                    $(this).toggleClass('active-header').toggleClass('inactive-header');
-                    $(this).next().slideToggle().toggleClass('open-content');
-                }
-
-                else {
-                    $(this).toggleClass('active-header').toggleClass('inactive-header');
-                    $(this).next().slideToggle().toggleClass('open-content');
-                }
-            });
-
-            return false;
-        });
-    </script>
-
-    <title>Criar Consulta</title>
+    <?php include '../includes/head.html'; ?>
 </head>
-
 <body>
 <nav>
     <?php include '../includes/nav.html'; ?>
 </nav>
-
     <form action="" method="post">
-
-
         <div class="container">
             <div class="row">
                 <section>
@@ -150,11 +66,12 @@ if (isset($_POST['save'])) {
                             </ul>
                         </div>
 
+                        <h2>NOVA CONSULTA</h2>
                         <form role="form">
                             <div class="tab-content">
                                 <div class="tab-pane active" role="tabpanel" id="step1">
                                     <div class="step33" id="g1">
-                                        <h2>Necessidade Psicobiológicas e Exame Físico Admissional</h2>
+                                        <h3>Necessidade Psicobiológicas e Exame Físico Admissional</h3>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>Tem dificuldades para dormir?</label>
@@ -210,7 +127,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step23">
                                         <div class="step_21">
-                                            <h2>Necessidades de Cuidado Corporal</h2>
+                                            <h3>Necessidades de Cuidado Corporal</h3>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label>Higienização Corporal:</label>
@@ -251,7 +168,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g3">
                                         <h3>
-                                            <strong>Dados Antropométricos e Necessidades de Nutrição/Hidratação Regulação Endocrinológica</strong>
+                                            Dados Antropométricos e Necessidades de Nutrição/Hidratação Regulação Endocrinológica
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -492,7 +409,7 @@ if (isset($_POST['save'])) {
                                 <div class="tab-pane" role="tabpanel" id="step2">
                                     <div class="step33" id="g4">
                                         <h3>
-                                            <strong>Região Geniturinária/Necessidade de Sexualidade e Eliminação</strong>
+                                            Região Geniturinária/Necessidade de Sexualidade e Eliminação
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -725,7 +642,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g5">
                                         <h3>
-                                            <strong>Necessidades de Locomoção / Atividade Física e Exame dos Membros:</strong>
+                                            Necessidades de Locomoção / Atividade Física e Exame dos Membros:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -858,7 +775,7 @@ if (isset($_POST['save'])) {
                                 <div class="tab-pane" role="tabpanel" id="step3">
                                     <div class="step33" id="g6">
                                         <h3>
-                                            <strong>Necessidades de Percepção dos Órgãos dos Sentidos:</strong>
+                                            Necessidades de Percepção dos Órgãos dos Sentidos:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -889,7 +806,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g7">
                                         <h3>
-                                            <strong>Necessidades de Regulação Térmica:</strong>
+                                            Necessidades de Regulação Térmica:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -934,7 +851,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g8">
                                         <h3>
-                                            <strong>Aparência:</strong>
+                                            Aparência:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -992,7 +909,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g9">
                                         <h3>
-                                            <strong>Necessidades de Oxigenação:</strong>
+                                            Necessidades de Oxigenação:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -1120,7 +1037,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g10">
                                         <h3>
-                                            <strong>Necessidades de Regulação Vascular:</strong>
+                                            Necessidades de Regulação Vascular:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -1287,7 +1204,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g11">
                                         <h3>
-                                            <strong>Exame do Abdome:</strong>
+                                            Exame do Abdome:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -1368,7 +1285,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g12">
                                         <h3>
-                                            <strong>Necessidade de Integridade cutâneo/Mucosa:</strong>
+                                            Necessidade de Integridade cutâneo/Mucosa:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
@@ -1394,7 +1311,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                     <div class="step33" id="g13">
                                         <h3>
-                                            <strong>Lesão:</strong>
+                                            Lesão:
                                         </h3>
                                         <hr>
                                         <div class="row mar_ned"></div>
