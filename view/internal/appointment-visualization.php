@@ -185,15 +185,6 @@ if (isset($_POST['redirectQuestions'])) {
                                                                             onclick="salvar()" class="btn btn-success"
                                                                             style="display:none">Salvar
                                                                     </button>
-                                                                    <!--<button type="button" name="btnEditar"
-                                                                            id="btnEditar"
-                                                                            onclick="editar()" class="btn btn-primary">
-                                                                        Editar
-                                                                    </button>-->
-                                                                    <button type="submit" name="delete"
-                                                                            id="btnExcluir"
-                                                                            class="btn btn-danger">Excluir
-                                                                    </button>
                                                                     <a href="./nursing-historic.php?patientId=<?= $patient['id'] ?>"
                                                                             class="btn btn-info">Historico de Enfermagem
                                                                     </a>
