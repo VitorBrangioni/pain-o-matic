@@ -1338,7 +1338,7 @@ if (isset($_POST['save'])) {
                                     <?php if(isset($scope['create-mode'])): ?>
                                         <input type="submit" name="save" value="Salvar" class="btn btn-success">
                                     <?php else: ?>
-                                    <a href="http://localhost/view/internal/appointment-visualization.php?patientId=<?= $_GET['patientId']?? null ?>&appointmentId=<?= $_GET['appointmentId']?? null ?>" class="btn btn-primary">Sair</a>
+                                    <a href="appointment-visualization.php?patientId=<?= $_GET['patientId']?? null ?>&appointmentId=<?= $_GET['appointmentId']?? null ?>" class="btn btn-primary">Sair</a>
                                     <?php endif ?>
                                 </ul>
                             </div>

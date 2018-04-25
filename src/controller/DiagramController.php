@@ -39,7 +39,7 @@ class DiagramController
 		session_start();
 		$_SESSION['mode'] = 'edit';
 
-		header("Location: http://localhost/view/internal/pain-diagram.php?patientId={$appointment['patient_id']}&appointmentId=$appointmentId&diagramId=$diagramId&mode=edit");
+		header("Location: pain-diagram.php?patientId={$appointment['patient_id']}&appointmentId=$appointmentId&diagramId=$diagramId&mode=edit");
 	}
 	
 	public function saveDiagramImg($diagramId, $depth, $imgBase64)
