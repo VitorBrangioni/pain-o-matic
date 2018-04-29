@@ -31,11 +31,6 @@ class PatientController
 	public function register($name, $cpf, $rg, $photo)
 	{
 
-		$pathPhoto = "test.png";
-		/*if (['cameraInput']['name'] !== null && $_FILES['cameraInput']['tmp_name'] !== null) {
-			$uploadController = UploadController::getInstance();
-			$pathPhoto = $uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name'], $_POST['name']);
-		}*/
 		if (file_exists($_FILES['cameraInput']['tmp_name']) || is_uploaded_file($_FILES['cameraInput']['tmp_name'])) {
 			$uploadController = UploadController::getInstance();
 			$pathPhoto = $uploadController->uploadProfileImage($_FILES['cameraInput']['name'], $_FILES['cameraInput']['tmp_name'], $_POST['name']);
@@ -45,7 +40,7 @@ class PatientController
 		
 		NursingHistoricController::getInstance()->save($patientId);
 
-		header("Location: http://localhost/view/internal/nursing-historic.php?patientId=$patientId");
+		header("Location: nursing-historic.php?patientId=$patientId");
 	}
 
     public function delete($patient)
