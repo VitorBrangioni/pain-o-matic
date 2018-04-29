@@ -19,30 +19,15 @@ $nursHistoric = $controller->getNursingHistoric($_GET['patientId']);
     <html lang="pt-br">
 
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Historico</title>
-
-        <link rel="stylesheet" href="../tools/bootstrap-3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-        <link rel="stylesheet" href="../tools/css/nav.css">
-        <link rel="stylesheet" href="../tools/css/global.css">
-        <link rel="stylesheet" href="../tools/css/style.css">
-        <link rel="stylesheet" href="../tools/font-awesome-4.7.0/css/font-awesome.min.css">
-
-        <script src="../tools/jquery/jquery-3.2.1.min.js"></script>
-        <script src="../tools/bootstrap-3/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        <script src="../tools/js/nav.js"></script>
+        <?php include '../includes/head.html'; ?>
         <script src="../tools/js/nursing-historic.js"></script>
     </head>
 
     <body>
 
         <nav>
-            </nav>
+            <?php include '../includes/nav.html'; ?>
+        </nav>
         <header class="container-fluid">
             <h1>Historico de Enfermagem</h1>
         </header>
@@ -54,8 +39,6 @@ $nursHistoric = $controller->getNursingHistoric($_GET['patientId']);
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#home">Identificação</a></li>
                             <li><a href="#queixa-principal">Queixa Principal</a></li>
-                            <!-- <li><a href="#menu2">Menu 2</a></li> -->
-                            <!-- <li><a href="#menu3">Menu 3</a></li> -->
                         </ul>
     
                         <div class="tab-content">
@@ -168,15 +151,15 @@ $nursHistoric = $controller->getNursingHistoric($_GET['patientId']);
                             </div>
                         </div>
                         
-                        <input type="submit" name="cadastrar" class="btn btn-success margin-top-20" value="Salvar">
+                        <div class="row">
+                            <div class="col m12 form-group">
+                                <input type="submit" name="cadastrar" class="btn btn-success margin-top-20" value="Salvar">
+                                <a href="patient-visualization.php?patientId=<?= $_GET['patientId'] ?>" class="btn btn-default">Sair</a>
+                            </div>
+                        </div>
                     </div>
-    
                 </div>
-    
-    
             </section>
         </form>
-
     </body>
-
-    </html>
+</html>
