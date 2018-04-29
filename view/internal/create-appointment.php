@@ -74,10 +74,10 @@ if (isset($_POST['save'])) {
                                                    
                                                 <?php if (!isset($scope['g1-q1'])): ?>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g1-q1" id="inlineRadio2" value="Sim"> Sim
+                                                        <input type="radio" name="g1-q1" value="Sim" required> Sim
                                                     </label>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g1-q1" id="inlineRadio3" value="Não"> Não
+                                                        <input type="radio" name="g1-q1" value="Não"> Não
                                                     </label>
                                                 <?php else:?>
                                                     <?= $scope['g1-q1'] ?>
@@ -89,7 +89,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g1-q2'])): ?>
                                                 
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g1-q2" value="Insônia"> Insônia
+                                                        <input type="radio" name="g1-q2" value="Insônia" required> Insônia
                                                     </label>
                                                     <label class="radio-inline">
                                                         <input type="radio" name="g1-q2" value="Pesadelo"> Pesadelo
@@ -114,7 +114,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-6">
                                                 <label>A dor prejudica seu sono?</label>
                                                 <?php if (!isset($scope['g1-q3'])):?>
-                                                    <input type="text" name="g1-q3" class="form-control">
+                                                    <input type="text" name="g1-q3" class="form-control" required>
                                                 <?php else:?>
                                                     <?= $scope['g1-q3'] ?>
                                                 <?php endif ?>
@@ -130,7 +130,7 @@ if (isset($_POST['save'])) {
 
                                                     <?php if (!isset($scope['g2-q1'])): ?>
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="g2-q1" value="Adequeda"> Adequeda
+                                                            <input type="radio" name="g2-q1" value="Adequeda" required> Adequeda
                                                         </label>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="g2-q1" value="Inadequeda"> Inadequeda
@@ -146,7 +146,7 @@ if (isset($_POST['save'])) {
 
                                                     <?php if (!isset($scope['g2-q2'])): ?>
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="g2-q2" value="Não"> Não
+                                                            <input type="radio" name="g2-q2" value="Não" required> Não
                                                         </label>
                                                         <label class="radio-inline">
                                                             <input type="radio" name="g2-q2" value="Parcialmente Dependente"> Parcialmente Dependente
@@ -178,7 +178,7 @@ if (isset($_POST['save'])) {
                                                 <div class="row">
                                                     <div class="col-md-4 col-xs-4 wdth">
                                                         <?php if (!isset($scope['g3-q1'])):?>
-                                                            <input type="text" name="g3-q1" placeholder="Peso Usual">
+                                                            <input type="text" name="g3-q1" placeholder="Peso Usual" required>
                                                         <?php else: ?>
                                                             <?= $scope['g3-q1']; ?>
                                                         <?php endif ?>
@@ -188,7 +188,7 @@ if (isset($_POST['save'])) {
                                                     </div>
                                                     <div class="col-md-4 col-xs-4 wdth">
                                                         <?php if (!isset($scope['g3-q2'])):?>
-                                                            <input type="text" name="g3-q2" placeholder="Peso Atual">
+                                                            <input type="text" name="g3-q2" placeholder="Peso Atual" required>
                                                         <?php else: ?>
                                                             <?= $scope['g3-q2']; ?>
                                                         <?php endif ?>
@@ -204,7 +204,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g3-q3'])):?>
-                                                    <input type="number" name="g3-q3">
+                                                    <input type="number" name="g3-q3" required>
                                                 <?php else: ?>
                                                     <?= $scope['g3-q3']; ?>
                                                 <?php endif ?>
@@ -218,7 +218,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g3-q4'])):?>
-                                                    <input type="number" name="g3-q4">
+                                                    <input type="number" name="g3-q4" required>
                                                 <?php else: ?>
                                                     <?= $scope['g3-q4']; ?>
                                                 <?php endif ?>
@@ -232,7 +232,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g3-q5'])):?>
-                                                    <input type="number" name="g3-q5">
+                                                    <input type="number" name="g3-q5" required>
                                                 <?php else: ?>
                                                     <?= $scope['g3-q5']; ?>
                                                 <?php endif ?>
@@ -247,7 +247,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-8 col-xs-9 ">
                                                 <?php if (!isset($scope['g3-q6'])):?>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g3-q6" value="Baixo Peso"> Baixo Peso
+                                                        <input type="radio" name="g3-q6" value="Baixo Peso" required> Baixo Peso
                                                     </label>
                                                     <label class="radio-inline">
                                                         <input type="radio" name="g3-q6" value="Peso Normal"> Peso Normal
@@ -272,7 +272,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g3-q7'])):?>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g3-q7" value="Não"> Não
+                                                        <input type="radio" name="g3-q7" value="Não" required> Não
                                                     </label>
                                                     <label class="radio-inline">
                                                         <input type="radio" name="g3-q7" value="Sim"> Sim 
@@ -290,7 +290,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g3-q8'])):?>
-                                                    <input type="text" name="g3-q8">
+                                                    <input type="text" name="g3-q8" required>
                                                 <?php else: ?>
                                                     <?= $scope['g3-q8']; ?>
                                                 <?php endif ?>
@@ -305,7 +305,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g3-q9'])):?>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g3-q9" value="Preservado"> Preservado
+                                                        <input type="radio" name="g3-q9" value="Preservado" required> Preservado
                                                     </label>
                                                     <label class="radio-inline">
                                                         <input type="radio" name="g3-q9" value="Diminuído"> Diminuído
@@ -325,7 +325,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g3-q10'])):?>
-                                                    <input type="text" name="g3-q10">
+                                                    <input type="text" name="g3-q10" required>
                                                 <?php else: ?>
                                                     <?= $scope['g3-q10']; ?>
                                                 <?php endif ?>
@@ -340,7 +340,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-4">
                                                 <?php if (!isset($scope['g3-q11'])):?>
-                                                    <input type="text" name="g3-q11" id="">
+                                                    <input type="text" name="g3-q11" required>
                                                     <label for="">Via:</label>
                                                     <input type="text" name="g3-q11-sr1" id="">
                                                 <?php else: ?>
@@ -358,7 +358,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g3-q12'])):?>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g3-q12" value="Naúsea"> Naúsea
+                                                        <input type="radio" name="g3-q12" value="Naúsea" required> Naúsea
                                                     </label>
                                                     <label class="radio-inline">
                                                         <input type="radio" name="g3-q12" value="Vômito"> Vômito
@@ -385,7 +385,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-4">
                                                 <?php if (!isset($scope['g3-q13'])):?>
-                                                    <input type="text" name="g3-q13">
+                                                    <input type="text" name="g3-q13" required>
                                                 <?php else: ?>
                                                     <?= $scope['g3-q13'] ?>
                                                 <?php endif ?>
@@ -395,7 +395,6 @@ if (isset($_POST['save'])) {
                                     <ul class="list-inline pull-left">
                                         <li>
                                             <a href="#g4"class="btn btn-primary next-step">Próximo</a>
-                                            <!-- <button type="button" href="#g4" class="btn btn-primary next-step">Próximo</button> -->
                                         </li>
                                     </ul>
                                 </div>
@@ -420,7 +419,7 @@ if (isset($_POST['save'])) {
                                                     <div class="col-md-4 col-xs-4 wdth">
                                                         <?php if (!isset($scope['g4-q1'])): ?>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="g4-q1" value="Não"> Não
+                                                                <input type="radio" name="g4-q1" value="Não" required> Não
                                                             </label>
                                                             <label class="radio-inline">
                                                                 <input type="radio" name="g4-q1" value="Sim"> Sim
@@ -453,7 +452,7 @@ if (isset($_POST['save'])) {
                                                     <div class="col-md-4 col-xs-4 wdth">
                                                         <?php if (!isset($scope['g4-q2'])): ?>
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="g4-q2" value="Não"> Não
+                                                                <input type="radio" name="g4-q2" value="Não" required> Não
                                                             </label>
                                                             <label class="radio-inline">
                                                                 <input type="radio" name="g4-q2" value="Sim"> Sim
@@ -487,7 +486,7 @@ if (isset($_POST['save'])) {
                                                     <?php if (!isset($scope['g4-q3'])): ?>
                                                         <div class="col-md-4 col-xs-4 wdth">
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="g4-q3" value="Espontânea"> Espontânea
+                                                                <input type="radio" name="g4-q3" value="Espontânea" required> Espontânea
                                                             </label>
                                                         </div>
                                                         <div class="col-md-4 col-xs-4 wdth">
@@ -519,7 +518,7 @@ if (isset($_POST['save'])) {
                                                     <?php if (!isset($scope['g4-q4'])): ?>
                                                         <div class="col-md-4 col-xs-4 wdth">
                                                             <label class="radio-inline">
-                                                                <input type="radio" name="g4-q4" value="Fluxo urinário adequado"> Fluxo urinário adequado
+                                                                <input type="radio" name="g4-q4" value="Fluxo urinário adequado" required> Fluxo urinário adequado
                                                             </label>
                                                         </div>
                                                         <div class="col-md-4 col-xs-4 wdth">
@@ -584,7 +583,7 @@ if (isset($_POST['save'])) {
                                                     <div class="row">
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="g4-q5" value="Regular"> Regular
+                                                                    <input type="radio" name="g4-q5" value="Regular" required> Regular
                                                                     <input type="text" name="g4-q5-sr1">vezes/dia
                                                                 </label>
                                                             </div>
@@ -626,7 +625,7 @@ if (isset($_POST['save'])) {
                                                     <div class="col-md-4 col-xs-4 wdth">
                                                         <?php if (isset($scope['g4-q6'])): ?>
                                                             <label class="radio-inline">
-                                                                <input type="text" name="g4-q6">
+                                                                <input type="text" name="g4-q6" required>
                                                             </label>
                                                         <?php else: ?>
                                                             <?= $scope['g4-q6'] ?>
@@ -651,7 +650,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-8 col-xs-9 ">
                                                 <?php if (!isset($scope['g5-q1'])): ?>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g5-q1" value="Independente"> Independente
+                                                        <input type="radio" name="g5-q1" value="Independente" required> Independente
                                                     </label>
                                                     <label class="radio-inline">
                                                         <input type="radio" name="g5-q1" value="Dependente"> Dependente
@@ -674,7 +673,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-8 col-xs-9 ">
                                                 <?php if (!isset($scope['g5-q2'])): ?>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g5-q2" value="Não realiza"> Não realiza
+                                                        <input type="radio" name="g5-q2" value="Não realiza" required> Não realiza
                                                     </label>
                                                     <label class="radio-inline">
                                                         <input type="radio" name="g5-q2" value="Realiza"> Realiza
@@ -692,7 +691,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9 ">
                                                 <?php if (!isset($scope['g5-q2-sr1'])): ?>
-                                                    <input type="text" name="g5-q2-sr1">
+                                                    <input type="text" name="g5-q2-sr1" required>
                                                 <?php else: ?>
                                                     <?= $scope['g5-q2-sr1'] ?>
                                                 <?php endif ?>
@@ -706,7 +705,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9">
                                                 <?php if (!isset($scope['g5-q3'])): ?>
-                                                    <textarea name="g5-q3" id="" cols="30" rows="10" placeholder="Descrever os dispositivos de assistência e tempo de uso">
+                                                    <textarea name="g5-q3" id="" cols="30" rows="10" placeholder="Descrever os dispositivos de assistência e tempo de uso" required>
                                                     </textarea>
                                                 <?php else: ?>
                                                     <?= $scope['g5-q3'] ?>
@@ -721,7 +720,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9 ">
                                                 <?php if (!isset($scope['g5-q4'])): ?>
-                                                    <input type="text" name="g5-q4">
+                                                    <input type="text" name="g5-q4" required>
                                                 <?php else: ?>
                                                     <?= $scope['g5-q4'] ?>
                                                 <?php endif ?>
@@ -735,7 +734,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9 ">
                                                 <?php if (!isset($scope['g5-q5'])): ?>
-                                                    <input type="text" name="g5-q5">
+                                                    <input type="text" name="g5-q5" required>
                                                 <?php else: ?>
                                                     <?= $scope['g5-q5'] ?>
                                                 <?php endif ?>
@@ -749,7 +748,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-8 col-xs-9 ">
                                                 <?php if (!isset($scope['g5-q6'])): ?>
-                                                    <input type="text" name="g5-q6">
+                                                    <input type="text" name="g5-q6" required>
                                                 <?php else: ?>
                                                     <?= $scope['g5-q6'] ?>
                                                 <?php endif ?>
@@ -762,7 +761,6 @@ if (isset($_POST['save'])) {
                                         </li>
                                         <li>
                                             <a href="#g6" class="btn btn-primary next-step">Próximo</a>
-                                            <!-- <button type="button" class="btn btn-primary next-step">Próximo</button> -->
                                         </li>
                                     </ul>
                                 </div>
@@ -779,7 +777,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-12">
                                                 <strong>Alterações:</strong>
                                                 <?php if (!isset($scope['g6-q1'])): ?>
-                                                    <input type="radio" name="g6-q1" value="Não"> Não
+                                                    <input type="radio" name="g6-q1" value="Não" required> Não
                                                     <input type="radio" name="g6-q1" value="Visual"> Visual
                                                     <input type="radio" name="g6-q1" value="Auditiva"> Auditiva
                                                     <input type="radio" name="g6-q1" value="Gustativa"> Gustativa
@@ -792,7 +790,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-4">
                                                 <strong>Descreva:</<strong>
                                                 <?php if (!isset($scope['g6-q2'])): ?>
-                                                    <textarea name="g6-q2" id="" cols="30" rows="5" placeholder="Descreva">
+                                                    <textarea name="g6-q2" id="" cols="30" rows="5" placeholder="Descreva" required>
                                                     </textarea>
                                                 <?php else: ?>
                                                     <?= $scope['g6-q2'] ?>
@@ -816,7 +814,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g7-q1'])): ?>
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" name="g7-q1">
+                                                            <input type="text" class="form-control" name="g7-q1" required>
                                                             <div class="input-group-addon">°C</div>
                                                         </div>
                                                     </div>
@@ -835,7 +833,7 @@ if (isset($_POST['save'])) {
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <?php if (!isset($scope['g7-q2'])): ?>
-                                                            <textarea name="g7-q2" id="" cols="30" rows="10" class="form-control">
+                                                            <textarea name="g7-q2" id="" cols="30" rows="10" class="form-control" required>
                                                             </textarea>
                                                         <?php else: ?>
                                                             <?= $scope['g7-q2'] ?>
@@ -860,7 +858,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-6">
                                                 <?php if (!isset($scope['g8-q1'])): ?>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="g8-q1" value="Normocorado"> Normocorado
+                                                        <input type="radio" name="g8-q1" value="Normocorado" required> Normocorado
                                                     </label>
                                                     <label class="radio-inline">
                                                         <div class="row">
@@ -893,7 +891,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g8-q2'])): ?>
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <textarea name="g8-q2" id="" cols="30" rows="10" class="form-control">
+                                                            <textarea name="g8-q2" id="" cols="30" rows="10" class="form-control" required>
                                                             </textarea>
                                                         </div>
                                                     </div>
@@ -919,7 +917,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g9-q1'])): ?>
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <input type="text" name="g9-q1" class="form-control">
+                                                            <input type="text" name="g9-q1" class="form-control" required>
                                                             <div class="input-group-addon">irpm</div>
                                                         </div>
                                                     </div>
@@ -938,7 +936,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g9-q2'])): ?>
                                                     <div class="col-md-2">
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="g9-q2" value="MVF /s RA"> MVF /s RA
+                                                            <input type="radio" name="g9-q2" value="MVF /s RA" required> MVF /s RA
                                                         </label>
                                                     </div>
                                                     <div class="col-md-2">
@@ -979,7 +977,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-4">
                                                 <?php if (!isset($scope['g9-q3'])): ?>
-                                                    <input type="text" name="g9-q3" class="form-control">
+                                                    <input type="text" name="g9-q3" class="form-control" required>
                                                 <?php else: ?>
                                                     <?= $scope['g9-q3'] ?>
                                                 <?php endif ?>
@@ -995,7 +993,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g9-q4'])): ?>
                                                     <div class="col-md-2">
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="g9-q4" value="Padrão respiratório normal"> Padrão respiratório normal
+                                                            <input type="radio" name="g9-q4" value="Padrão respiratório normal" required> Padrão respiratório normal
                                                         </label>
                                                     </div>
                                                     <div class="col-md-2">
@@ -1047,7 +1045,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g10-q1'])): ?>
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" id="exampleInputAmount">
+                                                            <input type="text" class="form-control" required>
                                                             <div class="input-group-addon">bpm</div>
                                                         </div>
                                                     </div>
@@ -1087,7 +1085,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g10-q3'])): ?>
                                                     <div class="col-md-2">
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="g10-q3" value="Cheio"> Cheio
+                                                            <input type="radio" name="g10-q3" value="Cheio" required> Cheio
                                                         </label>
                                                     </div>
                                                     <div class="col-md-2">
@@ -1120,7 +1118,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g10-q4'])): ?>
                                                     <div class="col-md-2">
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="g10-q4" value="BNRNF"> BNRNF
+                                                            <input type="radio" name="g10-q4" value= "BNRNF" required> BNRNF
                                                         </label>
                                                     </div>
                                                     <div class="col-md-2">
@@ -1158,7 +1156,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g10-q5'])): ?>
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" name="g10-q5">
+                                                            <input type="text" class="form-control" name="g10-q5" required>
                                                         </div>
                                                     </div>
                                                 <?php else: ?>
@@ -1176,7 +1174,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g10-q6'])): ?>
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" name="g10-q6">
+                                                            <input type="text" class="form-control" name="g10-q6" required>
                                                         </div>
                                                     </div>
                                                 <?php else: ?>
@@ -1188,7 +1186,7 @@ if (isset($_POST['save'])) {
                                                 <?php if (!isset($scope['g10-q7'])): ?>
                                                     <div class="form-group">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" name="g10-q7">
+                                                            <input type="text" class="form-control" name="g10-q7" required>
                                                             <div class="input-group-addon">/+4</div>
                                                         </div>
                                                     </div>
@@ -1213,7 +1211,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-10">
                                                 <?php if (!isset($scope['g11-q1'])): ?>
                                                     <div class="col-md-2">
-                                                        <input type="radio" name="g11-q1" value="Tenso"> Tenso
+                                                        <input type="radio" name="g11-q1" value="Tenso" required> Tenso
                                                     </div>
                                                     <div class="col-md-2">
                                                         <input type="radio" name="g11-q1" value="Globoso"> Globoso
@@ -1244,7 +1242,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-10">
                                                 <?php if (!isset($scope['g11-q2'])): ?>
                                                     <div class="col-md-2">
-                                                        <input type="radio" name="g11-q2" value="Presentes"> Presentes
+                                                        <input type="radio" name="g11-q2" value="Presentes" required> Presentes
                                                     </div>
                                                     <div class="col-md-2">
                                                         <input type="radio" name="g11-q2" value="Dimuídos"> Dimuídos
@@ -1266,7 +1264,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-10">
                                                 <?php if (!isset($scope['g11-q3'])): ?>
                                                     <div class="col-md-2">
-                                                        <input type="radio" name="g11-q3"> Presente
+                                                        <input type="radio" name="g11-q3" required> Presente
                                                     </div>
                                                     <div class="col-md-5">
                                                         <input type="radio" name="g11-q3"> Visceromegalias:
@@ -1294,7 +1292,7 @@ if (isset($_POST['save'])) {
                                             <div class="col-md-10">
                                                 <?php if (!isset($scope['g12-q1'])): ?>
                                                     <div class="col-md-2">
-                                                        <input type="radio" name="g12-q1" value="Preservada"> Preservada
+                                                        <input type="radio" name="g12-q1" value="Preservada" required> Preservada
                                                     </div>
                                                     <div class="col-md-2">
                                                         <input type="radio" name="g12-q1" value="Comprometida"> Comprometida
@@ -1319,7 +1317,7 @@ if (isset($_POST['save'])) {
                                             </div>
                                             <div class="col-md-10">
                                                 <?php if (!isset($scope['g13-q1'])): ?>
-                                                    <textarea name="g13-q1" cols="30" rows="10" class="form-control" placeholder="Descrição"></textarea>
+                                                    <textarea name="g13-q1" cols="30" rows="10" class="form-control" placeholder="Descrição" required></textarea>
                                                 <?php else: ?>
                                                     <?= $scope['g13-q1'] ?>
                                                 <?php endif ?>
