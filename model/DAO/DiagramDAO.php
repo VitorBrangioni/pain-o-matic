@@ -5,10 +5,15 @@ namespace model\dao;
 //require_once  '../../vendor/autoload.php';
 
 
-use model\connection\Connection;
-use model\interfaces\DAOInterface;
+use PDOException;
+use src\app\Route;
 use model\pojo\Pojo;
 use model\pojo\Diagram;
+use src\app\UserMessage;
+use src\enum\TypeMessage;
+use src\enum\DefaultMessages;
+use model\connection\Connection;
+use model\interfaces\DAOInterface;
 
 /**
  *
@@ -87,8 +92,11 @@ class DiagramDAO implements DAOInterface
 
 			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			
-		} catch (\PDOStatement $e) {
-			echo $e->errorCode();
+		} catch (\PDOException $e) {
+			// echo $e->errorCode();
+			Route::redirect('patient-management',
+				['patientId' => $patientId, 'create-mode' => true],
+				new UserMessage(TypeMessage::ERROR(), DefaultMessages::INTERNAL_ERROR_TITLE, DefaultMessages::INTERNAL_ERROR_BODY));
 		}
 	}
 	
@@ -124,11 +132,6 @@ class DiagramDAO implements DAOInterface
 			$stmt->bindValue(":description", $diagram->getDesc());
 			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId());
 			
-			/* echo $diagram->getDesc();
-			$stmt->bindValue(":title", "test");
-			$stmt->bindValue(":description", "aror");
-			// $stmt->bindValue(":img_diagram", $diagram->getImage());
-			$stmt->bindValue(":appointment_id", $diagram->getAppointmentId()); */
             $result = $stmt->execute();
             if (!$result) {
 	            throw new \PDOException("Nao foi possivel adicionar o diagrama. Entre em contato com adm.");

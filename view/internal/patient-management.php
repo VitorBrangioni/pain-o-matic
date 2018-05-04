@@ -2,6 +2,7 @@
 
 require_once '../../vendor/autoload.php';
 require_once '../../config/managementSession.php';
+require_once '../../config/user-message.php';
 
 use src\controller\PatientController;
 use src\controller\UploadController;
@@ -49,6 +50,7 @@ if (isset($_POST['submit'])) {
 <nav>
     <?php include '../includes/nav.html'; ?>
 </nav>
+<?php include '../includes/user-message.html'; ?>
 <header>
     <div class="container-fluid">
         <div class="row">

@@ -2,9 +2,14 @@
 
 namespace model\dao;
 
-use model\connection\Connection;
-use model\pojo\Patient;
+use PDOException;
+use src\app\Route;
 use model\pojo\Pojo;
+use model\pojo\Patient;
+use src\app\UserMessage;
+use src\enum\TypeMessage;
+use src\enum\DefaultMessages;
+use model\connection\Connection;
 
 /**
  *
@@ -43,6 +48,12 @@ class PatientDAO
 			echo $e->errorCode();
 		}
 	}
+
+/* 	public function myErrorHandler()
+	{
+		echo "arroz";
+		throw new \Exception("batata");
+	} */
 	
 	// @DONE
 	public function findById($id)
@@ -55,9 +66,8 @@ class PatientDAO
 			//return $this->populate($stmt->fetch(\PDO::FETCH_ASSOC));
 			return $stmt->fetch(\PDO::FETCH_ASSOC);
 			
-			
-		} catch (\PDOStatement $e) {
-			echo $e->errorCode();
+		} catch (\PDOException $e) {
+			echo $e->getMessage();
 		}
 	}
 	
@@ -122,8 +132,12 @@ class PatientDAO
 			$stmt->execute();
 			return self::$conn->lastInsertId();
 			
-		} catch (Exception $e) {
-			echo $e->getMessage();
+		} catch (PDOException $e) {
+			if ($e->getCode() == 23505) {
+				Route::redirect("patient-management", null, new UserMessage(TypeMessage::ERROR(), DefaultMessages::PATIENT_ALREADY_REGISTED_TITLE, DefaultMessages::PATIENT_ALREADY_REGISTED_BODY));
+			} else {
+				Route::redirect("patient-management", null, new UserMessage(TypeMessage::ERROR(), DefaultMessages::INTERNAL_ERROR_TITLE, DefaultMessages::INTERNAL_ERROR_BODY));
+			}
 		}
 	}
 	

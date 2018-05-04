@@ -1,0 +1,26 @@
+
+<?php if ($userMessage != null): ?>
+
+    <?php if ($userMessage['type'] == 'success'): ?>
+
+        <div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><?= $userMessage['title'] ?></strong> <?= $userMessage['msg'] ?>
+        </div>
+
+    <?php elseif ($userMessage['type'] == 'warning'): ?>
+
+        <div class="alert alert-warning alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><?= $userMessage['title'] ?></strong> <?= $userMessage['msg'] ?>
+        </div>
+
+    <?php elseif ($userMessage['type'] == 'error'): ?>
+
+        <div class="alert alert-danger alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><?= $userMessage['title'] ?></strong> <?= $userMessage['msg'] ?>
+        </div>
+
+    <?php endif ?>
+<?php endif ?>

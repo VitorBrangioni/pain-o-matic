@@ -2,8 +2,6 @@
 
 namespace src\controller;
 
-//require_once '../../vendor/autoload.php';
-
 use model\pojo\Patient;
 use model\dao\PatientDAO;
 use src\controller\UploadController;

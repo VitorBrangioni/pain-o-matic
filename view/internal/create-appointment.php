@@ -2,6 +2,7 @@
 
 require_once '../../vendor/autoload.php';
 require_once '../../config/scope.php';
+require_once '../../config/user-message.php';
 
 use src\controller\AppointmentController;
 
@@ -26,6 +27,7 @@ if (isset($_POST['save'])) {
 <nav>
     <?php include '../includes/nav.html'; ?>
 </nav>
+    <?php include '../includes/user-message.html'; ?>
     <form action="" method="post">
         <input type="hidden" name="patientId" value="<?= $scope['patientId'] ?>">
         <div class="container">

@@ -4,10 +4,15 @@ namespace model\dao;
 
 // require_once  '../../vendor/autoload.php';
 
+use PDOException;
+use src\app\Route;
+use model\pojo\Pojo;
+use src\app\UserMessage;
+use src\enum\TypeMessage;
+use model\pojo\Appointment;
+use src\enum\DefaultMessages;
 use model\connection\Connection;
 use model\interfaces\DAOInterface;
-use model\pojo\Pojo;
-use model\pojo\Appointment;
 
 class AppointmentDAO implements DAOInterface
 {
@@ -41,11 +46,13 @@ class AppointmentDAO implements DAOInterface
 			echo $e->errorCode();
 		}
 	}
+
 	
 	// @DONE
 	public function findById($id)
 	{
 		try {
+			// \set_error_handler(array($this, 'myErrorHandler'));
 			$sql = 'SELECT * FROM public."appointment" WHERE id = :id';
 			$stmt = self::$conn->prepare($sql);
 			$stmt->bindValue(":id", $id);
@@ -53,8 +60,11 @@ class AppointmentDAO implements DAOInterface
 			
 			return $stmt->fetch(\PDO::FETCH_ASSOC);
 			
-		} catch (\PDOStatement $e) {
-			echo $e->errorCode();
+		} catch (\PDOException $e) {
+			echo $e->getMessage();
+			Route::redirect('patient-management',
+				['patientId' => $patientId, 'create-mode' => true],
+				new UserMessage(TypeMessage::ERROR(), DefaultMessages::INTERNAL_ERROR_TITLE, DefaultMessages::INTERNAL_ERROR_BODY));
 		}
 	}
 	
@@ -75,8 +85,10 @@ class AppointmentDAO implements DAOInterface
 			
 			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			
-		} catch (\PDOStatement $e) {
-			echo $e->errorCode();
+		} catch (\PDOException $e) {
+			Route::redirect('patient-management',
+				['patientId' => $patientId, 'create-mode' => true],
+				new UserMessage(TypeMessage::ERROR(), DefaultMessages::INTERNAL_ERROR_TITLE, DefaultMessages::INTERNAL_ERROR_BODY));
 		}
 	}
 	

@@ -1,6 +1,7 @@
 <?php
 require_once '../../vendor/autoload.php';
 require_once '../../config/managementSession.php';
+require_once '../../config/user-message.php';
 
 use src\controller\AppointmentController;
 use src\controller\PatientController;
@@ -53,6 +54,7 @@ if (isset($_POST['redirectQuestions'])) {
                 </div>
             </div>
         </header>
+        <?php include '../includes/user-message.html'; ?>
         <legend><h2><strong>Consulta - <?= $appointment['date'] ?>, <?= $appointment['hora'] ?></strong></h2></legend>
         <section>
             <form method="POST" action="">

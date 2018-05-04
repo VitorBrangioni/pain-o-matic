@@ -2,11 +2,13 @@
 
 namespace src\controller;
 
+use src\app\Route;
+use src\app\UserMessage;
+
+use src\enum\TypeMessage;
 use model\pojo\Appointment;
 use model\dao\AppointmentDAO;
-
 use src\controller\RouteController;
-use src\controller\ScopeController;
 
 class AppointmentController
 {
@@ -30,7 +32,9 @@ class AppointmentController
 
 	public function create(int $patientId)
 	{
-		RouteController::redirect('create-appointment', ['patientId' => $patientId, 'create-mode' => true]);
+		Route::redirect('create-appointment',
+			['patientId' => $patientId, 'create-mode' => true],
+			new UserMessage(TypeMessage::SUCCESS(), "Preenche os dados da consulta", ""));
 	}
 
     public function save(int $patientId)
@@ -44,6 +48,7 @@ class AppointmentController
 		
 		self::$scope->add($_POST);
 
+		UserMessage::addMessage(TypeMessage::SUCCESS(), "Consulta Criada com Sucesso!", "");
 		header("Location: appointment-visualization.php?patientId=$patientId&appointmentId=$appointmentId");
 	}
 

@@ -2,8 +2,10 @@
 
 namespace src\controller;
 
-use model\dao\DiagramDAO;
 use model\pojo\Diagram;
+use src\app\UserMessage;
+use model\dao\DiagramDAO;
+use src\enum\TypeMessage;
 use model\dao\AppointmentDAO;
 
 class DiagramController
@@ -39,6 +41,7 @@ class DiagramController
 		session_start();
 		$_SESSION['mode'] = 'edit';
 
+		UserMessage::addMessage(TypeMessage::SUCCESS(), "Diagrama Criada com Sucesso!", "");
 		header("Location: pain-diagram.php?patientId={$appointment['patient_id']}&appointmentId=$appointmentId&diagramId=$diagramId&mode=edit");
 	}
 	
