@@ -1,6 +1,7 @@
 {
 	"require" : {
-		"tightenco/jigsaw" : "^0.6.4"
+		"tightenco/jigsaw" : "^0.6.4",
+		"myclabs/php-enum": "^1.5"
 	},
 	"autoload" : {
 		"psr-4" : {
@@ -9,7 +10,9 @@
 			"model\\interfaces\\" : "model/interface",
 			"model\\pojo\\" : "model/pojo",
 			"src\\controller\\" : "src/controller",
-			"src\\upload\\" : "src/upload"
+			"src\\app\\" : "src/app",
+			"src\\upload\\" : "src/upload",
+			"src\\enum\\" : "src/enum"
 		}
 	}
 }
