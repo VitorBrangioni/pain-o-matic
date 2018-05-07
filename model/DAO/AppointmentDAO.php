@@ -87,7 +87,7 @@ class AppointmentDAO implements DAOInterface
 		} catch (\PDOException $e) {
 
 			if ($e->getCode() === '22P02') {
-				header("Location patient-management.php");
+				header("Location: patient-management.php");
 			}
 
 			Route::redirect('patient-management',
