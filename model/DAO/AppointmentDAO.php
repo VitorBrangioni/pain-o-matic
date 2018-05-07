@@ -61,7 +61,6 @@ class AppointmentDAO implements DAOInterface
 			return $stmt->fetch(\PDO::FETCH_ASSOC);
 			
 		} catch (\PDOException $e) {
-			echo $e->getMessage();
 			Route::redirect('patient-management',
 				['patientId' => $patientId, 'create-mode' => true],
 				new UserMessage(TypeMessage::ERROR(), DefaultMessages::INTERNAL_ERROR_TITLE, DefaultMessages::INTERNAL_ERROR_BODY));
@@ -86,6 +85,11 @@ class AppointmentDAO implements DAOInterface
 			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			
 		} catch (\PDOException $e) {
+
+			if ($e->getCode() === '22P02') {
+				header("Location patient-management.php");
+			}
+
 			Route::redirect('patient-management',
 				['patientId' => $patientId, 'create-mode' => true],
 				new UserMessage(TypeMessage::ERROR(), DefaultMessages::INTERNAL_ERROR_TITLE, DefaultMessages::INTERNAL_ERROR_BODY));
